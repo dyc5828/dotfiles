@@ -1,0 +1,141 @@
+## CONFIG
+ZSH_DISABLE_COMPFIX=true
+
+## PATH
+# GEM
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+export PATH="$PATH:$GEM_HOME/bin"
+
+# Homebrew
+export PATH="/usr/local/sbin:$PATH"
+
+# Java
+export JAVA_HOME=$(/usr/libexec/java_home -v1.8.0_292)
+export PATH=$PATH:$JAVA_HOME/bin
+
+# Android
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+## ALIAS
+
+# dotfiles
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+# cd
+alias ~='cd '
+alias ..='cd ..'
+alias ...='cd ../..'
+
+# clear
+alias c='clear'
+
+# edit
+alias n='nano'
+
+# git
+alias g='git'
+alias gs='g status'
+alias ga='g add'
+alias gaa='git add --all'
+alias gb='g branch'
+alias gbl='gb --list'
+alias gbd='gb --delete'
+alias gc='git commit'
+alias gca='gc --amend'
+alias gcm='gc -m'
+alias gco='g checkout'
+alias gcp='g cherry-pick'
+alias gd='g diff'
+alias gds= 'gd --compact-summary'
+alias gph='g push'
+alias gpl='g pull'
+alias gl='g log'
+alias gr='g reset'
+alias grs='gr --soft'
+alias grh='gr --hard'
+alias gsh='g stash'
+alias gshl='gsh list'
+alias gshp='gsh pop'
+
+# arc
+alias a='arc'
+alias aw='a work'
+alias ab='a branch'
+alias ad='a diff'
+alias ap='a patch'
+alias al='a land'
+alias ac='git branch | cut -c3- | grep arcpatch- | xargs -n1 git branch -D'
+
+# colorls
+alias lc='colorls'
+alias l='lc -A --sd'
+alias ll='l -l'
+alias lt='l --tree'
+
+# xcode
+alias sim='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
+
+## PLUGIN
+eval "$(starship init zsh)"
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# eval $(thefuck --alias)
+source $(dirname $(gem which colorls))/tab_complete.sh
+
+export NVM_COMPLETION=true
+source ~/.zsh/zsh-nvm/zsh-nvm.plugin.zsh
+
+source ~/.zsh/zsh-completion-generator/zsh-completion-generator.plugin.zsh
+
+## COMMAND
+
+function reload () {
+	source ~/.zshenv
+	source ~/.zshrc
+	echo "SHELL RELOADED!"
+}
+
+function count_files () {
+	name=${1:-"*"}
+	dir=${2:-.}
+	echo "Counting files with '$name' in '$dir'"
+
+	find $dir -mindepth 1 -type f -name $name -exec printf x \; | wc -c
+}
+
+function gr_head () {
+	gr "HEAD~${1:-1}"
+}
+
+function gsha {
+	git stash apply stash@{$1}
+}
+
+function gshd () {
+	git stash drop stash@{$1}
+}
+
+function gsh_unstaged () {
+	gcm "${1:-'temp'}"
+	ga .
+	gsh
+	gr HEAD~1
+	ga .
+}
+
+function ls_port () {
+	lsof -i :$1
+}
+
+function ps_find () {
+	ps ax | grep $1
+}
+
+## LOAD
+
+autoload -Uz compinit
+compinit -u
