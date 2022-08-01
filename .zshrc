@@ -93,6 +93,10 @@ source ~/.zsh/zsh-nvm/zsh-nvm.plugin.zsh
 
 source ~/.zsh/zsh-completion-generator/zsh-completion-generator.plugin.zsh
 
+# source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+
+eval "$(frum init)"
+
 ## COMMAND
 
 function reload () {
