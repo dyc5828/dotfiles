@@ -10,7 +10,7 @@ export PATH="$PATH:$GEM_HOME/bin"
 export PATH="/usr/local/sbin:$PATH"
 
 # Java
-export JAVA_HOME=$(/usr/libexec/java_home -v1.8.0_292)
+export JAVA_HOME=$(/usr/libexec/java_home -v11.0.15)
 export PATH=$PATH:$JAVA_HOME/bin
 
 # Android
@@ -87,6 +87,8 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $(dirname $(gem which colorls))/tab_complete.sh
 
 export NVM_COMPLETION=true
+export NVM_AUTO_USE=true
+# export NVM_LAZY_LOAD=true
 source ~/.zsh/zsh-nvm/zsh-nvm.plugin.zsh
 
 source ~/.zsh/zsh-completion-generator/zsh-completion-generator.plugin.zsh
@@ -127,12 +129,33 @@ function gsh_unstaged () {
 	ga .
 }
 
+function g_skip () {
+	git update-index --skip-worktree $1
+}
+
+function g_unskip () {
+	git update-index --no-skip-worktree $1
+}
+
+function gls_skipped () {
+	git ls-files -t|grep "^S"
+}
+
+function glsr_tags () {
+	# git ls-remote --tags origin | cut -d/ -f3
+	git ls-remote --tags ${1:-"origin"}
+}
+
 function ls_port () {
 	lsof -i :$1
 }
 
 function ps_find () {
 	ps ax | grep $1
+}
+
+function kill_port () {
+	kill $(lsof -ti :$1)
 }
 
 ## LOAD
