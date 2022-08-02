@@ -24,6 +24,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # dotfiles
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dot='dotfiles'
 
 # cd
 alias ~='cd '
@@ -95,11 +96,11 @@ source ~/.zsh/zsh-completion-generator/zsh-completion-generator.plugin.zsh
 
 # source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
 
-eval "$(frum init)"
 
 ## COMMAND
 
 function reload () {
+	source ~/.zprofile
 	source ~/.zshenv
 	source ~/.zshrc
 	echo "SHELL RELOADED!"
