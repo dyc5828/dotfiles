@@ -6,7 +6,7 @@ Inspired by https://www.atlassian.com/git/tutorials/dotfiles
 1. Install Xcode and latest command line tools
 https://developer.apple.com/download/all/?q=command%20line%20tools
 
-2. Install dotfiles from scripts
+2. Install dotfiles with [script](https://gist.githubusercontent.com/dyc5828/27bc203f3671c61df577b3624debf89f)
 ```
 curl -Lks https://gist.githubusercontent.com/dyc5828/27bc203f3671c61df577b3624debf89f/raw/e602115bc5509b955fa81fef59f7fa9e7532b872/dotfiles-setup.sh | bash
 ```
