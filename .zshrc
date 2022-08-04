@@ -21,16 +21,12 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # PHP
-export PATH="/usr/local/opt/php@7.4/bin:$PATH"
-export PATH="/usr/local/opt/php@7.4/sbin:$PATH"
-export LDFLAGS="-L/usr/local/opt/php@7.4/lib"
-export CPPFLAGS="-I/usr/local/opt/php@7.4/include"
+export PATH="$HOMEBREW_PREFIX/opt/php@7.4/bin:$PATH"
+export PATH="$HOMEBREW_PREFIX/opt/php@7.4/sbin:$PATH"
+export LDFLAGS="-L$HOMEBREW_PREFIX/opt/php@7.4/lib"
+export CPPFLAGS="-I$HOMEBEW_PREFIX/opt/php@7.4/include"
 
 ## ALIAS
-
-# dotfiles
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias dot='dotfiles'
 
 # cd
 alias ~='cd '
@@ -109,6 +105,10 @@ function reload () {
 	source ~/.zshenv
 	source ~/.zshrc
 	echo "SHELL RELOADED!"
+}
+
+function dot {
+   /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
 }
 
 function count_files () {
