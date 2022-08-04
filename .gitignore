@@ -1,1 +1,3 @@
 .dotfiles
+.local/*
+Brewfile.lock.json
