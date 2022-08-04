@@ -20,6 +20,12 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+# PHP
+export PATH="/usr/local/opt/php@7.4/bin:$PATH"
+export PATH="/usr/local/opt/php@7.4/sbin:$PATH"
+export LDFLAGS="-L/usr/local/opt/php@7.4/lib"
+export CPPFLAGS="-I/usr/local/opt/php@7.4/include"
+
 ## ALIAS
 
 # dotfiles
@@ -90,11 +96,10 @@ source $(dirname $(gem which colorls))/tab_complete.sh
 export NVM_COMPLETION=true
 export NVM_AUTO_USE=true
 # export NVM_LAZY_LOAD=true
-source ~/.zsh/zsh-nvm/zsh-nvm.plugin.zsh
 
+source ~/.zsh/zsh-nvm/zsh-nvm.plugin.zsh
 source ~/.zsh/zsh-completion-generator/zsh-completion-generator.plugin.zsh
 
-# source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
 
 
 ## COMMAND
