@@ -11,9 +11,7 @@ https://developer.apple.com/download/all/?q=command%20line%20tools
 curl -Lks https://gist.githubusercontent.com/dyc5828/27bc203f3671c61df577b3624debf89f/raw/e602115bc5509b955fa81fef59f7fa9e7532b872/dotfiles-setup.sh | bash
 ```
 
-3. Use brew bundle to install brew packages
-https://github.com/Homebrew/homebrew-bundle
-https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f
+3. Use brew bundle to Install brew packages with [brew bundle](https://github.com/Homebrew/homebrew-bundle). See [tips](https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f).
 
 4. Install latest ruby
 ```
