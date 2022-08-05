@@ -3,8 +3,8 @@ Inspired by https://www.atlassian.com/git/tutorials/dotfiles
 
 ## Get Started 
 
-1. Install Xcode and latest command line tools
-https://developer.apple.com/download/all/?q=command%20line%20tools
+1. Install Xcode and latest [command line tools](https://developer.apple.com/download/all/?q=command%20line%20tools)
+
 
 2. Install dotfiles with [script](https://gist.githubusercontent.com/dyc5828/27bc203f3671c61df577b3624debf89f)
 ```
