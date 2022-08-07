@@ -13,14 +13,20 @@ curl -Lks https://gist.githubusercontent.com/dyc5828/27bc203f3671c61df577b3624de
 
 3. Use brew bundle to Install brew packages with [brew bundle](https://github.com/Homebrew/homebrew-bundle). See [tips](https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f).
 
-4. Install latest ruby
+4. Install python 2.7.18 with pyenv and set as global.
+```shell
+pyenv install 2.7.18
+pyenv global 2.7.18
+```
+
+5. Install latest ruby
 ```
 frum install 2.7.6
 ```
 
-5. Install colorls gem
+6. Install colorls gem
 ```
 gem install colorls
 ```
 
-6. Import terminal profile from `dan-pro.terminal`
+7. Import terminal profile from `dan-pro.terminal`
