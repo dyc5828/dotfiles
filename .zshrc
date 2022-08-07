@@ -10,7 +10,7 @@ export PATH="$PATH:$GEM_HOME/bin"
 export PATH="/usr/local/sbin:$PATH"
 
 # Java
-export JAVA_HOME=$(/usr/libexec/java_home -v11.0.15)
+export JAVA_HOME=$(/usr/libexec/java_home -v11)
 export PATH=$PATH:$JAVA_HOME/bin
 
 # Android
