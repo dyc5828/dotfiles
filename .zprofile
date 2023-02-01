@@ -1,5 +1,4 @@
-[[ $(uname -m) == 'arm64' ]] && brew_prefix='/opt/homebrew' || 
-brew_prefix='/usr/local'
+[[ $(uname -m) == 'arm64' ]] && brew_prefix='/opt/homebrew' || brew_prefix='/usr/local'
 # echo $brew_prefix
 eval "$(${brew_prefix}/bin/brew shellenv)"
 

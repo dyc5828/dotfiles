@@ -63,6 +63,7 @@ alias grh='gr --hard'
 alias gsh='g stash'
 alias gshl='gsh list'
 alias gshp='gsh pop'
+alias gsw='git switch'
 
 # arc
 alias a='arc'
@@ -154,6 +155,47 @@ function gls_skipped () {
 function glsr_tags () {
 	# git ls-remote --tags origin | cut -d/ -f3
 	git ls-remote --tags ${1:-"origin"}
+}
+
+function gsw_origin () {
+	gsw -c ${1} origin/${1}
+}
+
+function gsw_pr () {
+	pr_num=${1}
+	branch=pr${pr_num}
+	i=0
+	
+	echo "Checking if ${branch} exists.."
+	branch_hash=`git show-ref refs/heads/${branch}`
+
+
+	while [ -n "$branch_hash" ]
+	do
+		echo "${branch}_${i} exists already."
+
+		((i=i+1))
+		echo "Checking next name in sequence: ${branch}_${i+1}.."
+		branch_hash=`git show-ref refs/heads/${branch}_${i}`
+	done
+
+
+	pr_branch=${branch}_${i} 
+	echo "Checking out PR #${pr_num} to new branch ${pr_branch}.."
+	git fetch origin pull/${pr_num}/head:${pr_branch}
+	git switch ${pr_branch}
+	
+
+	# if [ -n "$branch_hash" ]; then
+	# 	echo "${branch} exits"
+	# 	# echo "Creating branch ${branch}"
+	# 	# gsw -c ${branch} origin/master
+	# 	# git pull origin pull/${num}/head
+	# else
+	# 	echo "no ${branch}"
+	# 	# echo "Switching to branch ${branch}"
+	# 	# gsw ${branch}
+	# fi
 }
 
 function ls_port () {
