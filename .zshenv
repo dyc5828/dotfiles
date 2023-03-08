@@ -1,3 +1,10 @@
-## PATH
-# export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-# export PATH="$PATH:$GEM_HOME/bin"
+## Githubb
+export GITHUB_TOKEN=
+
+## Homebrew
+export HOMEBREW_GITHUB_API_TOKEN=
+
+# Postgres - Homebot
+export PGHOST=
+export PGPORT=
+export PGUSER=
