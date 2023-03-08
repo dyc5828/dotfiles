@@ -1,5 +1,6 @@
 ## CONFIG
 ZSH_DISABLE_COMPFIX=true
+OP_BIOMETRIC_UNLOCK_ENABLED=true #1Password
 
 ## PATH
 # GEM
@@ -15,18 +16,26 @@ export PATH=$PATH:$JAVA_HOME/bin
 
 # Android
 export ANDROID_HOME=$HOME/Library/Android/sdk
+export ANDROID_NDK=$ANDROID_HOME/ndk/23.1.7779620
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # PHP
-export PATH="$HOMEBREW_PREFIX/opt/php@7.4/bin:$PATH"
-export PATH="$HOMEBREW_PREFIX/opt/php@7.4/sbin:$PATH"
-export LDFLAGS="-L$HOMEBREW_PREFIX/opt/php@7.4/lib"
-export CPPFLAGS="-I$HOMEBEW_PREFIX/opt/php@7.4/include"
+#export PATH="$HOMEBREW_PREFIX/opt/php@7.4/bin:$PATH"
+#export PATH="$HOMEBREW_PREFIX/opt/php@7.4/sbin:$PATH"
+#export LDFLAGS="-L$HOMEBREW_PREFIX/opt/php@7.4/lib"
+LDFLAGS=""
+#export CPPFLAGS="-I$HOMEBEW_PREFIX/opt/php@7.4/include"
 
 ## ALIAS
+
+# homebot
+alias av=aws-vault
+alias dc=docker-compose
+alias hbdev="$HOME/code/homebot/hbdev/bin/hbdev"
+alias hdev="docker-compose -f $HOME/code/homebot/hbdev/docker-compose.yml -p hbdev"
 
 # cd
 alias ~='cd '
@@ -38,6 +47,9 @@ alias c='clear'
 
 # edit
 alias n='nano'
+
+# date
+alias dateutc='date -u -Iseconds'
 
 # git
 alias g='git'
