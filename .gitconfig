@@ -1,8 +1,9 @@
 [user]
 	name = dyc5828
 	email = dyc5828@gmail.com
-[credential]
-	helper = 
-	helper = /usr/local/share/gcm-core/git-credential-manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true
+[credential]
+	helper = osxkeychain
+[url "https://<TOKEN>:@github.com/"]
+	insteadOf = https://github.com/
