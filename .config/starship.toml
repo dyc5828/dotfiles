@@ -1,0 +1,48 @@
+# Use custom format
+format = '$all'
+
+# Change the default prompt characters
+[character]
+success_symbol = ""
+error_symbol = ""
+
+# Shows the username
+[username]
+format = "[ $user]($style) "
+disabled = false
+show_always = true
+
+[directory]
+truncation_length = 2
+truncation_symbol = " "
+home_symbol = " ~"
+read_only = ""
+format = "[$path]($style)[$read_only]($read_only_style) "
+
+[git_branch]
+symbol = " "
+format = "[$symbol$branch(:$remote_branch)]($style) "
+
+[git_commit]
+tag_disabled = false
+tag_symbol = " 󰓼 "
+
+[nodejs]
+format = "[$symbol($version)]($style) "
+
+[package]
+disabled = false
+symbol = " "
+format = "[$symbol$version]($style) "
+
+[ruby]
+symbol = " "
+format = "[$symbol($version)]($style) "
+
+[cmd_duration]
+format = "[󰔚 $duration]($style) "
+
+[aws]
+symbol = "󰸏 "
+#format = "[$symbol($profile)(\($region\))(\[$duration\])]($style) "
+format = '[$symbol($profile)(:$region)(\[$duration\])]($style) '
