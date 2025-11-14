@@ -11,7 +11,7 @@ export PATH="$PATH:$GEM_HOME/bin"
 export PATH="/usr/local/sbin:$PATH"
 
 # Java
-export JAVA_HOME=$(/usr/libexec/java_home -v11)
+export JAVA_HOME=$(/usr/libexec/java_home -v17)
 export PATH=$PATH:$JAVA_HOME/bin
 
 # Android
@@ -37,10 +37,10 @@ alias dc=docker-compose
 alias hbdev="$HOME/code/homebot/hbdev/bin/hbdev"
 alias hdev="docker-compose -f $HOME/code/homebot/hbdev/docker-compose.yml -p hbdev"
 
-# cd
-alias ~='cd '
-alias ..='cd ..'
-alias ...='cd ../..'
+# cd/z
+alias ~='z '
+alias ..='z ..'
+alias ...='z ../..'
 
 # clear
 alias c='clear'
@@ -86,21 +86,21 @@ alias ap='a patch'
 alias al='a land'
 alias ac='git branch | cut -c3- | grep arcpatch- | xargs -n1 git branch -D'
 
-# colorls
-alias lc='colorls'
-alias l='lc -A --sd'
+# ls/eza
+alias e='eza'
+alias le='eza --icons'
+alias l='le -a'
 alias ll='l -l'
 alias lt='l --tree'
 
 # xcode
 alias sim='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
 
-## PLUGIN
+## SHELL
 eval "$(starship init zsh)"
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # eval $(thefuck --alias)
-source $(dirname $(gem which colorls))/tab_complete.sh
 
 export NVM_COMPLETION=true
 export NVM_AUTO_USE=true
@@ -109,6 +109,7 @@ export NVM_AUTO_USE=true
 source ~/.zsh/zsh-nvm/zsh-nvm.plugin.zsh
 source ~/.zsh/zsh-completion-generator/zsh-completion-generator.plugin.zsh
 
+fpath=(~/.zfunc $fpath)
 
 
 ## COMMAND
@@ -223,6 +224,6 @@ function kill_port () {
 }
 
 ## LOAD
+autoload -U +X compinit && compinit
 
-autoload -Uz compinit
-compinit -u
+eval "$(zoxide init zsh)"

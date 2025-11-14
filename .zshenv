@@ -5,6 +5,9 @@ export GITHUB_TOKEN=
 export HOMEBREW_GITHUB_API_TOKEN=
 
 # Postgres - Homebot
-export PGHOST=
-export PGPORT=
-export PGUSER=
+export PGHOST=''
+export PGPORT=''
+export PGUSER=''
+
+# Homebot
+BUNDLE_ENTERPRISE__CONTRIBSYS__COM=
