@@ -24,6 +24,12 @@ Inspired by <https://www.atlassian.com/git/tutorials/dotfiles>
    curl -fsSL https://raw.githubusercontent.com/dyc5828/dotfiles/HEAD/install.sh | bash
    ```
 
+   Initialize submodules
+
+   ```shell
+   dot submodule update --init --recursive
+   ```
+
 1. Update environment variables and secrets
 
    ```shell
@@ -33,11 +39,11 @@ Inspired by <https://www.atlassian.com/git/tutorials/dotfiles>
 
 1. Install [Homebrew](https://brew.sh/) and [bundle](https://docs.brew.sh/Brew-Bundle-and-Brewfile)
 
-   ``` shell
+   ```shell
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    ```
 
-   Run bundle install. *May need to run multiple times due to errors/flakiness*
+   Run bundle install. _May need to run multiple times due to errors/flakiness_
 
    ```shell
    brew bundle install
@@ -57,21 +63,48 @@ Inspired by <https://www.atlassian.com/git/tutorials/dotfiles>
 
    # Navigate to the folder
    open /opt/homebrew/Caskroom/zulu@17/<version number> # or /usr/local/Caskroom/zulu@17/<version number>
-   ```  
+   ```
 
-1. *Optional:* Install python
+1. Install python. See python [versions](https://devguide.python.org/versions/)
 
    ```shell
-   pyenv install 2.7.18
+   pyenv install 2.7.18 # python 2 required for legacy tools
    pyenv global 2.7.18
    ```
 
-1. *Optional:* Install ruby
+1. Install ruby. See ruby [versions](https://www.ruby-lang.org/en/downloads/branches/)
 
    ```shell
    frum install 3.1.3 // 2.7.6
    frum global 3.1.3
    ```
+
+1. Software Checklist
+
+   Utilities
+
+   - [ ] [SoundSource](https://rogueamoeba.com/soundsource/)
+   - [ ] [1Password](https://1password.com/downloads/mac/)
+   - [ ] [TablePlus](https://tableplus.com/mac)
+   - [ ] [Postman](https://www.postman.com/downloads/)
+
+   Browsers
+
+   - [ ] [Arc](https://arc.net/)
+   - [ ] [Dia](https://www.diabrowser.com/)
+   - [ ] [Google Chrome](https://www.google.com/chrome/)
+
+   Code
+
+   - [ ] [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+   - [ ] [Android Studio](https://developer.android.com/studio)
+   - [ ] [Xcode](https://apps.apple.com/us/app/xcode/id497799835?mt=12)
+   - [ ] [Cursor](https://cursor.com/download)
+
+   Work
+
+   - [ ] [Slack](https://slack.com/downloads/mac)
+   - [ ] [Notion](https://www.notion.so/desktop)
 
 ## Usage
 
@@ -113,19 +146,13 @@ dot push origin main
 
 ## Deprecated Steps
 
-* Install [Github CLI](https://github.com/cli/cli) and login.
+- Install [Github CLI](https://github.com/cli/cli) and login.
 
-   ```shell
-   brew install gh
-   gh auth login
-   ```
+  ```shell
+  brew install gh
+  gh auth login
+  ```
 
-   When prompted, use browser to authenticate and select ssh protocol to create ssh key and add to Github.
+  When prompted, use browser to authenticate and select ssh protocol to create ssh key and add to Github.
 
-* Import terminal profile from `dan-pro.terminal`
-
-* Initialize submodules
-
-   ```shell
-   git submodule update --init --recursive
-   ```
+- Import terminal profile from `dan-pro.terminal`
