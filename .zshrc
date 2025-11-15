@@ -26,7 +26,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 #export PATH="$HOMEBREW_PREFIX/opt/php@7.4/bin:$PATH"
 #export PATH="$HOMEBREW_PREFIX/opt/php@7.4/sbin:$PATH"
 #export LDFLAGS="-L$HOMEBREW_PREFIX/opt/php@7.4/lib"
-LDFLAGS=""
+#LDFLAGS=""
 #export CPPFLAGS="-I$HOMEBEW_PREFIX/opt/php@7.4/include"
 
 ## ALIAS
