@@ -93,6 +93,11 @@ alias l='le -a'
 alias ll='l -l'
 alias lt='l --tree'
 
+# cat/bat
+alias cat='bat --paging=never'
+alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+
 # xcode
 alias sim='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
 
