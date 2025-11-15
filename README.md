@@ -73,6 +73,28 @@ Inspired by <https://www.atlassian.com/git/tutorials/dotfiles>
    frum global 3.1.3
    ```
 
+## Usage
+
+`dot` command functions as git but always points to ~
+
+Update tracked dotfiles
+
+```shell
+dot status
+dot diff file/with/updates
+dot add file/with/updates
+dot commit -m 'my updates'
+dot push origin main
+```
+
+Track new dotfiles files. Be sure to purge secrets!
+
+```shell
+dot add new/file/to/track
+dot commit -m 'new files'
+dot push origin main
+```
+
 ## Useful Resources
 
 [Warp and Starfish setup](https://devops-crux.com/posts/09-2023-terminal-setup/)
