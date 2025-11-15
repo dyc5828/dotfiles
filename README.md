@@ -77,7 +77,13 @@ Inspired by <https://www.atlassian.com/git/tutorials/dotfiles>
 
 `dot` command functions as git but always points to ~
 
-Update tracked dotfiles
+Get latest dotfiles
+
+```shell
+dot pull
+```
+
+Make updates to tracked dotfiles
 
 ```shell
 dot status
@@ -87,7 +93,7 @@ dot commit -m 'my updates'
 dot push origin main
 ```
 
-Track new dotfiles files. Be sure to purge secrets!
+Add and track new dotfiles files. Be sure to purge secrets!
 
 ```shell
 dot add new/file/to/track
