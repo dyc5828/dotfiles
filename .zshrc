@@ -26,7 +26,6 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 #export PATH="$HOMEBREW_PREFIX/opt/php@7.4/bin:$PATH"
 #export PATH="$HOMEBREW_PREFIX/opt/php@7.4/sbin:$PATH"
 #export LDFLAGS="-L$HOMEBREW_PREFIX/opt/php@7.4/lib"
-#LDFLAGS=""
 #export CPPFLAGS="-I$HOMEBEW_PREFIX/opt/php@7.4/include"
 
 ## ALIAS
@@ -136,7 +135,7 @@ function gr_head () {
 	gr "HEAD~${1:-1}"
 }
 
-function gsha {
+function gsha () {
 	git stash apply stash@{$1}
 }
 
@@ -225,4 +224,5 @@ function kill_port () {
 ## LOAD
 autoload -U +X compinit && compinit
 
+# initialize z after compinit for auto complete suggestions
 eval "$(zoxide init zsh)"

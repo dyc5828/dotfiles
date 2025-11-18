@@ -1,3 +1,4 @@
+
 # Githubb
 export GITHUB_TOKEN=
 
@@ -17,3 +18,8 @@ export PGUSER='postgres'
 
 ## bundler credentials for sidekiq enterprise
 BUNDLE_ENTERPRISE__CONTRIBSYS__COM=
+
+# PATH
+# export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+# export PATH="$PATH:$GEM_HOME/bin"
+export PATH="$HOME/.local/bin:$PATH"
