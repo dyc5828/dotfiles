@@ -86,7 +86,7 @@ mas "Hidden Bar", id: 1452453066
 mas "Magnet", id: 441258766
 mas "One Thing", id: 1604176982
 mas "Presentation Camera", id: 1599926131
-mas "Slack 2", id: 803453959
+mas "Slack", id: 803453959
 mas "TestFlight", id: 899247664
 mas "Vivid", id: 6443470555
 vscode "albert.tabout"
