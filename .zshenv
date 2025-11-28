@@ -2,7 +2,7 @@
 export GITHUB_TOKEN=
 
 # Homebrew
-export HOMEBREW_GITHUB_API_TOKEN=
+export HOMEBREW_GITHUB_API_TOKEN="$GITHUB_TOKEN"
 
 # openssl
 export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"
@@ -11,9 +11,9 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@1.1/lib/pkgconfig"
 
 # Homebot
 ## Postgres
-export PGHOST=
-export PGPORT=
-export PGUSER=
+export PGHOST='127.0.0.1'
+export PGPORT='5432'
+export PGUSER='postgres'
 
 ## bundler credentials for sidekiq enterprise
 BUNDLE_ENTERPRISE__CONTRIBSYS__COM=
