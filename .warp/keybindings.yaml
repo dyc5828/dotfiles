@@ -1,3 +1,6 @@
 ---
 "pane_group:add_right": "cmd-\\"
+"editor_view:move_to_paragraph_start": none
+"editor_view:move_to_line_start": none
+"editor_view:left": none
 "pane_group:add_down": "alt-cmd-\\"

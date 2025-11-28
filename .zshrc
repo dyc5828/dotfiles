@@ -65,7 +65,7 @@ alias gcm='gc -m'
 alias gco='g checkout'
 alias gcp='g cherry-pick'
 alias gd='g diff'
-alias gds= 'gd --compact-summary'
+alias gds='gd --compact-summary'
 alias gph='g push'
 alias gpl='g pull'
 alias gl='g log'
@@ -76,15 +76,6 @@ alias gsh='g stash'
 alias gshl='gsh list'
 alias gshp='gsh pop'
 alias gsw='git switch'
-
-# arc
-alias a='arc'
-alias aw='a work'
-alias ab='a branch'
-alias ad='a diff'
-alias ap='a patch'
-alias al='a land'
-alias ac='git branch | cut -c3- | grep arcpatch- | xargs -n1 git branch -D'
 
 # ls/eza
 alias e='eza'
@@ -100,6 +91,9 @@ alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 
 # xcode
 alias sim='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
+
+# ai
+alias fabric=fabric-ai
 
 ## SHELL
 eval "$(starship init zsh)"
