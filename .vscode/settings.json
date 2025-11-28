@@ -9,5 +9,8 @@
     "**/Pictures": true,
     "**/Public": true,
     "**/homebot": true
+  },
+  "rubyLsp.indexing": {
+    "enabled": false
   }
 }
