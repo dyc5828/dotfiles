@@ -110,7 +110,11 @@ export NVM_AUTO_USE=true
 source ~/.zsh/zsh-nvm/zsh-nvm.plugin.zsh
 source ~/.zsh/zsh-completion-generator/zsh-completion-generator.plugin.zsh
 
-fpath=(~/.zfunc $fpath)
+fpath=(
+    ~/.zfunc
+    ~/.docker/completions
+    $fpath
+)
 
 
 ## COMMAND
@@ -225,7 +229,7 @@ function kill_port () {
 }
 
 ## LOAD
-autoload -U +X compinit && compinit
+autoload -Uz +X compinit && compinit
 
 # initialize z after compinit for auto complete suggestions
 eval "$(zoxide init zsh)"

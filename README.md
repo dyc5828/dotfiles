@@ -97,6 +97,7 @@ Inspired by <https://www.atlassian.com/git/tutorials/dotfiles>
    Code
 
    - [ ] [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+      - Install completions https://docs.docker.com/engine/cli/completion/#zsh
    - [ ] [Android Studio](https://developer.android.com/studio)
    - [ ] [Xcode](https://apps.apple.com/us/app/xcode/id497799835?mt=12)
    - [ ] [Cursor](https://cursor.com/download)
