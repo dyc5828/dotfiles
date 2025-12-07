@@ -1,5 +1,7 @@
 {
   "files.exclude": {
+    "**/Applications": true,
+    "**/code": true,
     "**/Desktop": true,
     "**/Documents": true,
     "**/Downloads": true,
@@ -7,6 +9,7 @@
     "**/Movies": true,
     "**/Music": true,
     "**/Pictures": true,
+    "**/projects": true,
     "**/Public": true,
     "**/homebot": true
   },
