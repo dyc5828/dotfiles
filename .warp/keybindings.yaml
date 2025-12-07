@@ -1,6 +1,8 @@
 ---
-"pane_group:add_right": "cmd-\\"
+"pane_group:add_right": shift-cmd-|
+"pane_group:add_up": "ctrl-alt-cmd-\\"
 "editor_view:move_to_paragraph_start": none
 "editor_view:move_to_line_start": none
+"pane_group:add_down": "ctrl-cmd-\\"
+"pane_group:add_left": alt-shift-cmd-|
 "editor_view:left": none
-"pane_group:add_down": "alt-cmd-\\"
