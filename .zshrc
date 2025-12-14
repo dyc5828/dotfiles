@@ -111,8 +111,8 @@ source ~/.zsh/zsh-nvm/zsh-nvm.plugin.zsh
 source ~/.zsh/zsh-completion-generator/zsh-completion-generator.plugin.zsh
 
 fpath=(
-    ~/.zfunc
     ~/.docker/completions
+    ~/.zfunc
     $fpath
 )
 
@@ -228,8 +228,9 @@ function kill_port () {
 	kill $(lsof -ti :$1)
 }
 
-## LOAD
-autoload -Uz +X compinit && compinit
+## LOAD completions
+autoload -Uz +X compinit
+compinit
 
 # initialize z after compinit for auto complete suggestions
 eval "$(zoxide init zsh)"
