@@ -87,6 +87,7 @@ Inspired by <https://www.atlassian.com/git/tutorials/dotfiles>
    - [ ] [1Password](https://1password.com/downloads/mac/)
    - [ ] [TablePlus](https://tableplus.com/mac)
    - [ ] [Postman](https://www.postman.com/downloads/)
+   - [ ] [Karabiner-Elements](https://karabiner-elements.pqrs.org/)
 
    Browsers
 
