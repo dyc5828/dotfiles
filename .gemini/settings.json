@@ -1,0 +1,23 @@
+{
+  "security": {
+    "auth": {
+      "selectedType": "gemini-api-key"
+    }
+  },
+  "general": {
+    "previewFeatures": true
+  },
+  "ui": {
+    "showStatusInTitle": true,
+    "hideContextSummary": false,
+    "footer": {
+      "hideModelInfo": false,
+      "hideContextPercentage": false
+    },
+    "showMemoryUsage": true,
+    "showLineNumbers": true,
+    "hideFooter": false,
+    "showModelInfoInChat": true,
+    "showCitations": true
+  }
+}

@@ -1,9 +1,11 @@
-
 # Githubb
 export GITHUB_TOKEN=
 
 # Homebrew
 export HOMEBREW_GITHUB_API_TOKEN="$GITHUB_TOKEN"
+
+# Gemini API
+export GEMINI_API_KEY=
 
 # openssl
 export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"
