@@ -44,6 +44,9 @@ alias ...='z ../..'
 # clear
 alias c='clear'
 
+# diff
+alias diff='riff'
+
 # edit
 alias n='nano'
 

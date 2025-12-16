@@ -60,10 +60,10 @@ brew "mas"
 brew "mint"
 brew "nghttp2"
 brew "openssl@1.1"
-brew "php@7.4"
 brew "postgresql@14"
 brew "pyenv"
 brew "redis"
+brew "riff"
 brew "ripgrep"
 brew "starship"
 brew "thefuck"
@@ -79,6 +79,8 @@ brew "heroku/brew/heroku"
 brew "homebotapp/tap/godev"
 brew "stripe/stripe-cli/stripe"
 brew "wix/brew/applesimutils"
+cask "1password-cli
+cask "claude-code"
 cask "font-fira-code-nerd-font"
 cask "font-meslo-lg-nerd-font"
 cask "git-credential-manager"
@@ -94,7 +96,6 @@ mas "Hidden Bar", id: 1452453066
 mas "Magnet", id: 441258766
 mas "One Thing", id: 1604176982
 mas "Presentation Camera", id: 1599926131
-mas "Slack", id: 803453959
 mas "TestFlight", id: 899247664
 mas "Vivid", id: 6443470555
 vscode "albert.tabout"
