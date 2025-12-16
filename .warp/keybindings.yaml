@@ -1,12 +1,12 @@
 ---
-"editor_view:toggle_comment": none
-"pane_group:add_left": alt-shift-cmd-|
-"workspace:activate_prev_tab": "ctrl-["
-"editor_view:vim_exit_insert_mode": none
-"pane_group:add_up": "ctrl-alt-cmd-\\"
-"editor_view:move_to_line_start": none
-"workspace:activate_next_tab": "ctrl-]"
 "editor_view:left": none
-"pane_group:add_down": "ctrl-cmd-\\"
+"editor_view:move_to_line_start": none
 "editor_view:move_to_paragraph_start": none
+"editor_view:toggle_comment": none
+"editor_view:vim_exit_insert_mode": none
+"pane_group:add_down": "ctrl-cmd-\\"
+"pane_group:add_left": alt-shift-cmd-|
+"pane_group:add_up": "ctrl-alt-cmd-\\"
 "pane_group:add_right": shift-cmd-|
+"workspace:activate_next_tab": "ctrl-]"
+"workspace:activate_prev_tab": "ctrl-["
