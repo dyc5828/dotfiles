@@ -108,6 +108,14 @@ Inspired by <https://www.atlassian.com/git/tutorials/dotfiles>
    - [ ] [Slack](https://slack.com/downloads/mac)
    - [ ] [Notion](https://www.notion.so/desktop)
 
+1. Manual Setup
+
+   Set Warp font.
+
+   1. Open `Settings->Appearance->Text`
+   1. Select "MesloLGL Nerd Font Mono" for Terminal font
+   1. Select "FiraCode Nerd Font Mono" for Agent font
+
 ## Usage
 
 `dot` command functions as git but always points to ~
