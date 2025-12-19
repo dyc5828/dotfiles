@@ -36,6 +36,9 @@ alias dc=docker-compose
 alias hbdev="$HOME/code/homebot/hbdev/bin/hbdev"
 alias hdev="docker-compose -f $HOME/code/homebot/hbdev/docker-compose.yml -p hbdev"
 
+# bkup
+alias b='bkup'
+
 # cd/z
 alias ~='z '
 alias ..='z ..'
