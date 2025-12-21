@@ -5,7 +5,6 @@
                 "rules": [
                     {
                         "description": "Mic Mute Toggle: F5 to Ctrl-Opt-Cmd-m",
-                        "enabled": true,
                         "manipulators": [
                             {
                                 "from": { "key_code": "f5" },
@@ -24,7 +23,6 @@
                         "enabled": false,
                         "manipulators": [
                             {
-                                
                                 "from": {
                                     "key_code": "f6",
                                     "modifiers": { "optional": ["any"] }
