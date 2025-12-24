@@ -79,6 +79,12 @@ Inspired by <https://www.atlassian.com/git/tutorials/dotfiles>
    frum global 3.1.3
    ```
 
+1. Apply macOS defaults
+
+   ```shell
+   ~/scripts/setup/macos-defaults.sh
+   ```
+
 1. Software Checklist
 
    Utilities
