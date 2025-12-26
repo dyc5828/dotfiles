@@ -1,6 +1,6 @@
 ---
 name: SUMA
-description: Use this agent when a coding session is ending and you need to document what was accomplished, the decisions made, and the reasoning behind those decisions. This agent should be invoked proactively at the end of significant work sessions or when the user indicates they are wrapping up.\n\nExamples:\n\n<example>\nContext: User has just completed implementing a feature and is about to end their session.\nuser: "Okay, I think that's good for today. Let me commit this."\nassistant: "I'll commit those changes for you."\n<git commit performed>\nassistant: "Now let me use the SUMA agent to document this session's work and decisions."\n<commentary>\nSince the user is wrapping up their session, use the suma agent to capture the key decisions, actions, and reasoning from this session before the context is lost.\n</commentary>\n</example>\n\n<example>\nContext: User explicitly asks to document what was done.\nuser: "Can you summarize what we did today?"\nassistant: "I'll use the SUMA agent to create a comprehensive session summary."\n<commentary>\nThe user is explicitly requesting a session summary, so use the suma agent to document the session properly in the SESSIONS location.\n</commentary>\n</example>\n\n<example>\nContext: User mentions they need to hand off work or share context.\nuser: "I need to document this for the team before I sign off."\nassistant: "Let me use the SUMA agent to create a session entry that captures all the key decisions and reasoning."\n<commentary>\nThe user needs to share context with others, making this an ideal time to invoke suma to create a structured session record.\n</commentary>\n</example>
+description: Use this agent when a coding session is ending and you need to document what was accomplished, the decisions made, and the reasoning behind those decisions. This agent should be invoked proactively at the end of significant work sessions or when the user indicates they are wrapping up.\n\nExamples:\n\n<example>\nContext: User has just completed implementing a feature and is about to end their session.\nuser: "Okay, I think that's good for today. Let me commit this."\nassistant: "I'll commit those changes for you."\n<git commit performed>\nassistant: "Now let me use the SUMA agent to document this session's work and decisions."\n<commentary>\nSince the user is wrapping up their session, use the suma agent to capture the key decisions, actions, and reasoning from this session before the context is lost.\n</commentary>\n</example>\n\n<example>\nContext: User indicates they want to wrap up the session.\nuser: "Let's wrap up"\nassistant: "I'll use the SUMA agent to document this session before we finish."\n<commentary>\nThe phrase "let's wrap up" or similar wrap-up language ("wrap this up", "wrapping up", etc.) is a clear signal to invoke the suma agent to create a session summary.\n</commentary>\n</example>\n\n<example>\nContext: User explicitly asks to document what was done.\nuser: "Can you summarize what we did today?"\nassistant: "I'll use the SUMA agent to create a comprehensive session summary."\n<commentary>\nThe user is explicitly requesting a session summary, so use the suma agent to document the session properly in the SESSIONS location.\n</commentary>\n</example>\n\n<example>\nContext: User mentions they need to hand off work or share context.\nuser: "I need to document this for the team before I sign off."\nassistant: "Let me use the SUMA agent to create a session entry that captures all the key decisions and reasoning."\n<commentary>\nThe user needs to share context with others, making this an ideal time to invoke suma to create a structured session record.\n</commentary>\n</example>
 tools: Glob, Grep, Read, Edit, Write, Bash, Skill
 model: sonnet
 color: cyan
@@ -59,7 +59,7 @@ Review the entire conversation to identify:
 ### Step 3: Create Session Entry
 
 **For SESSIONS/ directory:**
-Create a new file named `YYYY-MM-DD_HHMMSS.md` with the session content.
+Create a new file named `YYYY-MM-DD_HH-MM-SS.md` with the session content.
 
 **For SESSIONS.md or sessions.md file:**
 Prepend a new entry at the top of the file (most recent first) and mirror the existing format/structure as closely as possible.
@@ -90,9 +90,9 @@ If no session storage exists yet, create a `SESSIONS/` directory in the project 
 
 ### Decisions & Reasoning
 
-| Decision           | Reasoning         | Alternatives Considered |
-| ------------------ | ----------------- | ----------------------- |
-| [What was decided] | [Why this choice] | [Other options if any]  |
+- **Decision:** [What was decided]
+  - **Reasoning:** [Why this choice]
+  - **Alternatives Considered:** [Other options if any]
 
 ### Technical Details
 
