@@ -40,17 +40,20 @@ ADD_COLOR="38;5;2"        # green
 DEL_COLOR="38;5;1"        # red
 TIME_COLOR="38;5;226"     # yellow
 
-# Build output
-OUTPUT=""
+# Context icon (5 levels: ○ ◔ ◑ ◕ ●)
+if [[ "$CTX_USED_PCT" -lt 20 ]]; then
+    CTX_ICON="○"
+elif [[ "$CTX_USED_PCT" -lt 40 ]]; then
+    CTX_ICON="◔"
+elif [[ "$CTX_USED_PCT" -lt 60 ]]; then
+    CTX_ICON="◑"
+elif [[ "$CTX_USED_PCT" -lt 80 ]]; then
+    CTX_ICON="◕"
+else
+    CTX_ICON="●"
+fi
 
-# 1. AI model (orange)
-OUTPUT+=$(printf "\033[${MODEL_COLOR}m@ %s\033[0m" "$MODEL")
-
-# 2. Context: icon + percentage + progress bar
-# Dynamic progress icon based on usage (8 levels) - using ASCII for now
-CTX_ICON="*"
-
-# Icon color: green <40%, yellow 40-60%, orange 60-75%, red >=75%
+# Context color: green <40%, yellow 40-60%, orange 60-75%, red >=75%
 if [[ "$CTX_USED_PCT" -lt 40 ]]; then
     CTX_COLOR="38;5;2"    # green
 elif [[ "$CTX_USED_PCT" -lt 60 ]]; then
@@ -70,26 +73,33 @@ BAR_EMPTY=""
 for ((i=0; i<FILLED; i++)); do BAR_FILLED+="="; done
 for ((i=0; i<EMPTY; i++)); do BAR_EMPTY+=" "; done
 
-OUTPUT+=$(printf " \033[${SEP_COLOR}m|\033[0m \033[${CTX_COLOR}m%s %s%%\033[0m [\033[${CTX_COLOR}m%s\033[0m%s]" "$CTX_ICON" "$CTX_USED_PCT" "$BAR_FILLED" "$BAR_EMPTY")
+# Build output
+OUTPUT=""
+
+# 1. Model with context icon (no separator after)
+OUTPUT+=$(printf "\033[${CTX_COLOR}m%s\033[0m \033[${MODEL_COLOR}m%s\033[0m" "$CTX_ICON" "$MODEL")
+
+# 2. Context bar and percentage
+OUTPUT+=$(printf " [\033[${CTX_COLOR}m%s\033[0m%s] \033[${CTX_COLOR}m%s%%\033[0m" "$BAR_FILLED" "$BAR_EMPTY" "$CTX_USED_PCT")
 
 # 3. Directory (teal)
 if [[ -n "$CWD" ]]; then
     CWD_SHORT=$(basename "$CWD")
-    OUTPUT+=$(printf " \033[${SEP_COLOR}m|\033[0m \033[${DIR_COLOR}m../%s\033[0m" "$CWD_SHORT")
+    OUTPUT+=$(printf " \033[${SEP_COLOR}m|\033[0m \033[${DIR_COLOR}m▸ ../%s\033[0m" "$CWD_SHORT")
 fi
 
 # 4. Git branch (pink) or worktree (green)
 if [[ -n "$GIT_BRANCH" ]]; then
     if [[ -n "$IS_WORKTREE" ]]; then
-        OUTPUT+=$(printf " \033[${SEP_COLOR}m|\033[0m \033[${WORKTREE_COLOR}m󰙅 %s\033[0m" "$GIT_BRANCH")
+        OUTPUT+=$(printf " \033[${SEP_COLOR}m|\033[0m \033[${WORKTREE_COLOR}m◈ %s\033[0m" "$GIT_BRANCH")
     else
-        OUTPUT+=$(printf " \033[${SEP_COLOR}m|\033[0m \033[${BRANCH_COLOR}m󰘬 %s\033[0m" "$GIT_BRANCH")
+        OUTPUT+=$(printf " \033[${SEP_COLOR}m|\033[0m \033[${BRANCH_COLOR}m⎇ %s\033[0m" "$GIT_BRANCH")
     fi
 fi
 
 # 5. Lines changed (green/red with icon)
 if [[ "$LINES_ADDED" != "0" || "$LINES_REMOVED" != "0" ]]; then
-    OUTPUT+=$(printf " \033[${SEP_COLOR}m|\033[0m \033[${ADD_COLOR}m+%s\033[0m/\033[${DEL_COLOR}m-%s\033[0m" "$LINES_ADDED" "$LINES_REMOVED")
+    OUTPUT+=$(printf " \033[${SEP_COLOR}m|\033[0m \033[${ADD_COLOR}m± %s\033[0m/\033[${DEL_COLOR}m%s\033[0m" "$LINES_ADDED" "$LINES_REMOVED")
 fi
 
 # 6. Cost and duration (at the end)
@@ -97,6 +107,6 @@ COST_FMT=$(printf "%.2f" "$COST")
 DURATION_INT=$(printf "%.0f" "$DURATION")
 HOURS=$((DURATION_INT / 3600))
 MINUTES=$(((DURATION_INT % 3600) / 60))
-OUTPUT+=$(printf " \033[${SEP_COLOR}m|\033[0m \$%s.\033[${TIME_COLOR}m%d:%02d\033[0m" "$COST_FMT" "$HOURS" "$MINUTES")
+OUTPUT+=$(printf " \033[${SEP_COLOR}m|\033[0m \$%s·\033[${TIME_COLOR}m%d:%02d\033[0m" "$COST_FMT" "$HOURS" "$MINUTES")
 
 echo "$OUTPUT"
