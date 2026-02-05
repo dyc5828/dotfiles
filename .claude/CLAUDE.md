@@ -28,8 +28,26 @@ Be proactive about improving workflows. Watch for:
 
 **Where learnings go:**
 - Agent-specific behaviors → that agent's definition (e.g., `~/.claude/agents/genko.md`)
-- Environment/tooling → `~/warp.md`
+- Environment/tooling → `~/.claude/CLAUDE.md` (global) or `~/WARP.md` (reference)
 - Directory-specific context → that directory's `CLAUDE.md`
 - Global Claude preferences → this file
 
-<!-- Add user-level Claude preferences here as they emerge -->
+## CLI Tools
+
+Use these modern CLI tools across all projects:
+
+- **eza** instead of `ls` - for listing files with colors/icons
+- **fd** instead of `find` - for finding files (respects .gitignore)
+- **rg** (ripgrep) instead of `grep` - for searching file contents (respects .gitignore)
+- **bat** instead of `cat` - for viewing files with syntax highlighting
+- **zoxide** (`z`) instead of `cd` - for smart directory navigation
+
+Note: User has aliases for personal use (e.g., `l`, `ll`, `lt` for eza variants), but AI should use base commands with explicit flags (e.g., `eza -la` or `fd pattern`).
+
+## Shell Environment
+
+- Operating System: MacOS
+- Shell: zsh 5.9
+- Package Manager: pnpm (for Node.js global packages)
+
+See `~/WARP.md` for detailed reference of user aliases and shell configuration.
