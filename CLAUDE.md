@@ -25,11 +25,25 @@ dot commit -m "..." # Commit changes
 dot push            # Push to remote
 ```
 
+## CLI Tools
+
+Use these modern CLI tools (not the user's aliases):
+
+- **eza** instead of `ls` - for listing files with colors/icons
+- **fd** instead of `find` - for finding files (respects .gitignore)
+- **rg** (ripgrep) instead of `grep` - for searching file contents (respects .gitignore)
+- **bat** instead of `cat` - for viewing files with syntax highlighting
+- **zoxide** (`z`) instead of `cd` - for smart directory navigation
+
+Note: The user has aliases for personal use (e.g., `l`, `ll`, `lt` for eza variants), but AI should use the base commands directly (e.g., `eza -la` or `fd pattern`).
+
 ## Environment Reference
 
-See `~/warp.md` for:
+See `~/WARP.md` for:
+- Complete list of CLI tools and user aliases
 - Shell configuration (zshenv vs zshrc)
 - Node.js global package management (pnpm vs npm)
+- Git shortcuts and workflow
 - General development preferences
 
-When learning new environment-specific information, update `~/warp.md` to keep knowledge centralized across AI tools.
+When learning new environment-specific information, update `~/WARP.md` to keep knowledge centralized across AI tools.

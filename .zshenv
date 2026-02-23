@@ -1,11 +1,12 @@
 # Githubb
-export GITHUB_TOKEN=
+export GITHUB_TOKEN=""
+export GITHUB_PERSONAL_ACCESS_TOKEN="$GITHUB_TOKEN"
 
 # Homebrew
 export HOMEBREW_GITHUB_API_TOKEN="$GITHUB_TOKEN"
 
 # Gemini API
-export GEMINI_API_KEY=
+export GEMINI_API_KEY=""
 
 # openssl
 export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"
@@ -24,4 +25,6 @@ BUNDLE_ENTERPRISE__CONTRIBSYS__COM=
 # PATH
 # export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 # export PATH="$PATH:$GEM_HOME/bin"
-export PATH="$HOME/.local/bin:$PATH"
+
+export PNPM_HOME="$HOME/.local/share/pnpm"
+export PATH="$PNPM_HOME:$HOME/.local/bin:$PATH"

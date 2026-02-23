@@ -1,6 +1,7 @@
 ## CONFIG
 ZSH_DISABLE_COMPFIX=true
 OP_BIOMETRIC_UNLOCK_ENABLED=true #1Password
+export ENABLE_LSP_TOOL=1 # homebot botfiles
 
 ## PATH
 # GEM
@@ -36,6 +37,9 @@ alias dc=docker-compose
 alias hbdev="$HOME/code/homebot/hbdev/bin/hbdev"
 alias hdev="docker-compose -f $HOME/code/homebot/hbdev/docker-compose.yml -p hbdev"
 
+# ai
+alias fabric=fabric-ai
+
 # bkup
 alias b='bkup'
 
@@ -47,14 +51,17 @@ alias ...='z ../..'
 # clear
 alias c='clear'
 
+# date
+alias dateutc='date -u -Iseconds'
+
 # diff
 alias diff='riff'
 
 # edit
 alias n='nano'
 
-# date
-alias dateutc='date -u -Iseconds'
+# node
+alias pn='pnpm'
 
 # git
 alias g='git'
@@ -70,7 +77,8 @@ alias gcm='gc -m'
 alias gco='g checkout'
 alias gcp='g cherry-pick'
 alias gd='g diff'
-alias gds='gd --compact-summary'
+alias gdc='gd --compact-summary'
+alias gds='gd --staged'
 alias gph='g push'
 alias gpl='g pull'
 alias gplr='gpl --rebase'
@@ -83,7 +91,8 @@ alias grh='gr --hard'
 alias gsh='g stash'
 alias gshl='gsh list'
 alias gshp='gsh pop'
-alias gsw='git switch'
+alias gsw='g switch'
+alias glsf='g ls-files'
 
 # ls/eza
 alias e='eza'
@@ -92,6 +101,9 @@ alias l='le -a'
 alias ll='l -l'
 alias lt='l --tree'
 
+# lazygit
+alias lg='lazygit'
+
 # cat/bat
 alias cat='bat --paging=never'
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
@@ -99,9 +111,6 @@ alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 
 # xcode
 alias sim='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
-
-# ai
-alias fabric=fabric-ai
 
 ## SHELL
 eval "$(starship init zsh)"
@@ -240,3 +249,4 @@ compinit
 
 # initialize z after compinit for auto complete suggestions
 eval "$(zoxide init zsh)"
+

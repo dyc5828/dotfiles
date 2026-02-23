@@ -1,8 +1,8 @@
-model = "gpt-5.2-codex"
-model_reasoning_effort = "medium"
+model = "gpt-5.3-codex"
+model_reasoning_effort = "high"
 
-[features]
-web_search_request = true
+web_search = "live"
+personality = "pragmatic"
 
 [projects."/Users/danielchen/projects/ytlm"]
 trust_level = "trusted"
@@ -11,6 +11,27 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects."/Users/danielchen"]
+trust_level = "trusted"
+
+[projects."/Users/danielchen/code/PupPilot"]
+trust_level = "trusted"
+
+[projects."/Users/danielchen/projects/ai-research-comparison"]
+trust_level = "trusted"
+
+[projects."/Users/danielchen/projects/ai-agent-comparison"]
+trust_level = "untrusted"
+
+[projects."/Users/danielchen/projects/ai-agent-comparison/web-search-2026-1-27"]
+trust_level = "trusted"
+
+[projects."/Users/danielchen/code"]
+trust_level = "untrusted"
+
+[projects."/Users/danielchen/code/openclaw"]
+trust_level = "trusted"
+
+[projects."/Users/danielchen/code/homebot/quasar"]
 trust_level = "trusted"
 
 [notice.model_migrations]
