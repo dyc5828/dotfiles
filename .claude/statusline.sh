@@ -7,7 +7,9 @@ input=$(cat)
 # echo "$input" > /tmp/claude_statusline_debug.json
 
 # Parse JSON input from Claude Code
-MODEL=$(echo "$input" | jq -r '.model.display_name // "claude"')
+MODEL_RAW=$(echo "$input" | jq -r '.model.display_name // "claude"')
+# Shorten model name: "Claude Opus 4.6 (1M context)" → "Opus 4.6"
+MODEL=$(echo "$MODEL_RAW" | sed -E 's/^Claude //' | sed -E 's/ \([^)]*\)$//' | sed -E 's/^ +//;s/ +$//')
 COST=$(echo "$input" | jq -r '.cost.total_cost_usd // 0')
 LINES_ADDED=$(echo "$input" | jq -r '.cost.total_lines_added // 0')
 LINES_REMOVED=$(echo "$input" | jq -r '.cost.total_lines_removed // 0')
@@ -40,47 +42,35 @@ ADD_COLOR="38;5;2"        # green
 DEL_COLOR="38;5;1"        # red
 TIME_COLOR="38;5;226"     # yellow
 
-# Context icon (5 levels: ○ ◔ ◑ ◕ ●)
-if [[ "$CTX_USED_PCT" -lt 20 ]]; then
+# Context icon (5 levels: ○ ◔ ◑ ◕ ●) — aligned with color thresholds
+if [[ "$CTX_USED_PCT" -lt 25 ]]; then
     CTX_ICON="○"
-elif [[ "$CTX_USED_PCT" -lt 40 ]]; then
+elif [[ "$CTX_USED_PCT" -lt 50 ]]; then
     CTX_ICON="◔"
-elif [[ "$CTX_USED_PCT" -lt 60 ]]; then
+elif [[ "$CTX_USED_PCT" -lt 70 ]]; then
     CTX_ICON="◑"
-elif [[ "$CTX_USED_PCT" -lt 80 ]]; then
+elif [[ "$CTX_USED_PCT" -lt 85 ]]; then
     CTX_ICON="◕"
 else
     CTX_ICON="●"
 fi
 
-# Context color: green <40%, yellow 40-60%, orange 60-75%, red >=75%
-if [[ "$CTX_USED_PCT" -lt 40 ]]; then
-    CTX_COLOR="38;5;2"    # green
-elif [[ "$CTX_USED_PCT" -lt 60 ]]; then
-    CTX_COLOR="38;5;226"  # yellow
-elif [[ "$CTX_USED_PCT" -lt 75 ]]; then
-    CTX_COLOR="38;5;214"  # orange
+# Context color — tuned for 1M context
+if [[ "$CTX_USED_PCT" -lt 50 ]]; then
+    CTX_COLOR="38;5;2"    # green — plenty of room
+elif [[ "$CTX_USED_PCT" -lt 70 ]]; then
+    CTX_COLOR="38;5;226"  # yellow — progressing
+elif [[ "$CTX_USED_PCT" -lt 85 ]]; then
+    CTX_COLOR="38;5;214"  # orange — getting full
 else
-    CTX_COLOR="38;5;196"  # red (autocompact imminent)
+    CTX_COLOR="38;5;196"  # red — compaction imminent
 fi
-
-# Build progress bar (8 chars wide)
-BAR_WIDTH=8
-FILLED=$((CTX_USED_PCT * BAR_WIDTH / 100))
-EMPTY=$((BAR_WIDTH - FILLED))
-BAR_FILLED=""
-BAR_EMPTY=""
-for ((i=0; i<FILLED; i++)); do BAR_FILLED+="="; done
-for ((i=0; i<EMPTY; i++)); do BAR_EMPTY+=" "; done
 
 # Build output
 OUTPUT=""
 
-# 1. Model with context icon (no separator after)
-OUTPUT+=$(printf "\033[${CTX_COLOR}m%s\033[0m \033[${MODEL_COLOR}m%s\033[0m" "$CTX_ICON" "$MODEL")
-
-# 2. Context bar and percentage
-OUTPUT+=$(printf " [\033[${CTX_COLOR}m%s\033[0m%s] \033[${CTX_COLOR}m%s%%\033[0m" "$BAR_FILLED" "$BAR_EMPTY" "$CTX_USED_PCT")
+# 1. Model name, then context icon and percentage
+OUTPUT+=$(printf "\033[${MODEL_COLOR}m%s\033[0m \033[${CTX_COLOR}m%s %s%%\033[0m" "$MODEL" "$CTX_ICON" "$CTX_USED_PCT")
 
 # 3. Directory (teal)
 if [[ -n "$CWD" ]]; then
