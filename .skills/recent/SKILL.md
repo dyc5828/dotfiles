@@ -53,7 +53,7 @@ Display recent Claude Code sessions as a formatted plain-text table by reading `
 
 6. **Synthesize topics**: For each session, write a short topic label (~8 words max). Use ALL messages you've seen for that session — everything in your context — to infer the gist.
 
-7. **Format output** as the table below, using the last 2-3 `display` strings per session for the LAST MESSAGES column.
+7. **Format output** as the table below, using the last 2-3 `display` strings per session for the LAST MESSAGES column. Output the table directly — do NOT wrap it in triple backticks or a code fence.
 
 ## Output Format
 
@@ -81,8 +81,7 @@ Plain-text padded table. No markdown formatting.
 
 ### Example
 
-```
-SESSION                                    │ TIME              │ PROJECT                       │ LAST MESSAGES
+SESSIONS                                   │ TIME              │ PROJECT                       │ LAST MESSAGES
 ───────────────────────────────────────────┼───────────────────┼───────────────────────────────┼─────────────────────────────────────────────────
 Workshopping a /recent CLI skill for       │ Mar 18, 21:23     │ customer-admin                │ > I just updated permissions so you can try
 non-interactive session history viewing    │ 3h ago            │ ~/code/homebot/customer-admin │   to run it again.
@@ -96,11 +95,10 @@ c9ee6fdc-f7b7-4a99-b428-809c728945c2       │                   │            
 Creating Linear ticket for RD CEX project  │ Mar 17, 14:30     │ homebot                       │ > make a linear ticket for me in rd cex
 4ea7bad4-9153-4b2e-8f1a-2c3d4e5f6a7b       │ yesterday         │ ~/code/homebot                │   project for this https://...
 ───────────────────────────────────────────┼───────────────────┼───────────────────────────────┼─────────────────────────────────────────────────
-```
 
 ## Rules
 
-- Plain text only — no markdown tables, code fences, or bold/italic
+- Plain text only — never wrap output in triple backticks or code fences, no markdown tables, no bold/italic
 - Replace the user's home directory with `~` in project paths
 - Topics must be synthesized summaries, not copies of a single message
 - Last messages are verbatim from `display`, trimmed for width
