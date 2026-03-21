@@ -34,8 +34,17 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # homebot
 alias av=aws-vault
 alias dc=docker-compose
-alias hbdev="$HOME/code/homebot/hbdev/bin/hbdev"
 alias hdev="docker-compose -f $HOME/code/homebot/hbdev/docker-compose.yml -p hbdev"
+alias hb='hdev'
+alias hbp='hb up'
+alias hbr='hb up -d --force-recreate'
+alias dcp='dc up'
+alias dcr='dc up -d --force-recreate'
+
+# docker
+alias d='docker'
+alias dps='docker ps'
+alias dls='dps -a'
 
 # ai
 alias fabric=fabric-ai
@@ -50,6 +59,11 @@ alias ...='z ../..'
 
 # clear
 alias c='clear'
+
+# claude code
+alias cc='claude'
+alias ccyolo='cc --dangerously-skip-permissions'
+alias ccplan='claude --permission-mode plan'
 
 # date
 alias dateutc='date -u -Iseconds'
@@ -241,6 +255,18 @@ function ps_find () {
 
 function kill_port () {
 	kill $(lsof -ti :$1)
+}
+
+function dexec () {
+	docker exec -it $1 $2
+}
+
+function dbash () {
+	dexec $1 bash
+}
+
+function dshell () {
+	dexec $1 sh
 }
 
 ## LOAD completions

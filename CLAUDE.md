@@ -16,6 +16,14 @@ When working in the home directory or with dotfiles:
 - Use `dot` instead of `git` for version control (bare repo at `~/.dotfiles/`)
 - See `~/warp.md` for detailed dotfiles configuration and environment setup
 
+## Agents & Skills
+
+- `~/.agents/` is the source of truth for agents (flat `.md` files)
+- `~/.skills/` is the source of truth for skills (`<name>/SKILL.md` layout)
+- `~/.claude/agents` and `~/.claude/skills` are **directory symlinks** to the above
+- To add a new agent: create `~/.agents/foo.md`
+- To add a new skill: create `~/.skills/foo/SKILL.md`
+
 ## Quick Reference
 
 ```bash

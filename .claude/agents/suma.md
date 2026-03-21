@@ -1,1 +1,0 @@
-/Users/danielchen/.agents/suma.md

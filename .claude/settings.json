@@ -1,17 +1,90 @@
 {
   "permissions": {
+    "allow": [
+      "Bash(cd * && git *)",
+      "Bash(cd * && gh *)",
+      "Bash(gh pr:*)",
+      "Bash(gh api:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(gh:*)",
+      "WebFetch(domain:www.notion.so)",
+      "Bash(grep:*)",
+      "Bash(docker ps:*)",
+      "Bash(git push:*)",
+      "mcp__claude_ai_Linear__get_issue",
+      "Bash(xargs ls:*)",
+      "Bash(git:*)",
+      "WebSearch",
+      "Bash(mv:*)",
+      "Bash(docker exec:*)",
+      "Bash(docker compose:*)",
+      "Bash(find /Users/dan.chen@homebot.ai/code/homebot/mikasa/app/interactors/opportunity* -type f -name \"*.rb\")",
+      "Bash(ls -la /Users/dan.chen@homebot.ai/code/homebot/customer-admin/src/app/[lang]/\\\\\\(navigation\\\\\\)/\\\\\\(clients\\\\\\)/clients/beta/ | grep opportunity)",
+      "Bash(find /Users/dan.chen@homebot.ai/code/homebot/mikasa/app/interactors/opportunity_lists -type f -name \"*.rb\" 2>/dev/null | head -20)",
+      "Bash(find /Users/dan.chen@homebot.ai/code/homebot/mikasa/app/interactors/opportunity_clients -type f -name \"*.rb\" 2>/dev/null | head -20)",
+      "Bash(find /Users/dan.chen@homebot.ai/code/homebot/mikasa/app/jobs/opportunity_lists -type f -name \"*.rb\" 2>/dev/null | head -20)",
+      "Bash(find /Users/dan.chen@homebot.ai/code/homebot/customer-admin/src/app/\\\\[lang\\\\]/\\\\\\(navigation\\\\\\)/\\\\\\(clients\\\\\\)/clients/beta -type f -name \"*.tsx\" | head -30)",
+      "Bash(find /Users/dan.chen@homebot.ai/code/homebot/customer-admin/src/app/\\\\[lang\\\\]/\\\\\\(navigation\\\\\\)/\\\\\\(clients\\\\\\)/clients/beta/quick-look -type f)",
+      "Bash(find /Users/dan.chen@homebot.ai/code/homebot/mikasa -name \"*threshold*\" -o -name \"*Threshold*\" 2>/dev/null | head -10)",
+      "mcp__claude_ai_Slack__slack_read_channel",
+      "mcp__claude_ai_Linear__list_projects",
+      "mcp__claude_ai_Slack__slack_read_thread",
+      "mcp__claude_ai_Linear__list_teams",
+      "mcp__claude_ai_Linear__save_issue",
+      "Bash(head -100 /Users/dan.chen@homebot.ai/code/homebot/customer-admin/src/app/[lang]/_document.tsx)",
+      "Bash(head -100 /Users/dan.chen@homebot.ai/code/homebot/customer-admin/src/app/[lang]/page.tsx)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "mcp__claude_ai_Linear__list_milestones",
+      "Bash(fd -t d -d 3 . /Users/dan.chen@homebot.ai/code/homebot/customer-admin/src/app/[lang]/)",
+      "Bash(grep -r \"tracking\" src/app/[lang]/\\\\\\(navigation\\\\\\)/\\\\\\(clients\\\\\\)/clients/beta/opportunity-filters/ --include=\"*.tsx\")",
+      "mcp__claude_ai_Slack__slack_search_channels",
+      "mcp__claude_ai_Slack__slack_search_users",
+      "Bash(find ./src/app/[lang]/\\\\\\(navigation\\\\\\)/\\\\\\(clients\\\\\\)/clients -type f -name \"*.tsx\" -o -name \"*.ts\")",
+      "Bash(python3:*)",
+      "mcp__claude_ai_Slack__slack_schedule_message",
+      "Bash(ls -la /Users/dan.chen@homebot.ai/code/homebot/customer-admin/*.*)",
+      "Bash(npm run:*)",
+      "Bash(npx tsc:*)",
+      "mcp__claude_ai_Notion__notion-fetch",
+      "Bash(find /Users/dan.chen@homebot.ai/code/homebot/mikasa/app/jobs -name \"*opportunity*\" -o -name \"*listed*\" -o -name \"*high_equity*\" 2>/dev/null | head -20)",
+      "Bash(ls -la /Users/dan.chen@homebot.ai/code/homebot/mikasa/db/migrate/*opportunit* | tail -20)",
+      "Bash(find /Users/dan.chen@homebot.ai/code/homebot/mikasa -type f \\\\\\( -path \"*/app/models/opportunity*.rb\" -o -path \"*/app/domains/opportunity_lists/*\" -o -path \"*/app/interactors/opportunity*/*\" -o -path \"*/app/jobs/opportunity_lists/*\" -o -path \"*/app/controllers/customer_profiles/opportunities/*\" -o -path \"*/app/policies/opportunity*.rb\" -o -path \"*/config/sidekiq*.yml\" -o -path \"*/config/sidecloq.yml\" \\\\\\) 2>/dev/null | sort)",
+      "Bash(cd /Users/dan.chen@homebot.ai/code/homebot/customer-admin && test -f src/app/[lang]/\\\\\\(navigation\\\\\\)/\\\\\\(clients\\\\\\)/clients/beta/page.tsx && echo \"EXISTS\" || echo \"NOT FOUND\")",
+      "Bash(__NEW_LINE_9e9ab9c6a10bb12f__ BASEPATH=\"/Users/dan.chen@homebot.ai/code/homebot/customer-admin\" __NEW_LINE_9e9ab9c6a10bb12f__ echo \"=== BETA DIRECTORY \\(top level files\\) ===\" find \"$BASEPATH/src/app/[lang]/\\(navigation\\)/\\(clients\\)/clients/beta\" -maxdepth 1 -type f)",
+      "mcp__claude_ai_Notion__notion-search",
+      "mcp__claude_ai_Notion__notion-create-pages",
+      "mcp__claude_ai_Notion__notion-update-page",
+      "Read(~/.claude/history.jsonl)",
+      "Bash(date:*)"
+    ],
     "defaultMode": "default"
   },
-  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
   },
   "enabledPlugins": {
-    "hb-lsp@homebotapp": true,
-    "hb-mcp@homebotapp": true,
-    "pm-thought-partner@pm-thought-partner": true
+    "zero@zero-code-protocol": true,
+    "ruby-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "zero-code-protocol": {
+      "source": {
+        "source": "github",
+        "repo": "dyc5828/zero-code-protocol"
+      }
+    },
+    "homebotapp": {
+      "source": {
+        "source": "github",
+        "repo": "homebotapp/botfiles"
+      }
+    }
   },
   "alwaysThinkingEnabled": true,
-  "fastMode": true
+  "effortLevel": "high",
+  "voiceEnabled": true,
+  "skipDangerousModePermissionPrompt": true
 }
