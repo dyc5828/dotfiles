@@ -32,6 +32,24 @@ Be proactive about improving workflows. Watch for:
 - Directory-specific context → that directory's `CLAUDE.md`
 - Global Claude preferences → this file
 
+## Memory vs. Dotfiles: Where to Persist
+
+Auto-memory (`~/.claude/projects/.../memory/`) is **machine-local and path-specific** — it does not sync across computers. The dotfiles repo (`dot` command) is the only persistence layer that transfers between machines. Before saving something to auto-memory, ask: **is this fundamental to how the user works, or is it specific to this machine/session?**
+
+**Use auto-memory for:**
+- Machine-specific setup details (local paths, installed versions, project-specific state)
+- Ephemeral context useful for nearby future sessions but not universal
+- References to external systems that may differ per environment
+
+**Use dotfiles-tracked files instead when the learning is portable:**
+- Workflow preferences, collaboration style, how to approach tasks → `~/.claude/CLAUDE.md`
+- Agent behaviors and personalities → `~/.agents/<name>.md`
+- Environment conventions and tool usage → `~/WARP.md`
+- Directory-specific conventions → that directory's `CLAUDE.md`
+- Skill/setup procedures → `~/.skills/<name>/SKILL.md`
+
+**The test:** If this preference or learning would apply on a completely different computer with the same dotfiles checked out, it belongs in a dotfile — not auto-memory. When in doubt, prefer dotfiles for durability.
+
 ## CLI Tools
 
 Use these modern CLI tools across all projects:
