@@ -65,7 +65,7 @@ Plain-text padded table. No markdown formatting.
 
 1. **SESSIONS** — lines 1-2: synthesized topic; last line: session UUID prefixed with `▸ ` to visually distinguish it (for `claude --resume <id>`)
 2. **TIME** — line 1: absolute (`Mar 18, 21:23`); line 2: relative (see below)
-3. **PROJECT** — line 1: folder name (last path segment); line 2: full path with `~` for home dir, prefixed with `└ `
+3. **PROJECT** — line 1: folder name (last path segment); line 2: full path with `~` for home dir, prefixed with `└ `. For the home directory itself, line 1 is `(home)`.
 4. **LAST MESSAGES** — last 2-3 `display` strings, verbatim, prefixed with `>`
 
 ### Relative Time
