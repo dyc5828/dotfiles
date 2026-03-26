@@ -3,6 +3,7 @@
 Brewfile.lock.json
 Applications/*
 code/*
+!code/homebot/CLAUDE.md
 Desktop/*
 Documents/*
 homebot/*
