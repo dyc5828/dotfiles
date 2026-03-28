@@ -9,7 +9,7 @@ This is the **user-level** configuration. It applies to every Claude session reg
 - Global tool configurations
 - Self-learning protocols
 
-For directory-specific context (like dotfiles, project conventions), use a CLAUDE.md in that directory.
+For directory-specific context like dotfiles and project conventions, use a CLAUDE.md in that directory.
 
 ## Self-Learning Protocol
 
@@ -54,6 +54,7 @@ Auto-memory (`~/.claude/projects/.../memory/`) is **machine-local and path-speci
 
 When writing or editing formal documents - policies, specs, proposals:
 - No em dashes. Regular dashes are fine for context or asides.
+- Never use two dashes in the same sentence. Break it into multiple sentences or use commas.
 - No parentheses. Restructure the sentence or use dashes instead.
 - Colons only for introducing lists, not as general punctuation.
 - Bold for structural labels and headings only, not mid-sentence emphasis.
