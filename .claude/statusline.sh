@@ -1,5 +1,32 @@
 #!/bin/bash
 # Claude Code statusLine - inspired by Starship config
+#
+# Layout: sections separated by | delimiters, each responsible for one concern.
+#
+#   Section 1 — Model & Context Window
+#     "How is this conversation doing?"
+#     Model name, context fill icon, usage percentage, 200k threshold diamond.
+#     Tells you: what model you're on, how full the window is, and whether
+#     you've crossed into large-context territory.
+#
+#   Section 2 — Location
+#     "Where am I working?"
+#     Working directory and git branch (or worktree indicator).
+#     Tells you: which project and branch this session is operating in.
+#
+#   Section 3 — Impact
+#     "What has changed?"
+#     Lines added/removed.
+#     Tells you: the footprint of changes made in this session.
+#
+#   Section 4 — Session Cost
+#     "What has this session consumed?"
+#     Dollar cost and wall-clock time.
+#     Tells you: the real-world resources spent on this conversation.
+#
+# Future candidates for data points within existing sections:
+#   - Cumulative input/output tokens (Section 4, if token-level cost awareness proves useful)
+#   - Cache efficiency (Section 1, if context reuse becomes a tuning concern)
 
 input=$(cat)
 
@@ -18,6 +45,7 @@ DURATION_MS=$(echo "$input" | jq -r '.cost.total_duration_ms // 0')
 
 # Context window info
 CTX_USED_PCT=$(echo "$input" | jq -r '.context_window.used_percentage // 0')
+EXCEEDS_200K=$(echo "$input" | jq -r '.exceeds_200k_tokens // false')
 DURATION=$((DURATION_MS / 1000))
 
 # Get git branch if in a repo
@@ -42,12 +70,23 @@ ADD_COLOR="38;5;2"        # green
 DEL_COLOR="38;5;1"        # red
 TIME_COLOR="38;5;226"     # yellow
 
-# Context icon (5 levels: ○ ◔ ◑ ◕ ●) — aligned with color thresholds
-if [[ "$CTX_USED_PCT" -lt 25 ]]; then
+# Context icon + color — tuned for 1M context window
+#
+# Design intent:
+#   Green  (< 20%, ~200k tokens): plenty of room, no concerns
+#   Yellow (20-60%, ~200k-600k):  normal usage, working comfortably
+#   Orange (60-85%, ~600k-850k):  compaction is on the horizon, start thinking about it
+#   Red    (85%+, ~850k+):       compaction imminent
+#
+# Icons (○ ◔ ◑ ◕ ●) are aligned with color boundaries so the visual
+# fill level and color shift feel coherent together.
+
+# Icon: fill level tracks the color zones
+if [[ "$CTX_USED_PCT" -lt 20 ]]; then
     CTX_ICON="○"
-elif [[ "$CTX_USED_PCT" -lt 50 ]]; then
+elif [[ "$CTX_USED_PCT" -lt 40 ]]; then
     CTX_ICON="◔"
-elif [[ "$CTX_USED_PCT" -lt 70 ]]; then
+elif [[ "$CTX_USED_PCT" -lt 60 ]]; then
     CTX_ICON="◑"
 elif [[ "$CTX_USED_PCT" -lt 85 ]]; then
     CTX_ICON="◕"
@@ -55,30 +94,33 @@ else
     CTX_ICON="●"
 fi
 
-# Context color — tuned for 1M context
-if [[ "$CTX_USED_PCT" -lt 50 ]]; then
+# Color: green → yellow → orange → red
+if [[ "$CTX_USED_PCT" -lt 20 ]]; then
     CTX_COLOR="38;5;2"    # green — plenty of room
-elif [[ "$CTX_USED_PCT" -lt 70 ]]; then
-    CTX_COLOR="38;5;226"  # yellow — progressing
+elif [[ "$CTX_USED_PCT" -lt 60 ]]; then
+    CTX_COLOR="38;5;226"  # yellow — normal usage
 elif [[ "$CTX_USED_PCT" -lt 85 ]]; then
-    CTX_COLOR="38;5;214"  # orange — getting full
+    CTX_COLOR="38;5;214"  # orange — compaction on the horizon
 else
     CTX_COLOR="38;5;196"  # red — compaction imminent
 fi
 
-# Build output
+# ── Build output ──────────────────────────────────────────────────────
 OUTPUT=""
 
-# 1. Model name, then context icon and percentage
-OUTPUT+=$(printf "\033[${MODEL_COLOR}m%s\033[0m \033[${CTX_COLOR}m%s %s%%\033[0m" "$MODEL" "$CTX_ICON" "$CTX_USED_PCT")
+# Section 1: Model & Context Window — "How is this conversation doing?"
+# ◆ diamond appears when session exceeds 200k tokens (Claude-provided flag)
+CTX_200K=""
+if [[ "$EXCEEDS_200K" == "true" ]]; then
+    CTX_200K=" ◆"
+fi
+OUTPUT+=$(printf "\033[${MODEL_COLOR}m%s\033[0m \033[${CTX_COLOR}m%s %s%%%s\033[0m" "$MODEL" "$CTX_ICON" "$CTX_USED_PCT" "$CTX_200K")
 
-# 3. Directory (teal)
+# Section 2: Location — "Where am I working?"
 if [[ -n "$CWD" ]]; then
     CWD_SHORT=$(basename "$CWD")
     OUTPUT+=$(printf " \033[${SEP_COLOR}m|\033[0m \033[${DIR_COLOR}m▸ ../%s\033[0m" "$CWD_SHORT")
 fi
-
-# 4. Git branch (pink) or worktree (green)
 if [[ -n "$GIT_BRANCH" ]]; then
     if [[ -n "$IS_WORKTREE" ]]; then
         OUTPUT+=$(printf " \033[${SEP_COLOR}m|\033[0m \033[${WORKTREE_COLOR}m◈ %s\033[0m" "$GIT_BRANCH")
@@ -87,12 +129,12 @@ if [[ -n "$GIT_BRANCH" ]]; then
     fi
 fi
 
-# 5. Lines changed (green/red with icon)
+# Section 3: Impact — "What has changed?"
 if [[ "$LINES_ADDED" != "0" || "$LINES_REMOVED" != "0" ]]; then
     OUTPUT+=$(printf " \033[${SEP_COLOR}m|\033[0m \033[${ADD_COLOR}m± %s\033[0m/\033[${DEL_COLOR}m%s\033[0m" "$LINES_ADDED" "$LINES_REMOVED")
 fi
 
-# 6. Cost and duration (at the end)
+# Section 4: Session Cost — "What has this session consumed?"
 COST_FMT=$(printf "%.2f" "$COST")
 DURATION_INT=$(printf "%.0f" "$DURATION")
 HOURS=$((DURATION_INT / 3600))
