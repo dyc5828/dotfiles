@@ -50,6 +50,19 @@ Auto-memory (`~/.claude/projects/.../memory/`) is **machine-local and path-speci
 
 **The test:** If this preference or learning would apply on a completely different computer with the same dotfiles checked out, it belongs in a dotfile — not auto-memory. When in doubt, prefer dotfiles for durability.
 
+## Writing Style
+
+When writing or editing formal documents - policies, specs, proposals:
+- No em dashes. Regular dashes are fine for context or asides.
+- No parentheses. Restructure the sentence or use dashes instead.
+- Colons only for introducing lists, not as general punctuation.
+- Bold for structural labels and headings only, not mid-sentence emphasis.
+- Direct statements. No rhetorical questions.
+- Keep it short. Prefer phrases over full sentences where the meaning is clear.
+- Should read like a person wrote it, not like it was generated.
+
+When presenting changes to a document, workshop one section at a time. Show current vs proposed, get feedback, then move on. Don't dump full rewrites.
+
 ## CLI Tools
 
 Use these modern CLI tools across all projects:
