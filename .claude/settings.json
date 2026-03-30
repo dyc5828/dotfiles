@@ -21,10 +21,7 @@
       "Bash(python3 *)",
       "Bash(date *)",
       "WebSearch",
-      "WebFetch(domain:github.com)",
-      "WebFetch(domain:api.github.com)",
-      "WebFetch(domain:raw.githubusercontent.com)",
-      "WebFetch(domain:www.notion.so)",
+      "WebFetch",
       "Read(~/.claude/**)",
       "mcp__claude_ai_Linear__get_issue",
       "mcp__claude_ai_Linear__list_projects",
@@ -41,7 +38,7 @@
       "mcp__claude_ai_Notion__notion-create-pages",
       "mcp__claude_ai_Notion__notion-update-page"
     ],
-    "defaultMode": "default"
+    "defaultMode": "auto"
   },
   "statusLine": {
     "type": "command",
@@ -50,7 +47,8 @@
   "enabledPlugins": {
     "zero@zero-code-protocol": true,
     "ruby-lsp@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true
+    "typescript-lsp@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "zero-code-protocol": {
@@ -69,5 +67,6 @@
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
   "voiceEnabled": true,
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "skipAutoPermissionPrompt": true
 }

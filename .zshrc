@@ -61,12 +61,15 @@ alias ...='z ../..'
 alias c='clear'
 
 # claude code
-alias cc='claude'
+alias cc='claude --allow-dangerously-skip-permissions'
+alias ccauto='claude'
+alias ccask='claude --permission-mode default'
+alias ccapproved='claude --permission-mode dontAsk'
+alias ccyolo='claude --dangerously-skip-permissions'
+alias ccplan='claude --permission-mode plan'
 alias ccp='cc -p'
 alias ccr='cc --resume'
 alias ccrc='cc remote-control'
-alias ccplan='cc --permission-mode plan'
-alias ccyolo='cc --dangerously-skip-permissions'
 
 # date
 alias dateutc='date -u -Iseconds'
