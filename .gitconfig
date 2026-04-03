@@ -6,7 +6,5 @@
 [credential]
 	helper = osxkeychain
 	helper = /usr/local/share/gcm-core/git-credential-manager
-[url "https://<TOKEN>:@github.com/"]
-	insteadOf = https://github.com/
 [push]
 	autoSetupRemote = true
