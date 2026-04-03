@@ -1,5 +1,5 @@
-# Githubb
-export GITHUB_TOKEN=""
+# Github - all tokens derived from gh CLI keyring auth
+export GITHUB_TOKEN="$(gh auth token)"
 export GITHUB_PERSONAL_ACCESS_TOKEN="$GITHUB_TOKEN"
 
 # Homebrew
