@@ -48,7 +48,8 @@
     "zero@zero-code-protocol": true,
     "ruby-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true
+    "skill-creator@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "zero-code-protocol": {
@@ -68,5 +69,6 @@
   "effortLevel": "high",
   "voiceEnabled": true,
   "skipDangerousModePermissionPrompt": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "autoUpdatesChannel": "stable"
 }
