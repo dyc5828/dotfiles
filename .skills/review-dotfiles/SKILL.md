@@ -60,8 +60,16 @@ Show a single summary with all findings:
 **Already tracked, unchanged:**
 Brief list or count.
 
-**Unpushed commits:**
-At the end of the report, check for commits ahead of remote using `dot fetch origin` then `dot log FETCH_HEAD..HEAD --oneline`. List them inline if present (e.g., "2 unpushed commits: `abc1234` msg, `def5678` msg"). If none, say "All pushed."
+After a visual separator (e.g., `---`), show unpushed commits. Check using `dot fetch origin` then `dot log FETCH_HEAD..HEAD --oneline`. List each as a bullet point with the commit message. If none, say "All pushed."
+
+Example:
+```
+---
+**Unpushed commits (3):**
+- Add prose to pre-push secret check
+- Add unpushed commits section to review-dotfiles report
+- Move unpushed commits to end of report as inline list
+```
 
 ## Phase 4: Turn-by-Turn Review
 
