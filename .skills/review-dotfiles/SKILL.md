@@ -108,7 +108,10 @@ EOF
 
 Do NOT push automatically after committing. Wait for the user to explicitly say "push".
 
-When the user says push, run the pre-push secret check first:
+When the user says push:
+
+1. **Tell the user** you're running the pre-push secret scan before pushing. Example: "Running the pre-push secret check on the outgoing diff first."
+2. Run the check:
 
 ```bash
 dot diff <base>..HEAD
@@ -120,7 +123,7 @@ Where `<base>` is the commit before the first new commit in this session. Review
 - Private keys or certificates
 - Any string that looks like a secret
 
-If clean, push. If anything looks wrong, stop and flag it.
+3. **Report the result** before pushing. If clean, say so and then push. If anything looks wrong, stop and flag it.
 
 ```bash
 dot push
