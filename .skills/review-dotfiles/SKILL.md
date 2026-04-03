@@ -1,5 +1,5 @@
 ---
-name: dotfiles-review
+name: review-dotfiles
 description: Review dotfiles for uncommitted changes and new files worth tracking. Use when the user says "check dotfiles", "dot review", "review my dotfiles", "sync dotfiles", or wants to audit what's changed and what could be added to their dotfiles repo.
 allowed-tools: Bash(dot *), Bash(eza *), Bash(mkdir *), Bash(rm *), Read, Grep, Glob, Edit
 ---
