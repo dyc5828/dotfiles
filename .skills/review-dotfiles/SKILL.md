@@ -45,14 +45,17 @@ Note these briefly so the user knows they were checked.
 
 ## Phase 3: Present Full Report
 
-Show a single summary table with all findings:
+Show a single summary with all findings:
+
+**Unpushed commits:**
+Check `dot log @{u}..HEAD --oneline` for any commits ahead of remote. List them if present.
 
 **Modified tracked files:**
-| File | Change | Commit? |
+| File | Change | Status |
 |---|---|---|
 
 **New files to add:**
-| File | What it is | Commit? |
+| File | What it is | Status |
 
 **Reviewed and skipped:**
 | File/Dir | Why |
