@@ -74,7 +74,7 @@ When the user asks to see a file:
 When the user asks to see multiple files, show each one with a clear heading.
 
 Wait for the user's verdict on each file before moving on. They may say:
-- "Add it" / "commit it" - mark for commit
+- Approve it (e.g., "looks good", "I'm good with that", "yes") - stage it immediately
 - "Skip it" - move on
 - "Partial" - discuss which parts to include
 
@@ -92,9 +92,9 @@ If a file contains a mix of safe changes and secrets:
 
 Never decide unilaterally how to handle secrets - work it out with the user.
 
-## Phase 5: Commit
+## Phase 5: Commit (user-initiated only)
 
-Once the user has approved files, stage and commit. Group related changes into logical commits:
+Staging files is fine - it's local and reversible. But committing is the point of no return for secrets, so wait for the user to explicitly say "commit". When they do, group related changes into logical commits:
 
 ```bash
 dot add <files>
@@ -134,7 +134,7 @@ dot push
 ## Rules
 
 - NEVER commit plaintext secrets
-- NEVER stage or commit files without the user reviewing and approving them first
+- Staging is fine after user approves a file, but NEVER commit or push unless the user explicitly says to
 - Always print actual file contents when the user asks to see something - no summaries
 - Use `dot` not `git` for all operations
 - Keep tables concise - one line per file
