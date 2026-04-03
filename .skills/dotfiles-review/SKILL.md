@@ -74,6 +74,10 @@ Wait for the user's verdict on each file before moving on. They may say:
 - "Skip it" - move on
 - "Partial" - discuss which parts to include
 
+### After each decision
+
+After each turn where files are added, skipped, or committed, reprint the full report from Phase 3 with updated statuses. This lets the user see the current state of everything at a glance - what's done, what's pending, and what's been skipped.
+
 ### Handling sensitive files
 
 If a file contains a mix of safe changes and secrets:
@@ -98,9 +102,11 @@ EOF
 )"
 ```
 
-## Phase 6: Pre-Push Secret Check
+## Phase 6: Push (user-initiated only)
 
-Before pushing, ALWAYS run:
+Do NOT push automatically after committing. Wait for the user to explicitly say "push".
+
+When the user says push, run the pre-push secret check first:
 
 ```bash
 dot diff <base>..HEAD
