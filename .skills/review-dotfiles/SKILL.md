@@ -60,15 +60,15 @@ Show a single summary with all findings:
 **Already tracked, unchanged:**
 Brief list or count.
 
-After a visual separator (e.g., `---`), show unpushed commits. Check using `dot fetch origin` then `dot log FETCH_HEAD..HEAD --oneline`. List each as a bullet point with the commit message. If none, say "All pushed."
+After a visual separator (e.g., `---`), show unpushed commits. Check using `dot fetch origin` then `dot log FETCH_HEAD..HEAD --oneline`. List each as a bullet point with the short hash and commit message. If none, say "All pushed."
 
 Example:
 ```
 ---
 **Unpushed commits (3):**
-- Add prose to pre-push secret check
-- Add unpushed commits section to review-dotfiles report
-- Move unpushed commits to end of report as inline list
+- `e31efa6` Add prose to pre-push secret check
+- `2a6ea37` Add unpushed commits section to review-dotfiles report
+- `52ecd2d` Move unpushed commits to end of report as inline list
 ```
 
 ## Phase 4: Turn-by-Turn Review
