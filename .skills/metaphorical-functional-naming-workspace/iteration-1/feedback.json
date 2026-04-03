@@ -1,0 +1,35 @@
+{
+  "reviews": [
+    {
+      "run_id": "eval-early-warning-tool-with_skill",
+      "feedback": "I like this. I think Tremor works really good, and Canary also sounds really good. I don't like the fact that it seems like the candidates are duplicated. I don't know, right? Like, there's Tremor and Canary up here on F5 as well as 1-2. That's a little weird. Other than that, I think that's fine. ",
+      "timestamp": "2026-03-28T23:50:57.663Z"
+    },
+    {
+      "run_id": "eval-early-warning-tool-without_skill",
+      "feedback": "This is okay, um, Canary also works here. I guess I do think Tremor is a little better. ",
+      "timestamp": "2026-03-28T23:50:57.663Z"
+    },
+    {
+      "run_id": "eval-onboarding-renderer-with_skill",
+      "feedback": "I like something like Prism or Stencil. I feel like these are very visual, like it's almost tactile and I can grab it. ",
+      "timestamp": "2026-03-28T23:50:57.663Z"
+    },
+    {
+      "run_id": "eval-onboarding-renderer-without_skill",
+      "feedback": "Bloom doesn't quite make sense. Interesting that Prism is also here too. But I yeah like I don't think Threshold is good. I don't like that at all. This doesn't make sense. ",
+      "timestamp": "2026-03-28T23:50:57.663Z"
+    },
+    {
+      "run_id": "eval-smart-macros-with_skill",
+      "feedback": "I love groove. Groove fits right. You're getting the groove. I like the metaphor or simile. Reflex and cadence is ok. But I dig groove. ",
+      "timestamp": "2026-03-28T23:50:57.663Z"
+    },
+    {
+      "run_id": "eval-smart-macros-without_skill",
+      "feedback": "Interesting that these also came up in the non-skill version. The groove came up. Motive? That's interesting, I guess? I'm not sure about that. Right, like the theme kind of makes sense. Between groove and reflex, I would definitely prefer groove. ",
+      "timestamp": "2026-03-28T23:50:57.663Z"
+    }
+  ],
+  "status": "in_progress"
+}

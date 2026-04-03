@@ -1,0 +1,37 @@
+{
+  "eval_id": 2,
+  "eval_name": "smart-macros",
+  "configuration": "with_skill",
+  "expectations": [
+    {
+      "text": "reasoning-before-names",
+      "passed": true,
+      "evidence": "Has 'Core function' section identifying 'capture intent, then re-execute that intent faithfully even when the terrain has changed' and 'Metaphor exploration' with 6 domains before candidates"
+    },
+    {
+      "text": "real-words-only",
+      "passed": true,
+      "evidence": "All 7 candidates (Groove, Cadence, Reflex, Trace, Gait, Relay, Plait) are real English words"
+    },
+    {
+      "text": "no-generic-labels",
+      "passed": true,
+      "evidence": "No candidates use Macro, Automation, Bot, AI, Assistant, Copilot, Runner, or Executor"
+    },
+    {
+      "text": "multiple-candidates",
+      "passed": true,
+      "evidence": "7 distinct name candidates proposed"
+    },
+    {
+      "text": "explains-fit",
+      "passed": true,
+      "evidence": "Groove, Reflex, and Cadence each have detailed multi-paragraph evaluations"
+    },
+    {
+      "text": "evaluates-existing-name",
+      "passed": true,
+      "evidence": "Dedicated 'Evaluation of Reel' section with 'What works', 'What doesn't work', and 'Verdict' subsections"
+    }
+  ]
+}

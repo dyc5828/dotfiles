@@ -1,0 +1,12 @@
+{
+  "eval_id": 1,
+  "eval_name": "onboarding-renderer",
+  "prompt": "We need a name for a system that takes a single customer onboarding flow definition and generates platform-specific implementations - web, iOS, Android, and email. The whole point is write-once, render-everywhere for onboarding experiences.",
+  "assertions": [
+    {"name": "reasoning-before-names", "description": "A reasoning/analysis step identifying core function and metaphor appears before any name candidates"},
+    {"name": "real-words-only", "description": "All candidate names are real English words, not invented portmanteaus or brand names"},
+    {"name": "no-generic-labels", "description": "No candidates use banned generic terms: Renderer, Builder, Platform, Hub, Cloud, Sync, Engine, Suite, Assistant"},
+    {"name": "multiple-candidates", "description": "At least 5 distinct name candidates are proposed"},
+    {"name": "explains-fit", "description": "At least 2 candidates have a brief explanation of why they fit the product"}
+  ]
+}

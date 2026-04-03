@@ -1,0 +1,12 @@
+{
+  "eval_id": 0,
+  "eval_name": "early-warning-tool",
+  "configuration": "without_skill",
+  "expectations": [
+    {"text": "reasoning-before-names", "passed": false, "evidence": "Names presented first under Top Recommendations. No upfront reasoning about core function or metaphor domains."},
+    {"text": "real-words-only", "passed": true, "evidence": "All candidates are real English words"},
+    {"text": "no-generic-labels", "passed": true, "evidence": "No banned generic terms used"},
+    {"text": "multiple-candidates", "passed": true, "evidence": "12+ candidates proposed"},
+    {"text": "explains-fit", "passed": true, "evidence": "Each candidate has reasoning paragraph"}
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "eval_id": 1,
+  "eval_name": "onboarding-renderer",
+  "configuration": "with_skill",
+  "expectations": [
+    {
+      "text": "reasoning-before-names",
+      "passed": true,
+      "evidence": "Has 'Core Function' section identifying 'one-to-many transformation' and 'Metaphor Exploration' with 7 metaphor domains before any candidates"
+    },
+    {
+      "text": "real-words-only",
+      "passed": true,
+      "evidence": "All 7 candidates (Prism, Loom, Mold, Stencil, Kiln, Shuttle, Plate) are real English words"
+    },
+    {
+      "text": "no-generic-labels",
+      "passed": true,
+      "evidence": "No candidates use Renderer, Builder, Platform, Hub, Cloud, Sync, Engine, Suite, or Assistant"
+    },
+    {
+      "text": "multiple-candidates",
+      "passed": true,
+      "evidence": "7 distinct name candidates proposed"
+    },
+    {
+      "text": "explains-fit",
+      "passed": true,
+      "evidence": "Prism, Loom, and Stencil each have detailed evaluations explaining their metaphorical fit and tradeoffs"
+    }
+  ]
+}

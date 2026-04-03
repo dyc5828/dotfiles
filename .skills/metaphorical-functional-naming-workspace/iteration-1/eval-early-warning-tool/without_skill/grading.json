@@ -1,0 +1,32 @@
+{
+  "eval_id": 0,
+  "eval_name": "early-warning-tool",
+  "configuration": "without_skill",
+  "expectations": [
+    {
+      "text": "reasoning-before-names",
+      "passed": false,
+      "evidence": "Names are presented first under 'Top Recommendations'. The 'Reasoning' section appears after all suggestions, not before them."
+    },
+    {
+      "text": "real-words-only",
+      "passed": true,
+      "evidence": "All 10 candidates (Canary, Tremor, Sentinel, Harbinger, Drift, Seismograph, Undertow, Premonition, Lookout, Telltale) are real English words"
+    },
+    {
+      "text": "no-generic-labels",
+      "passed": true,
+      "evidence": "No candidates use any of the banned generic terms"
+    },
+    {
+      "text": "multiple-candidates",
+      "passed": true,
+      "evidence": "10 candidates proposed (5 main + 5 honorable mentions)"
+    },
+    {
+      "text": "explains-fit",
+      "passed": true,
+      "evidence": "Each of the 5 main candidates has a 'Why' paragraph explaining the metaphorical fit"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "eval_id": 1,
+  "eval_name": "onboarding-renderer",
+  "configuration": "with_skill",
+  "expectations": [
+    {"text": "reasoning-before-names", "passed": true, "evidence": "Core Function and Metaphor Domains sections precede Candidate Names. Reasoning identifies domains without naming candidates."},
+    {"text": "real-words-only", "passed": true, "evidence": "All 7 candidates (Prism, Die, Loom, Mold, Plate, Facet, Shuttle) are real English words"},
+    {"text": "no-generic-labels", "passed": true, "evidence": "No banned generic terms used"},
+    {"text": "multiple-candidates", "passed": true, "evidence": "7 distinct name candidates proposed"},
+    {"text": "explains-fit", "passed": true, "evidence": "Prism, Loom, and Die each have detailed evaluations"}
+  ]
+}

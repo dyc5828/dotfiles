@@ -1,0 +1,37 @@
+{
+  "eval_id": 2,
+  "eval_name": "smart-macros",
+  "configuration": "without_skill",
+  "expectations": [
+    {
+      "text": "reasoning-before-names",
+      "passed": false,
+      "evidence": "Jumps straight to evaluating 'Reel' then listing alternatives. No upfront reasoning about core function or metaphor exploration before naming."
+    },
+    {
+      "text": "real-words-only",
+      "passed": true,
+      "evidence": "All 10 candidates (Groove, Reflex, Cadence, Relay, Motif, Trace, Drift, Pulse, Riff, Circuit) are real English words"
+    },
+    {
+      "text": "no-generic-labels",
+      "passed": true,
+      "evidence": "No candidates use banned generic terms"
+    },
+    {
+      "text": "multiple-candidates",
+      "passed": true,
+      "evidence": "10 distinct name candidates proposed across 3 tiers"
+    },
+    {
+      "text": "explains-fit",
+      "passed": true,
+      "evidence": "Each candidate has an explanation of why it fits, plus a comparison table"
+    },
+    {
+      "text": "evaluates-existing-name",
+      "passed": true,
+      "evidence": "Detailed 'Evaluation of Reel' section with 'What works', 'What doesn't work', and 'Verdict'"
+    }
+  ]
+}

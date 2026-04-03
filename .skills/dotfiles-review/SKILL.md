@@ -37,6 +37,8 @@ For each untracked file found, read the contents. Skip anything that is:
 - Machine-local runtime data (caches, sessions, history, backups, telemetry)
 - Binary files or large databases
 
+Do NOT auto-skip skill workspaces (e.g., eval data, iteration results, benchmarks). These contain portable work product and should be surfaced for review like any other file.
+
 ### Already tracked and unchanged
 
 Note these briefly so the user knows they were checked.

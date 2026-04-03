@@ -1,0 +1,13 @@
+{
+  "eval_id": 2,
+  "eval_name": "smart-macros",
+  "configuration": "with_skill",
+  "expectations": [
+    {"text": "reasoning-before-names", "passed": true, "evidence": "Core Function and Metaphor Domains sections precede candidates. Reasoning stays abstract without naming."},
+    {"text": "real-words-only", "passed": true, "evidence": "All 7 candidates (Groove, Trace, Stride, Reflex, Lathe, Shuttle, Rut) are real English words"},
+    {"text": "no-generic-labels", "passed": true, "evidence": "No banned generic terms used"},
+    {"text": "multiple-candidates", "passed": true, "evidence": "7 distinct name candidates proposed"},
+    {"text": "explains-fit", "passed": true, "evidence": "Groove, Trace, and Stride each have detailed evaluations"},
+    {"text": "evaluates-existing-name", "passed": true, "evidence": "Dedicated section evaluating Reel with what works, what doesn't, and verdict"}
+  ]
+}

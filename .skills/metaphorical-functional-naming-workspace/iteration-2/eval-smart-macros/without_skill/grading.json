@@ -1,0 +1,13 @@
+{
+  "eval_id": 2,
+  "eval_name": "smart-macros",
+  "configuration": "without_skill",
+  "expectations": [
+    {"text": "reasoning-before-names", "passed": false, "evidence": "Jumps to evaluating Reel then listing alternatives. No upfront reasoning."},
+    {"text": "real-words-only", "passed": true, "evidence": "All 10 candidates are real English words"},
+    {"text": "no-generic-labels", "passed": true, "evidence": "No banned generic terms used"},
+    {"text": "multiple-candidates", "passed": true, "evidence": "10 distinct candidates across 3 tiers"},
+    {"text": "explains-fit", "passed": true, "evidence": "Each candidate has explanation"},
+    {"text": "evaluates-existing-name", "passed": true, "evidence": "Detailed evaluation of Reel with strengths, weaknesses, verdict"}
+  ]
+}

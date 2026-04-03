@@ -1,0 +1,12 @@
+{
+  "eval_id": 0,
+  "eval_name": "early-warning-tool",
+  "configuration": "with_skill",
+  "expectations": [
+    {"text": "reasoning-before-names", "passed": true, "evidence": "Core Function and Metaphor Search sections appear before Candidate Names section. No names leak into the reasoning."},
+    {"text": "real-words-only", "passed": true, "evidence": "All 7 candidates (Tremor, Canary, Seam, Ripple, Strain, Swell, Filament) are real English words"},
+    {"text": "no-generic-labels", "passed": true, "evidence": "No banned generic terms used"},
+    {"text": "multiple-candidates", "passed": true, "evidence": "7 distinct name candidates proposed"},
+    {"text": "explains-fit", "passed": true, "evidence": "Tremor, Canary, and Strain each have detailed evaluations"}
+  ]
+}

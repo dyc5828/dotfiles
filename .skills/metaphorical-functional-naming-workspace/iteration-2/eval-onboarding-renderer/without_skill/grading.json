@@ -1,0 +1,12 @@
+{
+  "eval_id": 1,
+  "eval_name": "onboarding-renderer",
+  "configuration": "without_skill",
+  "expectations": [
+    {"text": "reasoning-before-names", "passed": false, "evidence": "Names presented immediately. No upfront reasoning about core function or metaphor."},
+    {"text": "real-words-only", "passed": true, "evidence": "All candidates are real English words"},
+    {"text": "no-generic-labels", "passed": true, "evidence": "No banned generic terms. 'Onboard SDK' is literal but not in banned list."},
+    {"text": "multiple-candidates", "passed": true, "evidence": "10 distinct name candidates proposed"},
+    {"text": "explains-fit", "passed": true, "evidence": "Each candidate has Reasoning and Drawback sections"}
+  ]
+}

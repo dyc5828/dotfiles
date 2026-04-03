@@ -1,0 +1,12 @@
+{
+  "eval_id": 0,
+  "eval_name": "early-warning-tool",
+  "prompt": "I'm building an internal tool that watches our microservices and detects when one service starts degrading before it fully goes down. It correlates latency spikes, error rate changes, and dependency graphs to give early warnings. What should I call it?",
+  "assertions": [
+    {"name": "reasoning-before-names", "description": "A reasoning/analysis step identifying core function and metaphor appears before any name candidates"},
+    {"name": "real-words-only", "description": "All candidate names are real English words, not invented portmanteaus or brand names"},
+    {"name": "no-generic-labels", "description": "No candidates use banned generic terms"},
+    {"name": "multiple-candidates", "description": "At least 5 distinct name candidates are proposed"},
+    {"name": "explains-fit", "description": "At least 2 candidates have a brief explanation of why they fit the product"}
+  ]
+}

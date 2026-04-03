@@ -1,0 +1,32 @@
+{
+  "eval_id": 0,
+  "eval_name": "early-warning-tool",
+  "configuration": "with_skill",
+  "expectations": [
+    {
+      "text": "reasoning-before-names",
+      "passed": true,
+      "evidence": "Has 'Core Function' and 'Metaphor Exploration' sections with detailed analysis before any candidate names appear"
+    },
+    {
+      "text": "real-words-only",
+      "passed": true,
+      "evidence": "All 7 candidates (Tremor, Canary, Barometer, Seam, Filament, Downdraft, Wick) are real English words"
+    },
+    {
+      "text": "no-generic-labels",
+      "passed": true,
+      "evidence": "No candidates use Monitor, Watcher, Alert, AI, Platform, Hub, Cloud, Sync, Assistant, or Copilot"
+    },
+    {
+      "text": "multiple-candidates",
+      "passed": true,
+      "evidence": "7 distinct name candidates proposed (Tremor, Canary, Barometer, Seam, Filament, Downdraft, Wick)"
+    },
+    {
+      "text": "explains-fit",
+      "passed": true,
+      "evidence": "Tremor, Canary, and Seam each have multi-paragraph evaluations explaining why they fit"
+    }
+  ]
+}

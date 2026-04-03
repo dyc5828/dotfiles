@@ -1,0 +1,176 @@
+{
+  "metadata": {
+    "skill_name": "metaphorical-functional-naming",
+    "skill_path": "/Users/dan.chen@homebot.ai/.skills/metaphorical-functional-naming/SKILL.md",
+    "executor_model": "claude-opus-4-6",
+    "analyzer_model": "claude-opus-4-6",
+    "timestamp": "2026-03-28T23:45:00Z",
+    "evals_run": [0, 1, 2],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 49.2,
+        "tokens": 17779,
+        "tool_calls": 3,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "reasoning-before-names", "passed": true, "evidence": "Has 'Core Function' and 'Metaphor Exploration' sections with detailed analysis before any candidate names appear"},
+        {"text": "real-words-only", "passed": true, "evidence": "All 7 candidates are real English words"},
+        {"text": "no-generic-labels", "passed": true, "evidence": "No candidates use banned generic terms"},
+        {"text": "multiple-candidates", "passed": true, "evidence": "7 distinct name candidates proposed"},
+        {"text": "explains-fit", "passed": true, "evidence": "Tremor, Canary, and Seam each have multi-paragraph evaluations"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8,
+        "passed": 4,
+        "failed": 1,
+        "total": 5,
+        "time_seconds": 31.9,
+        "tokens": 16215,
+        "tool_calls": 2,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "reasoning-before-names", "passed": false, "evidence": "Names presented first. 'Reasoning' section appears after all suggestions."},
+        {"text": "real-words-only", "passed": true, "evidence": "All 10 candidates are real English words"},
+        {"text": "no-generic-labels", "passed": true, "evidence": "No banned generic terms used"},
+        {"text": "multiple-candidates", "passed": true, "evidence": "10 candidates proposed"},
+        {"text": "explains-fit", "passed": true, "evidence": "Each main candidate has a 'Why' paragraph"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 53.2,
+        "tokens": 18288,
+        "tool_calls": 3,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "reasoning-before-names", "passed": true, "evidence": "Has 'Core Function' and 'Metaphor Exploration' with 7 domains before candidates"},
+        {"text": "real-words-only", "passed": true, "evidence": "All 7 candidates are real English words"},
+        {"text": "no-generic-labels", "passed": true, "evidence": "No banned generic terms used"},
+        {"text": "multiple-candidates", "passed": true, "evidence": "7 distinct name candidates proposed"},
+        {"text": "explains-fit", "passed": true, "evidence": "Prism, Loom, and Stencil each have detailed evaluations"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8,
+        "passed": 4,
+        "failed": 1,
+        "total": 5,
+        "time_seconds": 50.8,
+        "tokens": 16781,
+        "tool_calls": 3,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "reasoning-before-names", "passed": false, "evidence": "Names presented immediately with no preceding reasoning about core function or metaphor exploration"},
+        {"text": "real-words-only", "passed": true, "evidence": "All 8 candidates are real English words"},
+        {"text": "no-generic-labels", "passed": true, "evidence": "No banned generic terms used"},
+        {"text": "multiple-candidates", "passed": true, "evidence": "8 distinct name candidates proposed"},
+        {"text": "explains-fit", "passed": true, "evidence": "All 8 candidates have 'Why' and 'Tradeoffs' sections"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 60.8,
+        "tokens": 18172,
+        "tool_calls": 3,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "reasoning-before-names", "passed": true, "evidence": "Has 'Core function' and 'Metaphor exploration' sections before candidates"},
+        {"text": "real-words-only", "passed": true, "evidence": "All 7 candidates are real English words"},
+        {"text": "no-generic-labels", "passed": true, "evidence": "No banned generic terms used"},
+        {"text": "multiple-candidates", "passed": true, "evidence": "7 distinct name candidates proposed"},
+        {"text": "explains-fit", "passed": true, "evidence": "Groove, Reflex, and Cadence each have detailed evaluations"},
+        {"text": "evaluates-existing-name", "passed": true, "evidence": "Dedicated 'Evaluation of Reel' section with what works, what doesn't, verdict"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.833,
+        "passed": 5,
+        "failed": 1,
+        "total": 6,
+        "time_seconds": 49.2,
+        "tokens": 16800,
+        "tool_calls": 2,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "reasoning-before-names", "passed": false, "evidence": "Jumps straight to evaluating Reel then listing alternatives. No upfront reasoning."},
+        {"text": "real-words-only", "passed": true, "evidence": "All 10 candidates are real English words"},
+        {"text": "no-generic-labels", "passed": true, "evidence": "No banned generic terms used"},
+        {"text": "multiple-candidates", "passed": true, "evidence": "10 distinct name candidates across 3 tiers"},
+        {"text": "explains-fit", "passed": true, "evidence": "Each candidate has explanation plus comparison table"},
+        {"text": "evaluates-existing-name", "passed": true, "evidence": "Detailed evaluation of Reel with what works, what doesn't, verdict"}
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {"mean": 1.0, "stddev": 0.0, "min": 1.0, "max": 1.0},
+      "time_seconds": {"mean": 54.4, "stddev": 5.9, "min": 49.2, "max": 60.8},
+      "tokens": {"mean": 18080, "stddev": 265, "min": 17779, "max": 18288}
+    },
+    "without_skill": {
+      "pass_rate": {"mean": 0.811, "stddev": 0.019, "min": 0.8, "max": 0.833},
+      "time_seconds": {"mean": 44.0, "stddev": 10.7, "min": 31.9, "max": 50.8},
+      "tokens": {"mean": 16599, "stddev": 299, "min": 16215, "max": 16781}
+    },
+    "delta": {
+      "pass_rate": "+0.19",
+      "time_seconds": "+10.4",
+      "tokens": "+1481"
+    }
+  },
+  "notes": [
+    "The skill's primary structural contribution is enforcing reasoning-before-names - this assertion failed in all 3 baseline runs but passed in all 3 with-skill runs.",
+    "Both configurations produced high-quality real-word names and avoided generic labels - these assertions are non-discriminating.",
+    "Significant name overlap between with/without runs (Canary, Tremor, Prism, Loom, Groove, Reflex) suggests the model has good naming instincts baseline - the skill's value is in the structured reasoning process.",
+    "With-skill runs use ~10% more tokens and ~24% more time, attributable to the upfront reasoning step."
+  ]
+}

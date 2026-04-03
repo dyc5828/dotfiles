@@ -1,0 +1,13 @@
+{
+  "eval_id": 2,
+  "eval_name": "smart-macros",
+  "prompt": "I'm working on a feature that lets users save and replay sequences of actions in our app - like macros but smarter, they adapt to context changes. We've been calling it 'Reel' internally. Is that a good name or can you do better?",
+  "assertions": [
+    {"name": "reasoning-before-names", "description": "A reasoning/analysis step identifying core function and metaphor appears before any name candidates"},
+    {"name": "real-words-only", "description": "All candidate names are real English words, not invented portmanteaus or brand names"},
+    {"name": "no-generic-labels", "description": "No candidates use banned generic terms"},
+    {"name": "multiple-candidates", "description": "At least 5 distinct name candidates are proposed"},
+    {"name": "explains-fit", "description": "At least 2 candidates have a brief explanation of why they fit the product"},
+    {"name": "evaluates-existing-name", "description": "The response explicitly evaluates the existing candidate name 'Reel'"}
+  ]
+}

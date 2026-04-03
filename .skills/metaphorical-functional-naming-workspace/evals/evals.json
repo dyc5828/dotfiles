@@ -1,0 +1,23 @@
+{
+  "skill_name": "metaphorical-functional-naming",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "I'm building an internal tool that watches our microservices and detects when one service starts degrading before it fully goes down. It correlates latency spikes, error rate changes, and dependency graphs to give early warnings. What should I call it?",
+      "expected_output": "A set of candidate names with brief reasoning about the core function and metaphor, followed by evaluation of the strongest candidates",
+      "files": []
+    },
+    {
+      "id": 1,
+      "prompt": "We need a name for a system that takes a single customer onboarding flow definition and generates platform-specific implementations - web, iOS, Android, and email. The whole point is write-once, render-everywhere for onboarding experiences.",
+      "expected_output": "A set of candidate names with brief reasoning about the core function and metaphor, followed by evaluation of the strongest candidates",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I'm working on a feature that lets users save and replay sequences of actions in our app - like macros but smarter, they adapt to context changes. We've been calling it 'Reel' internally. Is that a good name or can you do better?",
+      "expected_output": "Evaluation of 'Reel' as a name, plus alternative candidate names with reasoning",
+      "files": []
+    }
+  ]
+}

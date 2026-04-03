@@ -1,0 +1,177 @@
+{
+  "metadata": {
+    "skill_name": "metaphorical-functional-naming",
+    "skill_path": "/Users/dan.chen@homebot.ai/.skills/metaphorical-functional-naming/SKILL.md",
+    "executor_model": "claude-opus-4-6",
+    "analyzer_model": "claude-opus-4-6",
+    "timestamp": "2026-03-28T23:58:00Z",
+    "evals_run": [0, 1, 2],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 42.3,
+        "tokens": 17819,
+        "tool_calls": 3,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "reasoning-before-names", "passed": true, "evidence": "Core Function and Metaphor Search sections appear before Candidate Names. No names leak into reasoning."},
+        {"text": "real-words-only", "passed": true, "evidence": "All 7 candidates are real English words"},
+        {"text": "no-generic-labels", "passed": true, "evidence": "No banned generic terms used"},
+        {"text": "multiple-candidates", "passed": true, "evidence": "7 distinct name candidates proposed"},
+        {"text": "explains-fit", "passed": true, "evidence": "Tremor, Canary, and Strain each have detailed evaluations"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8,
+        "passed": 4,
+        "failed": 1,
+        "total": 5,
+        "time_seconds": 38.1,
+        "tokens": 16311,
+        "tool_calls": 2,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "reasoning-before-names", "passed": false, "evidence": "Names presented first. No upfront reasoning."},
+        {"text": "real-words-only", "passed": true, "evidence": "All candidates are real English words"},
+        {"text": "no-generic-labels", "passed": true, "evidence": "No banned generic terms used"},
+        {"text": "multiple-candidates", "passed": true, "evidence": "12+ candidates proposed"},
+        {"text": "explains-fit", "passed": true, "evidence": "Each candidate has reasoning paragraph"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 43.0,
+        "tokens": 17814,
+        "tool_calls": 3,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "reasoning-before-names", "passed": true, "evidence": "Core Function and Metaphor Domains precede candidates. No names in reasoning."},
+        {"text": "real-words-only", "passed": true, "evidence": "All 7 candidates are real English words"},
+        {"text": "no-generic-labels", "passed": true, "evidence": "No banned generic terms used"},
+        {"text": "multiple-candidates", "passed": true, "evidence": "7 distinct candidates"},
+        {"text": "explains-fit", "passed": true, "evidence": "Prism, Loom, and Die each have detailed evaluations"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8,
+        "passed": 4,
+        "failed": 1,
+        "total": 5,
+        "time_seconds": 49.0,
+        "tokens": 16860,
+        "tool_calls": 2,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "reasoning-before-names", "passed": false, "evidence": "Names presented immediately. No upfront reasoning."},
+        {"text": "real-words-only", "passed": true, "evidence": "All candidates are real English words"},
+        {"text": "no-generic-labels", "passed": true, "evidence": "No banned generic terms"},
+        {"text": "multiple-candidates", "passed": true, "evidence": "10 distinct candidates"},
+        {"text": "explains-fit", "passed": true, "evidence": "Each has Reasoning and Drawback sections"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 56.2,
+        "tokens": 18427,
+        "tool_calls": 3,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "reasoning-before-names", "passed": true, "evidence": "Core Function and Metaphor Domains precede candidates. No names in reasoning."},
+        {"text": "real-words-only", "passed": true, "evidence": "All 7 candidates are real English words"},
+        {"text": "no-generic-labels", "passed": true, "evidence": "No banned generic terms used"},
+        {"text": "multiple-candidates", "passed": true, "evidence": "7 distinct candidates"},
+        {"text": "explains-fit", "passed": true, "evidence": "Groove, Trace, and Stride each have detailed evaluations"},
+        {"text": "evaluates-existing-name", "passed": true, "evidence": "Dedicated Reel evaluation section with what works, what doesn't, verdict"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.833,
+        "passed": 5,
+        "failed": 1,
+        "total": 6,
+        "time_seconds": 40.4,
+        "tokens": 16506,
+        "tool_calls": 2,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "reasoning-before-names", "passed": false, "evidence": "Jumps to evaluating Reel then listing alternatives. No upfront reasoning."},
+        {"text": "real-words-only", "passed": true, "evidence": "All 10 candidates are real English words"},
+        {"text": "no-generic-labels", "passed": true, "evidence": "No banned generic terms used"},
+        {"text": "multiple-candidates", "passed": true, "evidence": "10 distinct candidates across 3 tiers"},
+        {"text": "explains-fit", "passed": true, "evidence": "Each candidate has explanation"},
+        {"text": "evaluates-existing-name", "passed": true, "evidence": "Detailed evaluation of Reel"}
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {"mean": 1.0, "stddev": 0.0, "min": 1.0, "max": 1.0},
+      "time_seconds": {"mean": 47.2, "stddev": 7.7, "min": 42.3, "max": 56.2},
+      "tokens": {"mean": 18020, "stddev": 345, "min": 17814, "max": 18427}
+    },
+    "without_skill": {
+      "pass_rate": {"mean": 0.811, "stddev": 0.019, "min": 0.8, "max": 0.833},
+      "time_seconds": {"mean": 42.5, "stddev": 5.7, "min": 38.1, "max": 49.0},
+      "tokens": {"mean": 16559, "stddev": 277, "min": 16311, "max": 16860}
+    },
+    "delta": {
+      "pass_rate": "+0.19",
+      "time_seconds": "+4.7",
+      "tokens": "+1461"
+    }
+  },
+  "notes": [
+    "Iteration 2 fixes: no more duplicate names between reasoning and candidate sections. The metaphor exploration step now stays abstract.",
+    "Taste calibration working: with-skill runs produced Die, Stride, Lathe, Strain - all tactile/industrial names absent from iteration 1. No abstract names (Threshold, Bloom, Motif) appear in with-skill outputs.",
+    "Without-skill runs still produce abstract names: Motif (eval-2), Passage (eval-1), Harbinger (eval-0). The taste filter is skill-specific.",
+    "Time delta narrowed from +10.4s (iter 1) to +4.7s (iter 2), likely because the reasoning section is now more concise without candidate names bleeding in.",
+    "reasoning-before-names remains the only discriminating assertion - fails all baselines, passes all with-skill runs."
+  ]
+}

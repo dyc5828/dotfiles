@@ -1,0 +1,35 @@
+{
+  "reviews": [
+    {
+      "run_id": "eval-early-warning-tool-with_skill",
+      "feedback": "Oh, Strain is interesting. Yeah, overall I like these. I like the earthquake kind of metaphor too because it's like, right, something bad is about to happen. ",
+      "timestamp": "2026-03-28T23:58:09.467Z"
+    },
+    {
+      "run_id": "eval-early-warning-tool-without_skill",
+      "feedback": "Yeah, nothing much changed here. ",
+      "timestamp": "2026-03-28T23:58:09.467Z"
+    },
+    {
+      "run_id": "eval-onboarding-renderer-with_skill",
+      "feedback": "Prism. Yeah, I like that one. Die. I'm not so sure about die. That's weird. I don't get that metaphor - you're not trying to gamble which one goes out. Prism makes sense as some kind of analogy of rendering UI as those visuals. So then you know the word is about light, I think that's a good leap - good kind of logic. Again, we're not gambling anything. ",
+      "timestamp": "2026-03-28T23:58:09.467Z"
+    },
+    {
+      "run_id": "eval-onboarding-renderer-without_skill",
+      "feedback": "Rosetta is kinda interesting. I don't know if I would exactly choose that for UI, but I think it's fair. A little bit more code. Cinco, right? Cinco and Prism. I already said I like those. ",
+      "timestamp": "2026-03-28T23:58:09.467Z"
+    },
+    {
+      "run_id": "eval-smart-macros-with_skill",
+      "feedback": "Yeah, I did Groove, Stride, Reflex. Those are okay. I don't get some of the other words, but that's fine. ",
+      "timestamp": "2026-03-28T23:58:09.467Z"
+    },
+    {
+      "run_id": "eval-smart-macros-without_skill",
+      "feedback": "Cadence is okay here, but I'm not sure that might imply some other timing-related stuff. Hi. ",
+      "timestamp": "2026-03-28T23:58:09.467Z"
+    }
+  ],
+  "status": "in_progress"
+}

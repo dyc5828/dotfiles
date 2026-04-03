@@ -1,0 +1,32 @@
+{
+  "eval_id": 1,
+  "eval_name": "onboarding-renderer",
+  "configuration": "without_skill",
+  "expectations": [
+    {
+      "text": "reasoning-before-names",
+      "passed": false,
+      "evidence": "Names are presented immediately with no preceding reasoning about core function or metaphor exploration. Each name has inline reasoning, but no upfront analysis step."
+    },
+    {
+      "text": "real-words-only",
+      "passed": true,
+      "evidence": "All 8 candidates (Onboard, Threshold, Bloom, Prism, Loom, Forge, Runway, Facet) are real English words"
+    },
+    {
+      "text": "no-generic-labels",
+      "passed": true,
+      "evidence": "No candidates use banned generic terms. 'Onboard' is literal but not in the banned list."
+    },
+    {
+      "text": "multiple-candidates",
+      "passed": true,
+      "evidence": "8 distinct name candidates proposed"
+    },
+    {
+      "text": "explains-fit",
+      "passed": true,
+      "evidence": "All 8 candidates have 'Why' and 'Tradeoffs' sections explaining fit"
+    }
+  ]
+}
