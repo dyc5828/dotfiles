@@ -47,9 +47,6 @@ Note these briefly so the user knows they were checked.
 
 Show a single summary with all findings:
 
-**Unpushed commits:**
-Check `dot log @{u}..HEAD --oneline` for any commits ahead of remote. List them if present.
-
 **Modified tracked files:**
 | File | Change | Status |
 |---|---|---|
@@ -62,6 +59,9 @@ Check `dot log @{u}..HEAD --oneline` for any commits ahead of remote. List them 
 
 **Already tracked, unchanged:**
 Brief list or count.
+
+**Unpushed commits:**
+At the end of the report, check for commits ahead of remote using `dot fetch origin` then `dot log FETCH_HEAD..HEAD --oneline`. List them inline if present (e.g., "2 unpushed commits: `abc1234` msg, `def5678` msg"). If none, say "All pushed."
 
 ## Phase 4: Turn-by-Turn Review
 
