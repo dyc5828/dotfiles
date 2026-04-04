@@ -40,6 +40,7 @@
     ],
     "defaultMode": "auto"
   },
+  "model": "opus[1m]",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
@@ -66,9 +67,8 @@
     }
   },
   "alwaysThinkingEnabled": true,
-  "effortLevel": "high",
+  "autoUpdatesChannel": "stable",
   "voiceEnabled": true,
   "skipDangerousModePermissionPrompt": true,
-  "skipAutoPermissionPrompt": true,
-  "autoUpdatesChannel": "stable"
+  "skipAutoPermissionPrompt": true
 }
