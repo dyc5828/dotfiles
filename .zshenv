@@ -1,5 +1,12 @@
+# PATH
+# export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+# export PATH="$PATH:$GEM_HOME/bin"
+
+export PNPM_HOME="$HOME/.local/share/pnpm"
+export PATH="$PNPM_HOME:$HOME/.local/bin:$HOME/.antigravity/antigravity/bin:$PATH"
+
 # Github - all tokens derived from gh CLI keyring auth
-export GITHUB_TOKEN="$(gh auth token)"
+export GITHUB_TOKEN="$(/opt/homebrew/bin/gh auth token)"
 export GITHUB_PERSONAL_ACCESS_TOKEN="$GITHUB_TOKEN"
 
 # Homebrew
@@ -22,9 +29,3 @@ export PGUSER='postgres'
 ## bundler credentials for sidekiq enterprise
 BUNDLE_ENTERPRISE__CONTRIBSYS__COM=
 
-# PATH
-# export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-# export PATH="$PATH:$GEM_HOME/bin"
-
-export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH="$PNPM_HOME:$HOME/.local/bin:$PATH"

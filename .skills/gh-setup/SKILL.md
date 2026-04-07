@@ -46,44 +46,27 @@ gh --version
 ## Step 2: Authenticate
 
 ```bash
-gh auth login
+gh auth login -s admin:public_key,codespace,read:user,user:email,write:packages
 ```
 
 When prompted:
-1. Where do you use GitHub? **GitHub.com**
-2. Login with a web browser (follow the prompts to authorize)
+1. Where do you use GitHub? → **GitHub.com**
+2. What is your preferred protocol for Git operations on this host? → **HTTPS**
+3. Authenticate Git with your GitHub credentials? → **Yes**
+4. How would you like to authenticate GitHub CLI? → **Login with a web browser**
 
-This stores the OAuth token in the macOS Keychain under `gh:github.com`. No token touches the filesystem.
+This stores the OAuth token in the macOS Keychain under `gh:github.com`. No token touches the filesystem. The `-s` flag requests additional scopes beyond the defaults — it's idempotent and safe to include on repeat setups (scopes are tied to the OAuth app authorization on your GitHub account, not the device).
 
 Verify:
 ```bash
 gh auth status
 ```
 
-You should see `(keyring)` as the source. If you see `(GITHUB_TOKEN)` instead, a plaintext env var is overriding the keyring - find and remove it (see Step 5).
+Expected scopes: `admin:public_key`, `codespace`, `gist`, `read:org`, `read:user`, `repo`, `user:email`, `workflow`, `write:packages`
 
-## Step 3: Expand OAuth scopes (first-time only)
+You should see `(keyring)` as the source. If you see `(GITHUB_TOKEN)` instead, a plaintext env var is overriding the keyring - find and remove it (see Step 4).
 
-This grants permissions to the GitHub CLI OAuth app on your GitHub account. It persists across all machines - only needs to be done once per GitHub account, ever.
-
-```bash
-gh auth refresh -s admin:public_key,codespace,read:user,user:email,write:packages
-```
-
-This opens a browser to re-authorize. Existing scopes (`gist`, `read:org`, `repo`, `workflow`) are preserved.
-
-Verify all scopes:
-```bash
-gh auth status
-```
-
-Expected: `admin:public_key`, `codespace`, `gist`, `read:org`, `read:user`, `repo`, `user:email`, `workflow`, `write:packages`
-
-### Second machine / repeat setup
-
-**Skip this step.** Scopes are tied to the OAuth app authorization on your GitHub account, not the device. `gh auth login` on a new machine inherits all previously granted scopes automatically.
-
-## Step 4: Configure git credential helper
+## Step 3: Configure git credential helper
 
 ```bash
 gh auth setup-git
@@ -93,12 +76,28 @@ This registers `gh` as the git credential helper. When any tool makes an HTTPS g
 
 Verify:
 ```bash
+# Should show gh entries for github.com and gist.github.com
+git config --global --list | rg credential
+```
+
+Expected output includes:
+```
+credential.https://github.com.helper=
+credential.https://github.com.helper=!/opt/homebrew/bin/gh auth git-credential
+credential.https://gist.github.com.helper=
+credential.https://gist.github.com.helper=!/opt/homebrew/bin/gh auth git-credential
+```
+
+Note: `gh auth setup-git` adds **host-specific** overrides for `github.com`, not a global `credential.helper`. Checking only `git config --global credential.helper` will not show these entries and will falsely appear unconfigured.
+
+Also verify HTTPS clones work:
+```bash
 git clone https://github.com/homebotapp/<any-private-repo>.git /tmp/test-clone && rm -rf /tmp/test-clone
 ```
 
 No password prompt should appear.
 
-## Step 5: Configure shell env vars
+## Step 4: Configure shell env vars
 
 Several tools read GitHub tokens from environment variables rather than calling `gh` directly - Docker builds, Homebrew private taps (`homebotapp/homebrew-tap`), and the GitHub MCP server. Export all three from a single `gh auth token` call.
 
@@ -125,7 +124,7 @@ Also remove the `insteadOf` rule from git config if present:
 git config --global --unset-all url.https://.insteadof 2>/dev/null
 ```
 
-## Step 6: Authorize for SAML SSO (Homebot-specific)
+## Step 5: Authorize for SAML SSO (Homebot-specific)
 
 **Manual step** - no CLI for this.
 
@@ -135,7 +134,7 @@ git config --global --unset-all url.https://.insteadof 2>/dev/null
 
 Without this, `gh` can authenticate to GitHub but cannot access `homebotapp` org resources. If `gh repo list homebotapp` returns an empty list or a 403, SSO authorization is the problem.
 
-## Step 7: Revoke classic PATs
+## Step 6: Revoke classic PATs
 
 Once everything works, go to https://github.com/settings/tokens and revoke classic PATs you no longer need. Each one is an attack surface.
 
@@ -177,12 +176,10 @@ gh auth logout
 
 This removes the token from the Keychain. Then re-run from Step 2.
 
-If you previously completed Step 3 on this GitHub account, scopes are already granted - the new login inherits them. No need to re-run the refresh.
-
 To also revoke the OAuth app authorization on GitHub's side (nuclear option):
 1. Go to https://github.com/settings/applications
 2. Revoke **GitHub CLI**
-3. Re-run from Step 2 **and** Step 3 (scopes need re-granting since the app authorization was revoked)
+3. Re-run from Step 2 (the `-s` flag will re-grant scopes since the app authorization was revoked)
 
 ## Troubleshooting
 
@@ -190,7 +187,7 @@ To also revoke the OAuth app authorization on GitHub's side (nuclear option):
 
 **`gh auth token` returns nothing**: Not logged in. Run `gh auth login`.
 
-**HTTPS clone prompts for password**: `gh auth setup-git` wasn't run, or the credential helper isn't configured. Check `git config --global credential.helper`.
+**HTTPS clone prompts for password**: `gh auth setup-git` wasn't run, or the credential helper isn't configured. Check with `git config --global --list | rg credential` — do NOT use `git config --global credential.helper` alone, as it only shows the global helper and will miss the host-specific `github.com` overrides that `gh auth setup-git` adds.
 
 **Homebrew private tap fails with "HOMEBREW_GITHUB_API_TOKEN is required"**: The `homebotapp/homebrew-tap` custom download strategy requires this specific env var. Verify it's exported: `echo $HOMEBREW_GITHUB_API_TOKEN`.
 

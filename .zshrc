@@ -281,4 +281,3 @@ compinit
 
 # initialize z after compinit for auto complete suggestions
 eval "$(zoxide init zsh)"
-
