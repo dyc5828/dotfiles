@@ -2,6 +2,7 @@ git clone --bare https://github.com/dyc5828/dotfiles.git $HOME/.dotfiles
 function dot {
    /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
 }
+dot config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 mkdir -p .dotfiles-backup
 dot checkout
 if [ $? = 0 ]; then
