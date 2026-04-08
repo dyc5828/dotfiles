@@ -53,20 +53,30 @@
     "ruby-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
-    "claude-md-management@claude-plugins-official": true
+    "claude-md-management@claude-plugins-official": true,
+    "codex@openai-codex": true
   },
   "extraKnownMarketplaces": {
     "zero-code-protocol": {
       "source": {
         "source": "github",
         "repo": "dyc5828/zero-code-protocol"
-      }
+      },
+      "autoUpdate": true
     },
     "homebotapp": {
       "source": {
         "source": "github",
         "repo": "homebotapp/botfiles"
-      }
+      },
+      "autoUpdate": true
+    },
+    "openai-codex": {
+      "source": {
+        "source": "github",
+        "repo": "openai/codex-plugin-cc"
+      },
+      "autoUpdate": true
     }
   },
   "alwaysThinkingEnabled": true,
