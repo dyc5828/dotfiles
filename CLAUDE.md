@@ -18,11 +18,15 @@ When working in the home directory or with dotfiles:
 
 ## Agents & Skills
 
-- `~/.agents/` is the source of truth for agents (flat `.md` files)
-- `~/.skills/` is the source of truth for skills (`<name>/SKILL.md` layout)
-- `~/.claude/agents` and `~/.claude/skills` are **directory symlinks** to the above
+- `~/.agents/` is the single source of truth for agents and skills
+  - Agents are flat `.md` files at root - `~/.agents/foo.md`
+  - Skills live in `~/.agents/skills/` - `~/.agents/skills/foo/SKILL.md`
+- Symlinks for Claude Code:
+  - `~/.claude/agents` → `~/.agents/`
+  - `~/.claude/skills` → `~/.agents/skills/`
+- Codex discovers skills at `~/.agents/skills/` natively - no symlink needed
 - To add a new agent: create `~/.agents/foo.md`
-- To add a new skill: create `~/.skills/foo/SKILL.md`
+- To add a new skill: create `~/.agents/skills/foo/SKILL.md`
 
 ## Quick Reference
 

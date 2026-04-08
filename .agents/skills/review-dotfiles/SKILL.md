@@ -30,7 +30,7 @@ Compare what exists against what's tracked. Explore these directories for portab
 - **Dev tools:** `.config/gh/`, `.config/starship.toml`, `.config/karabiner/`, `.docker/`
 - **Shell:** `.zshrc`, `.zshenv`, `.zprofile`, `.bashrc`
 - **Editors:** `.vscode/`, `.vim/`
-- **Skills/agents:** `.skills/`, `.agents/`
+- **Agents/skills:** `.agents/`, `.agents/skills/`
 
 For each untracked file found, read the contents. Skip anything that is:
 - Secrets (API keys, tokens, passwords, credentials)

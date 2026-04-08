@@ -46,7 +46,7 @@ Auto-memory (`~/.claude/projects/.../memory/`) is **machine-local and path-speci
 - Agent behaviors and personalities → `~/.agents/<name>.md`
 - Environment conventions and tool usage → `~/WARP.md`
 - Directory-specific conventions → that directory's `CLAUDE.md`
-- Skill/setup procedures → `~/.skills/<name>/SKILL.md`
+- Skills and setup procedures → `~/.agents/skills/<name>/SKILL.md`
 
 **The test:** If this preference or learning would apply on a completely different computer with the same dotfiles checked out, it belongs in a dotfile — not auto-memory. When in doubt, prefer dotfiles for durability.
 
