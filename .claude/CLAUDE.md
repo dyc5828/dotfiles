@@ -27,7 +27,7 @@ Be proactive about improving workflows. Watch for:
 3. Wait for approval before making changes
 
 **Where learnings go:**
-- Agent-specific behaviors → that agent's definition (e.g., `~/.claude/agents/genko.md`)
+- Agent-specific behaviors → that agent's definition (e.g., `~/.agents/delegates/genko.md`)
 - Environment/tooling → `~/.claude/CLAUDE.md` (global) or `~/WARP.md` (reference)
 - Directory-specific context → that directory's `CLAUDE.md`
 - Global Claude preferences → this file
@@ -43,12 +43,18 @@ Auto-memory (`~/.claude/projects/.../memory/`) is **machine-local and path-speci
 
 **Use dotfiles-tracked files instead when the learning is portable:**
 - Workflow preferences, collaboration style, how to approach tasks → `~/.claude/CLAUDE.md`
-- Agent behaviors and personalities → `~/.agents/<name>.md`
+- Subagent behaviors and personalities → `~/.agents/delegates/<name>.md`
 - Environment conventions and tool usage → `~/WARP.md`
 - Directory-specific conventions → that directory's `CLAUDE.md`
 - Skills and setup procedures → `~/.agents/skills/<name>/SKILL.md`
 
 **The test:** If this preference or learning would apply on a completely different computer with the same dotfiles checked out, it belongs in a dotfile — not auto-memory. When in doubt, prefer dotfiles for durability.
+
+## Agents & Skills
+
+- `~/.claude/agents` and `~/.claude/skills` are symlinks into `~/.agents/`. Never put real files directly in `~/.claude/`.
+- New subagent → create `~/.agents/delegates/foo.md`
+- New skill → create `~/.agents/skills/foo/SKILL.md`
 
 ## Writing Style
 
@@ -83,3 +89,4 @@ Note: User has aliases for personal use (e.g., `l`, `ll`, `lt` for eza variants)
 - Package Manager: pnpm (for Node.js global packages)
 
 See `~/WARP.md` for detailed reference of user aliases and shell configuration.
+
