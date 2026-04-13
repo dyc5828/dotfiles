@@ -82,15 +82,20 @@ Wait for the user's verdict on each file before moving on. They may say:
 
 After each turn where files are added, skipped, or committed, reprint the full report from Phase 3 with updated statuses. This lets the user see the current state of everything at a glance - what's done, what's pending, and what's been skipped.
 
-### Handling sensitive files
+### Handling sensitive files (scrub-and-restore)
 
-If a file contains a mix of safe changes and secrets:
-1. Discuss with the user what the committed version should look like
-2. Edit the file to the commit-safe version (e.g., empty string for secrets)
-3. Stage it
-4. Restore the working copy with the real values
+Any file containing live secrets follows scrub-and-restore by default. Common cases: `.zshenv`, `.zshrc`, `.env`-style files, any shell config exporting API keys or credential pairs.
 
-Never decide unilaterally how to handle secrets - work it out with the user.
+The pattern:
+1. Identify the safe changes vs the secrets. Confirm with the user what the committed version should look like if it's ambiguous.
+2. Edit the working copy to the commit-safe version. Usually empty string for secret values, preserving the variable name and surrounding structure.
+3. Verify the diff is clean with `dot diff <file>` before staging.
+4. Stage and commit through Phases 5 and 6.
+5. Restore the real values to the working copy in Phase 7, after push succeeds.
+
+Track which files need restoring so it doesn't get skipped.
+
+Never decide unilaterally how to handle secrets. Work it out with the user, especially when deciding what belongs in the committed version.
 
 ## Phase 5: Commit (user-initiated only)
 
@@ -131,9 +136,19 @@ Where `<base>` is the commit before the first new commit in this session. Review
 dot push
 ```
 
+## Phase 7: Post-push restore (for scrubbed files)
+
+If Phase 4 scrubbed any files, restore their real values to the working copy after push succeeds.
+
+**Restore after push, not after commit.** Keeping the working tree scrubbed through push protects against accidental leaks if the push is rejected, amended, or reworked. It also keeps `dot diff` trustworthy until origin matches HEAD.
+
+After restore, `dot status` will show the file as "modified" (scrubbed commit vs restored working tree). Expected, but warn the user never to `dot commit -a` or re-stage that file without re-scrubbing.
+
+If the user explicitly defers push and wants shell access sooner, they can opt into early restore.
+
 ## Rules
 
-- NEVER commit plaintext secrets
+- NEVER commit plaintext secrets. Scrub-and-restore any file with live secrets; restore only after push succeeds.
 - Staging is fine after user approves a file, but NEVER commit or push unless the user explicitly says to
 - Always print actual file contents when the user asks to see something - no summaries
 - Use `dot` not `git` for all operations
