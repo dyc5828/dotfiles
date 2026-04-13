@@ -1,0 +1,47 @@
+{
+  "skill_name": "supesc-dispatch",
+  "evals": [
+    {
+      "id": 1,
+      "name": "standard-vsb-route",
+      "prompt": "You are triaging a support escalation ticket from Homebot's Linear queue. Determine the correct routing action and write the comment you would post.\n\nTicket:\n- ID: SUPESC-T01\n- Title: Customer missing mobile app and buyer landing page on agent-teams plan\n- Description: New support request from: @koala.cx\n\n> Request Type: Bug | Troubleshoot Issue\n> Relevant Area: Customer - Power-Ups\n> Explanation of Request: Customer Alex Alpha and her team are on an agent-teams plan but the mobile app and buyers landing page features aren't showing up. She's been on this plan for 2 weeks and these should be included. Can we get this looked at?\n> Customer First and Last Name: Alex Alpha\n> Customer HB Admin: https://hbadmin.homebot.rocks/employee/users/abc12345-fake-uuid\n- Labels: Escalation, Powerups, Mobile App\n- Team: Support Escalations\n- Status: Triage",
+      "expected_output": "Route to VSB with comment about plan config/feature entitlement. May mention full_access toggle as a known shortcut.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "answer-from-codebase",
+      "prompt": "You are triaging a support escalation ticket from Homebot's Linear queue. Determine the correct routing action and write the comment you would post.\n\nTicket:\n- ID: SUPESC-T03\n- Title: Welcome emails not sending for newly uploaded clients\n- Description: New support request from: @penguin.am\n\n> Request Type: General Question\n> Relevant Area: Email Deliverability\n> Explanation of Request: LO Drew Delta uploaded about 200 clients last week and turned on welcome emails yesterday. He's now sending his first manual digest but wants to know — will those 200 clients get a welcome email with their first digest, or did he miss the window since they were uploaded before the setting was on?\n> Customer First and Last Name: Drew Delta\n> Customer HB Admin: https://hbadmin.homebot.rocks/employee/users/ghi11111-fake-uuid\n- Labels: Escalation\n- Team: Support Escalations\n- Status: Triage",
+      "expected_output": "Recognize this as a question answerable from the codebase. Look up welcome email eligibility logic in mikasa client.rb. Answer in plain language: if no digests sent yet, welcome emails will go out; if digests already sent, they won't. Close the ticket.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "user-messaging-delivery-failure",
+      "prompt": "You are triaging a support escalation ticket from Homebot's Linear queue. Determine the correct routing action and write the comment you would post.\n\nTicket:\n- ID: SUPESC-T06\n- Title: Digest emails not being delivered for any customers since this morning\n- Description: New support request from: @fox.mktg\n\n> Request Type: Bug | Troubleshoot Issue\n> Relevant Area: Email Deliverability\n> Explanation of Request: Multiple customers are reporting that their scheduled digest emails did not go out this morning. We've gotten 15+ reports in the last 2 hours from different customers across different plans. Manual sends also appear to be failing. This seems like a widespread issue, not customer-specific.\n> Customer First and Last Name: N/A (multiple)\n> Customer HB Admin: N/A\n- Labels: Escalation, Email\n- Team: Support Escalations\n- Status: Triage",
+      "expected_output": "Route to User Messaging. This is widespread email delivery failure across multiple customers — send infrastructure, not content. User Messaging owns the email delivery pipeline.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "edge-case-email-content-not-delivery",
+      "prompt": "You are triaging a support escalation ticket from Homebot's Linear queue. Determine the correct routing action and write the comment you would post.\n\nTicket:\n- ID: SUPESC-T08\n- Title: Customer's welcome email content showing garbled characters instead of spaces\n- Description: New support request from: @penguin.am\n\n> Request Type: Bug | Troubleshoot Issue\n> Relevant Area: Customer - Email Customization\n> Explanation of Request: REA Gray Golf customized her welcome email content in the CEP editor, but when clients receive the email, all spaces are replaced with ? characters. The preview in the editor looks fine but the sent email is garbled. She pasted the text from a Word document.\n> Customer First and Last Name: Gray Golf\n> Customer HB Admin: https://hbadmin.homebot.rocks/employee/users/pqr44444-fake-uuid\n- Labels: Escalation, Email\n- Team: Support Escalations\n- Status: Triage",
+      "expected_output": "Route to Customer Experience, NOT User Messaging. The issue is email content encoding from the CEP editor (pasted from Word), not send infrastructure. CX owns the editor. The Email label might mislead toward User Messaging but the root cause is content.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "name": "through-line-data-not-client-experience",
+      "prompt": "You are triaging a support escalation ticket from Homebot's Linear queue. Determine the correct routing action and write the comment you would post.\n\nTicket:\n- ID: SUPESC-T10\n- Title: Loan data showing incorrect interest rates for FHA loans in client reports\n- Description: New support request from: @koala.cx\n\n> Request Type: Bug | Troubleshoot Issue\n> Relevant Area: Client - Home Value\n> Explanation of Request: Several LOs have reported that the FHA loan rates shown in their clients' home digests are significantly off from current market rates. The rates appear to be about 2 months stale. This is affecting how the refinance savings calculations look to clients and making the LOs look bad.\n> Customer First and Last Name: Multiple LOs reporting\n> Customer HB Admin: N/A\n- Labels: Escalation\n- Team: Support Escalations\n- Status: Triage",
+      "expected_output": "Route to Data, not Client Experience. While it surfaces in the client digest, the root cause is stale loan rate data in the pipeline. Data team owns loan data and rate feeds.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "name": "feature-request-close",
+      "prompt": "You are triaging a support escalation ticket from Homebot's Linear queue. Determine the correct routing action and write the comment you would post.\n\nTicket:\n- ID: SUPESC-T09\n- Title: Request to add AI-powered market summary to home digest\n- Description: New support request from: @panda.sales\n\n> Request Type: Feature Request\n> Relevant Area: Client - Home Digest\n> Explanation of Request: Enterprise customer Acme Realty Group has requested that we add an AI-generated local market summary section to the home digest. They think it would help their agents provide more value to clients. They're willing to beta test it. Can we get this in front of product?\n> Customer First and Last Name: Acme Realty Group (enterprise)\n> Customer HB Admin: N/A\n- Labels: Escalation\n- Team: Support Escalations\n- Status: Triage",
+      "expected_output": "Recognize as a feature request. Close the ticket with a note that this is a feature request and should go through the appropriate product feedback channel, not the support escalation queue.",
+      "files": []
+    }
+  ]
+}
