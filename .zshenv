@@ -11,6 +11,7 @@ export GITHUB_PERSONAL_ACCESS_TOKEN="$GITHUB_TOKEN"
 
 # Homebrew
 export HOMEBREW_GITHUB_API_TOKEN="$GITHUB_TOKEN"
+export HOMEBREW_CASK_OPTS="--no-quarantine"
 
 # Gemini API
 export GEMINI_API_KEY=""
