@@ -65,12 +65,14 @@ Inspired by <https://www.atlassian.com/git/tutorials/dotfiles>
    open /opt/homebrew/Caskroom/zulu@17/<version number> # or /usr/local/Caskroom/zulu@17/<version number>
    ```
 
-1. Install python. See python [versions](https://devguide.python.org/versions/)
+1. Install Python via pyenv. See [supported versions](https://devguide.python.org/versions/)
 
    ```shell
-   pyenv install 2.7.18 # python 2 required for legacy tools
-   pyenv global 2.7.18
+   pyenv install 3.13
+   pyenv global 3.13
    ```
+
+   This provides `python` and `python3` in your shell. Project-level Python management is handled by `uv`.
 
 1. Install ruby. See ruby [versions](https://www.ruby-lang.org/en/downloads/branches/)
 
