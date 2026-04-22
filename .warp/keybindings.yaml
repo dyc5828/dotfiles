@@ -1,12 +1,15 @@
 ---
-"editor_view:left": none
+"workspace:activate_next_tab": "ctrl-]"
 "editor_view:move_to_line_start": none
-"editor_view:move_to_paragraph_start": none
-"editor_view:toggle_comment": none
+"pane_group:add_right": shift-cmd-|
+"workspace:view_logs": alt-cmd-l
 "editor_view:vim_exit_insert_mode": none
 "pane_group:add_down": "ctrl-cmd-\\"
-"pane_group:add_left": alt-shift-cmd-|
-"pane_group:add_up": "ctrl-alt-cmd-\\"
-"pane_group:add_right": shift-cmd-|
-"workspace:activate_next_tab": "ctrl-]"
+"workspace:toggle_project_explorer": shift-cmd-E
+"editor_view:move_to_paragraph_start": none
 "workspace:activate_prev_tab": "ctrl-["
+"workspace:show_settings_keyboard_shortcuts_page": none
+"pane_group:add_left": alt-shift-cmd-|
+"editor_view:toggle_comment": none
+"pane_group:add_up": "ctrl-alt-cmd-\\"
+"editor_view:left": none

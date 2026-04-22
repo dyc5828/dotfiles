@@ -49,19 +49,19 @@
     "command": "~/.claude/statusline.sh"
   },
   "enabledPlugins": {
-    "zero@zero-code-protocol": true,
-    "ruby-lsp@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
     "codex@openai-codex": true,
-    "warp@claude-code-warp": true
+    "ruby-lsp@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "warp@claude-code-warp": true,
+    "zero@zero-code-protocol": true
   },
   "extraKnownMarketplaces": {
-    "zero-code-protocol": {
+    "claude-code-warp": {
       "source": {
         "source": "github",
-        "repo": "dyc5828/zero-code-protocol"
+        "repo": "warpdotdev/claude-code-warp"
       },
       "autoUpdate": true
     },
@@ -79,17 +79,18 @@
       },
       "autoUpdate": true
     },
-    "claude-code-warp": {
+    "zero-code-protocol": {
       "source": {
         "source": "github",
-        "repo": "warpdotdev/claude-code-warp"
+        "repo": "dyc5828/zero-code-protocol"
       },
       "autoUpdate": true
     }
   },
   "alwaysThinkingEnabled": true,
   "autoUpdatesChannel": "stable",
-  "voiceEnabled": true,
   "skipDangerousModePermissionPrompt": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "voiceEnabled": true,
+  "effortLevel": "high"
 }
