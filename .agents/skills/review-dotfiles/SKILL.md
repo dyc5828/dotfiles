@@ -99,17 +99,33 @@ Never decide unilaterally how to handle secrets. Work it out with the user, espe
 
 ## Phase 5: Commit (user-initiated only)
 
-Staging files is fine - it's local and reversible. But committing is the point of no return for secrets, so wait for the user to explicitly say "commit". When they do, group related changes into logical commits:
+Staging is local and reversible. Committing locks content into history, so wait for the user to explicitly say "commit".
 
-```bash
-dot add <files>
-dot commit -m "$(cat <<'EOF'
-<summary line>
+When they do:
 
-<details if needed>
-EOF
-)"
-```
+1. **Pre-commit secret scan on the staged diff** before creating the commit:
+
+   ```bash
+   dot diff --cached
+   ```
+
+   Review for: hardcoded API keys/tokens (`ghp_`, `gho_`, `sk-`, `AIza`, `Bearer`, etc.), credential pairs, private keys, internal hostnames or URLs that shouldn't be in a public repo, anything that looks like a secret.
+
+2. **Report results.** If anything looks wrong, stop and flag it. Get the user's explicit OK before committing, especially if anything ambiguous (internal URLs, internal service names) is in the diff and the dotfiles remote is public.
+
+3. Group related changes into logical commits:
+
+   ```bash
+   dot add <files>
+   dot commit -m "$(cat <<'EOF'
+   <summary line>
+
+   <details if needed>
+   EOF
+   )"
+   ```
+
+**Why scan at commit, not at push:** git history is part of the published artifact. Pushing a "fix" on top of a leaky commit does not remove the leak — anyone with the repo can read every commit. Catching leaks at commit time means they never enter history.
 
 ## Phase 6: Push (user-initiated only)
 
@@ -117,24 +133,29 @@ Do NOT push automatically after committing. Wait for the user to explicitly say 
 
 When the user says push:
 
-1. **Tell the user** you're running the pre-push secret scan before pushing. Example: "Running the pre-push secret check on the outgoing diff first."
-2. Run the check:
+1. **Tell the user** you're running a defense-in-depth scan over the full outgoing history. The Phase 5 per-commit scans should have caught everything; this is a backstop for cases where commits were made outside this session.
 
-```bash
-dot diff <base>..HEAD
-```
+2. Run the scan against the full outgoing range:
 
-Where `<base>` is the commit before the first new commit in this session. Review the entire outgoing diff for:
-- Hardcoded API keys or tokens (`ghp_`, `gho_`, `sk-`, `AIza`, `Bearer`, etc.)
-- Credential pairs (username:password patterns)
-- Private keys or certificates
-- Any string that looks like a secret
+   ```bash
+   dot diff origin/main..HEAD
+   ```
 
-3. **Report the result** before pushing. If clean, say so and then push. If anything looks wrong, stop and flag it.
+   Same scan criteria as Phase 5.
 
-```bash
-dot push
-```
+3. **If anything is found, stop. Do NOT push.** A leak in unpushed commits is recoverable only if it never gets pushed. Fix by **rewriting the unpushed commits**, not by adding a follow-up commit:
+
+   ```bash
+   dot reset --soft origin/main
+   ```
+
+   `--soft` is non-destructive: it preserves working tree and index. Re-stage the sanitized content and recommit cleanly. Re-run the scan, then push.
+
+4. If clean, say so and push:
+
+   ```bash
+   dot push
+   ```
 
 ## Phase 7: Post-push restore (for scrubbed files)
 
@@ -149,8 +170,11 @@ If the user explicitly defers push and wants shell access sooner, they can opt i
 ## Rules
 
 - NEVER commit plaintext secrets. Scrub-and-restore any file with live secrets; restore only after push succeeds.
-- Staging is fine after user approves a file, but NEVER commit or push unless the user explicitly says to
-- Always print actual file contents when the user asks to see something - no summaries
-- Use `dot` not `git` for all operations
-- Keep tables concise - one line per file
-- Track the running state of what's been committed, what's been skipped, and what's still pending
+- **Always scan `dot diff --cached` before each `dot commit`.** Git history is the published artifact — a leak in any commit, even one later "fixed" on top, is exposed once pushed.
+- If a leak makes it into an unpushed commit, fix by rewriting the commit (`dot reset --soft origin/main` + recommit), not by adding a follow-up commit.
+- Treat the dotfiles remote as public unless verified otherwise. Internal hostnames, internal Notion page IDs, and infra topology are scan-worthy alongside obvious secrets.
+- Staging is fine after user approves a file, but NEVER commit or push unless the user explicitly says to.
+- Always print actual file contents when the user asks to see something - no summaries.
+- Use `dot` not `git` for all operations.
+- Keep tables concise - one line per file.
+- Track the running state of what's been committed, what's been skipped, and what's still pending.
