@@ -23,6 +23,7 @@
       "Bash(npx *)",
       "Bash(python3 *)",
       "Bash(date *)",
+      "Bash(gcloud *)",
       "WebSearch",
       "WebFetch",
       "Read(~/.claude/**)",
@@ -43,7 +44,6 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "opus[1m]",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
@@ -55,7 +55,9 @@
     "skill-creator@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
     "warp@claude-code-warp": true,
-    "zero@zero-code-protocol": true
+    "zero@zero-code-protocol": true,
+    "braintrust@braintrust-claude-plugin": true,
+    "datadog@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {
@@ -85,12 +87,21 @@
         "repo": "dyc5828/zero-code-protocol"
       },
       "autoUpdate": true
+    },
+    "braintrust-claude-plugin": {
+      "source": {
+        "source": "github",
+        "repo": "braintrustdata/braintrust-claude-plugin"
+      },
+      "autoUpdate": true
     }
   },
   "alwaysThinkingEnabled": true,
   "autoUpdatesChannel": "stable",
   "skipDangerousModePermissionPrompt": true,
+  "remoteControlAtStartup": true,
+  "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
   "voiceEnabled": true,
-  "effortLevel": "high"
+  "skillListingBudgetFraction": 0.05
 }
