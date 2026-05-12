@@ -11,6 +11,7 @@ export GITHUB_PERSONAL_ACCESS_TOKEN="$GITHUB_TOKEN"
 
 # Homebrew
 export HOMEBREW_CASK_OPTS="--no-quarantine"
+export CLOUDSDK_PYTHON=/opt/homebrew/bin/python3.13
 
 # Gemini API
 export GEMINI_API_KEY=""
@@ -29,3 +30,5 @@ export PGUSER='postgres'
 ## bundler credentials for sidekiq enterprise
 BUNDLE_ENTERPRISE__CONTRIBSYS__COM=
 
+## Braintrust
+export BRAINTRUST_API_KEY=''
