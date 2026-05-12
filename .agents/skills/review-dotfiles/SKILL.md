@@ -15,6 +15,7 @@ Run in parallel:
 1. `dot status` - modified tracked files
 2. `dot ls-files | sort` - everything currently tracked
 3. `eza -a1 ~ | grep '^\.' | sort` - all dotfiles/dirs in home
+4. `dot log --oneline` - full commit history (ground truth for what's been tracked; use this to verify before claiming something is new or untracked)
 
 ## Phase 2: Scan for Changes
 
