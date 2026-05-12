@@ -33,11 +33,28 @@ aws --version
 
 ## Step 2: Configure AWS profiles
 
-Create or update `~/.aws/config` with SSO profiles. The correct profiles depend on the user's team.
+Use the team-specific profile blocks from the canonical Notion doc, then apply the corrections in Step 2b below.
 
-**Ask the user which team they're on**, then write the appropriate config.
+**Source**: [Managing your AWS account & aws-vault](https://www.notion.so/homebot/Managing-your-AWS-account-aws-vault-2a2a359d8a5581c6a591eb0c92069484)
 
-### App Foundations, Client Experience, Customer Experience, Data In & Out, Mercenary Teams
+Ask the user which team they're on, then have them follow the Notion doc to pick the right `[profile dev]` / `[profile prod]` / etc. snippets for their team. Snippets exist for:
+
+- App Foundations / Client Experience / Customer Experience / Data In & Out / Mercenary Teams
+- Data Engineering (gets a superset including `nexus`)
+- Infrastructure (use `infra` sso_role_name across all accounts)
+- SFTP S3 bucket access (optional, any team)
+
+Copy the relevant blocks into `~/.aws/config`.
+
+**Note:** Profile names in `[profile <name>]` are user-defined. The names in the Notion doc are conventions, not requirements. Profiles are read top-to-bottom; duplicates get overridden by the last definition.
+
+## Step 2b: Required corrections to the Notion config
+
+The Notion source doc is missing a key field. After copying any team's profile blocks, apply this correction to every `[profile ...]` block you added:
+
+**Add `region=us-east-1` as the last line of every profile block.**
+
+For example, the App Foundations / Client Experience / Customer Experience / Data In & Out / Mercenary Teams `[profile dev]` block becomes:
 
 ```ini
 [profile dev]
@@ -45,63 +62,21 @@ sso_start_url=https://d-906767f97d.awsapps.com/start
 sso_region=us-east-1
 sso_account_id=383767018415
 sso_role_name=developers_dev
-region=us-east-1
-
-[profile prod]
-sso_start_url=https://d-906767f97d.awsapps.com/start
-sso_region=us-east-1
-sso_account_id=358063161710
-sso_role_name=developers_prod
-region=us-east-1
+region=us-east-1            # <-- add this line
 ```
 
-### Data Engineering
+Apply the same `region=us-east-1` addition to every other profile block you copied (prod, nexus, sftp, infra, etc.).
 
-Data Engineering gets a superset - the above plus a `nexus` account.
+### Why this correction is needed
 
-```ini
-[profile dev]
-sso_start_url=https://d-906767f97d.awsapps.com/start
-sso_region=us-east-1
-sso_account_id=383767018415
-sso_role_name=data_engineering_dev
-region=us-east-1
+`sso_region` and `region` are different fields:
 
-[profile prod]
-sso_start_url=https://d-906767f97d.awsapps.com/start
-sso_region=us-east-1
-sso_account_id=358063161710
-sso_role_name=data_engineering_prod
-region=us-east-1
+- `sso_region` is the region of the SSO/Identity Center instance (used during the SSO login flow).
+- `region` is the default region for AWS API calls (STS, S3, EC2, etc.) once you have credentials.
 
-[profile nexus]
-sso_start_url=https://d-906767f97d.awsapps.com/start
-sso_region=us-east-1
-sso_account_id=738383832226
-sso_role_name=nexus_terraformers
-region=us-east-1
-```
+**Both must be set.** Missing `region` causes `sts..amazonaws.com: no such host` errors with downstream tools like the `dev` CLI — the double-dot in the hostname means an empty region was substituted into the endpoint template.
 
-### Infrastructure
-
-Use the `infra` sso_role_name for all AWS accounts. Work with the infrastructure team for specific IAC-managed permissions.
-
-### SFTP S3 bucket access (optional, any team)
-
-For access to the `data-partners` S3 bucket used for customer SFTP uploads:
-
-```ini
-[profile sftp]
-sso_start_url=https://d-906767f97d.awsapps.com/start
-sso_region=us-east-1
-sso_account_id=250654616568
-sso_role_name=data_sftp
-region=us-east-1
-```
-
-**Note:** Profile names in `[profile <name>]` are user-defined. The names above are conventions, not requirements. Profiles are read top-to-bottom; duplicates get overridden by the last definition.
-
-**Important:** `sso_region` and `region` are different fields. `sso_region` is the region of the SSO/Identity Center instance (used during the SSO login flow). `region` is the default region for AWS API calls (STS, S3, EC2, etc.) once you have credentials. Both must be set. The Notion source doc historically omitted `region`, which causes `sts..amazonaws.com: no such host` errors with downstream tools like the `dev` CLI. Always include both.
+The Notion source doc historically omits `region`. Until that's fixed upstream, this correction step is mandatory.
 
 ## Step 3: SSO login
 
