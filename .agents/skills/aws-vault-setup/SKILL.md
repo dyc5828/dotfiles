@@ -45,12 +45,14 @@ sso_start_url=https://d-906767f97d.awsapps.com/start
 sso_region=us-east-1
 sso_account_id=383767018415
 sso_role_name=developers_dev
+region=us-east-1
 
 [profile prod]
 sso_start_url=https://d-906767f97d.awsapps.com/start
 sso_region=us-east-1
 sso_account_id=358063161710
 sso_role_name=developers_prod
+region=us-east-1
 ```
 
 ### Data Engineering
@@ -63,18 +65,21 @@ sso_start_url=https://d-906767f97d.awsapps.com/start
 sso_region=us-east-1
 sso_account_id=383767018415
 sso_role_name=data_engineering_dev
+region=us-east-1
 
 [profile prod]
 sso_start_url=https://d-906767f97d.awsapps.com/start
 sso_region=us-east-1
 sso_account_id=358063161710
 sso_role_name=data_engineering_prod
+region=us-east-1
 
 [profile nexus]
 sso_start_url=https://d-906767f97d.awsapps.com/start
 sso_region=us-east-1
 sso_account_id=738383832226
 sso_role_name=nexus_terraformers
+region=us-east-1
 ```
 
 ### Infrastructure
@@ -91,9 +96,12 @@ sso_start_url=https://d-906767f97d.awsapps.com/start
 sso_region=us-east-1
 sso_account_id=250654616568
 sso_role_name=data_sftp
+region=us-east-1
 ```
 
 **Note:** Profile names in `[profile <name>]` are user-defined. The names above are conventions, not requirements. Profiles are read top-to-bottom; duplicates get overridden by the last definition.
+
+**Important:** `sso_region` and `region` are different fields. `sso_region` is the region of the SSO/Identity Center instance (used during the SSO login flow). `region` is the default region for AWS API calls (STS, S3, EC2, etc.) once you have credentials. Both must be set. The Notion source doc historically omitted `region`, which causes `sts..amazonaws.com: no such host` errors with downstream tools like the `dev` CLI. Always include both.
 
 ## Step 3: SSO login
 
@@ -148,6 +156,8 @@ brew install kubectx
 **Wrong role or account**: Check `~/.aws/config` profile names and role names match what your team should have.
 
 **Browser doesn't open**: Copy the URL printed in the terminal and open it manually. Match the confirmation code shown in the terminal to the one in the browser.
+
+**`sts..amazonaws.com: no such host` (double-dot in URL)**: The profile is missing the `region` field. The double-dot in the hostname means an empty region is being substituted into the STS endpoint template. Quick fix in the current shell: `export AWS_DEFAULT_REGION=us-east-1`. Permanent fix: add `region=us-east-1` to the affected profile block in `~/.aws/config`. This typically happens with `dev console start` and similar tools that construct service endpoints from `region` (not `sso_region`).
 
 ## Reference
 

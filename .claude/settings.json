@@ -1,4 +1,5 @@
 {
+  "skillListingBudgetFraction": 0.05,
   "env": {
     "CLAUDE_CODE_EFFORT_LEVEL": "auto"
   },
@@ -102,6 +103,5 @@
   "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
-  "voiceEnabled": true,
-  "skillListingBudgetFraction": 0.05
+  "voiceEnabled": true
 }
