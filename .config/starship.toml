@@ -8,7 +8,9 @@ error_symbol = ""
 
 # Shows the username
 [username]
-format = "[ $user]($style) "
+format = "[󰀓 $user]($style) "
+style_user = "bold green"
+style_root = "bold red"
 disabled = false
 show_always = true
 
@@ -16,11 +18,12 @@ show_always = true
 truncation_length = 2
 truncation_symbol = " "
 home_symbol = " ~"
-read_only = ""
+read_only = ""
+style = "bold cyan"
 format = "[$path]($style)[$read_only]($read_only_style) "
 
 [git_branch]
-symbol = " "
+symbol = "󰘬 "
 format = "[$symbol$branch(:$remote_branch)]($style) "
 
 [git_commit]
@@ -40,9 +43,16 @@ symbol = " "
 format = "[$symbol($version)]($style) "
 
 [cmd_duration]
+min_time = 10_000
+style = "bold #FFA500"
 format = "[󰔚 $duration]($style) "
 
 [aws]
 symbol = "󰸏 "
-#format = "[$symbol($profile)(\($region\))(\[$duration\])]($style) "
-format = '[$symbol($profile)(:$region)(\[$duration\])]($style) '
+format = '\[[$symbol($profile)(:$region)(·$duration)]($style)\] '
+
+[gcloud]
+symbol = "󱇶 "
+format = '\[[$symbol$project(:$region)]($style)\] '
+[gcloud.project_aliases]
+gen-lang-client-0281451474 = "Dans GCP"
