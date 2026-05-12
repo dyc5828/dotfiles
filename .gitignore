@@ -10,4 +10,7 @@ Library/*
 Movies/*
 Music/*
 Pictures/*
-Public/* 
+Public/*
+
+# Claude Code per-host state — see dotfiles issue #3
+.claude.json
