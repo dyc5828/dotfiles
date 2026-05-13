@@ -48,8 +48,15 @@ style = "bold #FFA500"
 format = "[󰔚 $duration]($style) "
 
 [aws]
+disabled = true
+
+[custom.aws_sso]
+description = "AWS profile(s) with a valid SSO session"
 symbol = "󰸏 "
-format = '\[[$symbol($profile)(:$region)(·$duration)]($style)\] '
+format = '\[[$symbol$output]($style)\] '
+command = "$HOME/.config/starship-aws-sso.sh"
+when = "$HOME/.config/starship-aws-sso.sh"
+shell = ["bash", "--noprofile", "--norc"]
 
 [gcloud]
 symbol = "󱇶 "
