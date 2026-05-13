@@ -1,7 +1,6 @@
 {
   "skillListingBudgetFraction": 0.05,
   "env": {
-    "CLAUDE_CODE_EFFORT_LEVEL": "auto",
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
   "permissions": {
@@ -99,6 +98,7 @@
     }
   },
   "alwaysThinkingEnabled": true,
+  "effortLevel": "auto",
   "autoUpdatesChannel": "stable",
   "skipDangerousModePermissionPrompt": true,
   "remoteControlAtStartup": true,
