@@ -98,7 +98,6 @@
     }
   },
   "alwaysThinkingEnabled": true,
-  "effortLevel": "auto",
   "autoUpdatesChannel": "stable",
   "skipDangerousModePermissionPrompt": true,
   "remoteControlAtStartup": true,
