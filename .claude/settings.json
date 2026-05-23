@@ -55,19 +55,12 @@
     "ruby-lsp@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
-    "warp@claude-code-warp": true,
     "zero@zero-code-protocol": true,
     "braintrust@braintrust-claude-plugin": true,
-    "datadog@claude-plugins-official": true
+    "datadog@claude-plugins-official": true,
+    "warp@claude-code-warp": true
   },
   "extraKnownMarketplaces": {
-    "claude-code-warp": {
-      "source": {
-        "source": "github",
-        "repo": "warpdotdev/claude-code-warp"
-      },
-      "autoUpdate": true
-    },
     "homebotapp": {
       "source": {
         "source": "github",
@@ -95,9 +88,17 @@
         "repo": "braintrustdata/braintrust-claude-plugin"
       },
       "autoUpdate": true
+    },
+    "claude-code-warp": {
+      "source": {
+        "source": "github",
+        "repo": "warpdotdev/claude-code-warp"
+      },
+      "autoUpdate": true
     }
   },
   "alwaysThinkingEnabled": true,
+  "effortLevel": "high",
   "autoUpdatesChannel": "stable",
   "skipDangerousModePermissionPrompt": true,
   "remoteControlAtStartup": true,
