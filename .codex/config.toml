@@ -1,5 +1,5 @@
-model = "gpt-5.4"
-model_reasoning_effort = "high"
+model = "gpt-5.5"
+model_reasoning_effort = "low"
 
 web_search = "live"
 personality = "pragmatic"
@@ -33,6 +33,15 @@ trust_level = "untrusted"
 trust_level = "trusted"
 
 [projects."/Users/danielchen/code/homebot/quasar"]
+trust_level = "trusted"
+
+[projects."/Users/dan.chen@homebot.ai"]
+trust_level = "trusted"
+
+[projects."/Users/dan.chen@homebot.ai/projects/spool"]
+trust_level = "trusted"
+
+[projects."/Users/dan.chen@homebot.ai/code/homebot"]
 trust_level = "trusted"
 
 [notice.model_migrations]
