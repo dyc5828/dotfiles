@@ -38,6 +38,7 @@ alias hdev="docker-compose -f $HOME/code/homebot/hbdev/docker-compose.yml -p hbd
 alias hb='hdev'
 alias hbp='hb up'
 alias hbr='hb up -d --force-recreate'
+alias hb-bootstrap="$HOME/code/homebot/hbdev/bin/bootstrap"
 alias dcp='dc up'
 alias dcr='dc up -d --force-recreate'
 
