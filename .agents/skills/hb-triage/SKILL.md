@@ -17,6 +17,18 @@ description: >
 A workflow for taking a Linear ticket from raw support escalation to actionable
 state: investigated, assigned, commented, and optionally fixed.
 
+## Operating Principles
+
+**Act, don't ask.** This skill runs autonomously end-to-end. When the agent
+hits a fork — multiple reasonable encodings of the fix, two plausible owners,
+ambiguous priority, etc. — pick the more defensible option and proceed. A
+draft PR is cheap to discard; pausing for confirmation defeats the point.
+
+When the choice is non-obvious, encode the choice in the artifact (PR
+description, ticket comment) with the alternatives written out so the
+engineer and product can override. The PR carries the conversation that
+didn't happen up front.
+
 ## Voice and Framing
 
 This skill runs as a neutral third-party agent — not as the engineer who invoked
@@ -104,6 +116,23 @@ Do these in parallel:
    - `assignee`: the engineer identified in Phase 3
    - `state`: `Todo` (use `mcp__claude_ai_Linear__list_issue_statuses` to
      confirm available states for the team)
+   - `priority` (if not set): pick from the table below. Default to Low (4)
+     for triage-discovered systemic bugs — the customer was unblocked
+     manually, the code fix is preventive
+
+   **Linear priority values** (numeric, easy to confuse):
+   | value | label |
+   |---|---|
+   | 0 | No priority |
+   | 1 | Urgent |
+   | 2 | High |
+   | 3 | Medium |
+   | 4 | Low |
+
+   **Retired teams:** Linear silently rejects writes to retired teams with
+   "Entity is retired." If the obvious team is retired, fall back to the
+   active equivalent (`list_teams` shows all; check `archivedAt` or the name
+   pattern — e.g. `CustomerExp` was retired in favor of `Customer Experience`).
 
 2. **Post investigation findings** via `mcp__claude_ai_Linear__save_comment`:
    - Root cause: exact file, line number, and the problematic logic
@@ -118,27 +147,172 @@ Do these in parallel:
 
 Skip this phase unless the user explicitly asks for a fix or PR.
 
-If implementing:
+The output of this phase is one or more PRs ready for handoff. Quality
+matters: the engineer will read this PR as a starting point and the bar is
+"could merge as-is after product confirmation," not "rough sketch."
 
-1. Create a worktree as a sibling to the repo, named `<repo>-<branch>`:
+### Scope the change
+
+A fix may need to land as one PR or several across multiple repos. Homebot
+is multi-repo — backend changes go in `mikasa` / `native-backend`, UI in
+`customer-admin` / `clients-frontend-v2` / `native`, admin in `lockbox` /
+`kraken`, etc. (see Repo Map).
+
+When the fix spans repos:
+- File **separate PRs per repo**. Don't try to combine changes from
+  different repos into one PR — they can't be.
+- Each PR references the same Linear ticket.
+- Each PR's description **cross-links its sibling PRs**.
+- **Order matters:** migration before code that reads the new schema;
+  backend before frontend consumers; schema before clients.
+
+### Follow the repo's conventions
+
+- **Read the repo's CLAUDE.md first.** Each repo encodes its own rules
+  (mikasa: rspec inside docker, never modify rubocop config, PR description
+  goes in `PR_DESCRIPTION.md`; native-backend: Doppler for secrets; etc.).
+- **Invoke the relevant hb language skill** before writing or editing in
+  that language: `hb:rails`, `hb:rspec`, `hb:ruby`, `hb:react`,
+  `hb:typescript`, `hb:vitest`, `hb:nextjs`, `hb:playwright`,
+  `hb:testing-library`, `hb:jsdoc`, `hb:markdown`. These encode the org's
+  patterns — don't reinvent.
+- **Match what's already there:** file structure, naming, test style. Read
+  a couple of nearby files in the same repo before editing.
+
+### Testing
+
+- Add a **failing test that captures the bug**, then make it pass. The test
+  is the proof that the fix works and the regression guard against the bug
+  coming back.
+- Cover edge cases, not just the happy path: nil branches, discarded-vs-kept,
+  feature-flag-off, permission-denied, multiple-of-same-type, empty
+  collections.
+- **Run the repo's test command before pushing:**
+  - mikasa: `docker exec -it mikasa rspec <path>`
+  - Others: see the repo's CLAUDE.md
+- **If tests can't run locally** (e.g. docker stack not up), say so
+  explicitly in the PR description. Don't claim CI as a substitute and
+  don't hide that you skipped them.
+
+### Per-PR mechanics
+
+For each PR:
+
+1. **Worktree** as a sibling to the repo:
    ```bash
-   git -C homebot/<repo> worktree add ../<repo>-<branch> -b <branch-name>
+   git -C homebot/<repo> worktree add ../<repo>-<branch> -b <branch>
    ```
-   Use the Linear branch name format: `cux-370-short-description`
+   Branch name from Linear: `cux-422-short-description`.
 
-2. Make the change. Read the file in the worktree before editing.
+2. **Make the change.** Read the file in the worktree before editing.
 
-3. Update any tests that assert the old (broken) behavior.
+3. **Update tests** that assert the old (broken) behavior, and add new
+   tests per the Testing section above.
 
-4. Commit with a descriptive message referencing the ticket ID.
+4. **Commit** with a descriptive message referencing the ticket ID.
 
-5. Push and open a PR via `gh pr create --repo homebotapp/<repo>`. Read
-   `.github/PULL_REQUEST_TEMPLATE.md` first if it exists.
+5. **Read `.github/PULL_REQUEST_TEMPLATE.md`** if present. mikasa writes the
+   PR description to `PR_DESCRIPTION.md` (user copies and deletes); other
+   repos use `--body` directly.
 
-6. Assign the PR to the engineer from Phase 3. Look up their GitHub login via
-   git log (`git log --format='%ae %an'`) and `gh api users/<login>`.
+6. **Push and open the PR** via `gh pr create --repo homebotapp/<repo>`.
 
-7. Post the PR link back to the Linear ticket as a follow-up comment.
+7. **If the fix encoded a judgment call** (multiple reasonable interpretations
+   of intent), the PR description must include:
+   - The encoded behavior, in plain English
+   - At least one alternative interpretation, with a one-line "what would
+     change in the code" hint
+   - "Please confirm with product before merging" — verbatim or close to it
+
+8. **Flag out-of-scope items** found during investigation in the PR's
+   "Out of scope" section. File as a separate ticket if material; don't
+   scope-creep the immediate fix.
+
+---
+
+## Phase 6 — Handoff to the Engineer
+
+Phase 5 ends with one or more PRs open. Phase 6 is the explicit transfer of
+ownership: the agent stops working, the engineer takes over. Walk through
+these steps in order — skipping one leaves the ticket in an ambiguous state.
+
+### Reassign the Linear ticket
+
+`mcp__claude_ai_Linear__save_issue`:
+- `assignee`: Linear user ID from Phase 3
+- `state`: confirm the right name with `list_issue_statuses` for the team
+  (commonly `Todo` or `Backlog` — pick Backlog when the engineer hasn't
+  actually started)
+- `priority`: see the priority table in Phase 4
+
+### Reassign the PR(s)
+
+GitHub login is **separate** from Linear identity. Don't guess — look it up:
+
+```bash
+gh search commits --repo homebotapp/<repo> "<name>" --limit 1 \
+  --json author --jq '.[].author.login'
+```
+
+(Linear `displayName` is rarely the GH login. If `gh search commits` returns
+nothing, fall back to `git -C homebot/<repo> log --author=<email> --format='%an %ae'`
+and try the email's local-part.)
+
+Then:
+
+```bash
+gh pr edit <num> --repo homebotapp/<repo> --add-assignee <login>
+```
+
+Repeat for every sibling PR in this triage run.
+
+### Reset Linear status to Backlog
+
+Linking a PR auto-moves the Linear ticket to "In Progress." If the engineer
+hasn't actually started, that's a lie that clutters their cycle board. Reset:
+
+- Fetch backlog state ID once: `mcp__claude_ai_Linear__list_issue_statuses`
+  (look for `type: "backlog"`)
+- `mcp__claude_ai_Linear__save_issue` with `state: <backlog-state-id>`
+
+Skip the reset only if the engineer explicitly told the user they're
+starting now.
+
+### Post the handoff comment
+
+One comment on the ticket. Neutral voice (see "Voice and Framing" at the
+top). Template:
+
+> Automated investigation complete. Root cause and proposed fix are
+> documented above.
+>
+> PR up at <link>. Starting point — use as-is, modify, or start fresh.
+>
+> Pending product confirmation on <the behavior choice, if any — name it>.
+
+If the agent filed a *new* ticket for a systemic bug uncovered while
+resolving a different support ticket, also post a one-line back-link on
+the original support ticket so CX doesn't lose the thread:
+
+> Filed <new-ticket> for the underlying bug. <one-sentence summary.>
+> Tracking the code fix there.
+
+### Tear down
+
+- Local mikasa Rails console / SSM shell from investigation? `exit` twice,
+  then `tmux kill-session -t <name>`.
+- Worktrees: leave in place. The engineer may use them. If they ask for
+  cleanup, run `git -C homebot/<repo> worktree remove ../<worktree-dir>`.
+- Don't auto-delete anything the user didn't ask to delete.
+
+### Walk away
+
+After Phase 6, the agent's job is done. Do not:
+- Loop back to check on the PR unless the user explicitly asks
+- Iterate on the fix based on the engineer's feedback (that's their PR now)
+- Re-comment on the ticket without a fresh prompt from the user
+
+The handoff is a transfer of responsibility, not a request for feedback.
 
 ---
 
@@ -198,8 +372,12 @@ in the Maintenance section of customer-admin.
   non-`all` categories; Send Video still shows alongside it for non-email tabs
 - Updated tests to assert Delete is present for `incomplete` and
   `missing_home_value`
-- Opened PR #1457 on `homebotapp/customer-admin`, assigned to Seán O'Neill
-- Posted PR link to ticket as handoff comment
+- Opened PR #1457 on `homebotapp/customer-admin`
+
+**Phase 6 — Handoff:**
+- Reassigned ticket + PR to Seán O'Neill (Linear user + GH login `soneill-hbm`)
+- Reset Linear status to Backlog (PR-link auto-bumped to In Progress)
+- Posted neutral handoff comment with PR link and note about GREEN-350
 
 ---
 
