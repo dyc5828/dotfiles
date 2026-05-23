@@ -1,7 +1,7 @@
 ---
 name: review-dotfiles
 description: Review dotfiles for uncommitted changes and new files worth tracking. Use when the user says "check dotfiles", "dot review", "review my dotfiles", "sync dotfiles", or wants to audit what's changed and what could be added to their dotfiles repo.
-allowed-tools: Bash(dot *), Bash(eza *), Bash(mkdir *), Bash(rm *), Read, Grep, Glob, Edit
+allowed-tools: Bash(dot *), Bash(brew *), Bash(eza *), Bash(comm *), Bash(diff *), Bash(grep *), Bash(sort *), Bash(mkdir *), Bash(rm *), Read, Grep, Glob, Edit
 ---
 
 # Dot Files Review
@@ -17,7 +17,60 @@ Run in parallel:
 3. `eza -a1 ~ | grep '^\.' | sort` - all dotfiles/dirs in home
 4. `dot log --oneline` - full commit history (ground truth for what's been tracked; use this to verify before claiming something is new or untracked)
 
-## Phase 2: Scan for Changes
+## Phase 2: Brewfile Sync
+
+Reconcile `~/Brewfile` with the actual brew install state before anything else gets staged. Brewfile edits made here flow through the rest of the review as a normal modified tracked file.
+
+### Detect drift
+
+```bash
+brew bundle dump --file=/tmp/Brewfile.now --force
+comm -13 <(sort ~/Brewfile) <(sort /tmp/Brewfile.now)  # installed locally, missing from Brewfile
+comm -23 <(sort ~/Brewfile) <(sort /tmp/Brewfile.now)  # in Brewfile, not installed via brew
+```
+
+Categorize each diff entry by line prefix: `brew`, `cask`, `tap`, `mas`, `npm`, `vscode`.
+
+### Present categorized drift
+
+Show two tables. Group by category in each.
+
+**Installed locally, missing from Brewfile:**
+| Category | Items |
+|---|---|
+| brew | `foo`, `bar` |
+| cask | `baz` |
+| mas / npm / vscode | (only show if Brewfile already tracks that category, OR ask user if they want to start) |
+
+**In Brewfile, not installed via brew:**
+| Item | Note |
+|---|---|
+| `kubernetes-cli` | (investigate before suggesting removal — see below) |
+
+### `mas` / `npm` / `vscode` opt-in
+
+These are net-new categories for many Brewfiles. Check current tracking with `grep -oE '^[a-z]+' ~/Brewfile | sort -u` — if a category isn't already present, surface it as an opt-in choice ("Brewfile currently tracks zero `mas` entries — want to start?"). Do not silently add a new category.
+
+### "Tracked but not installed" requires investigation
+
+A Brewfile entry that's not in `brew list` does not automatically mean "remove from Brewfile." Common reasons it might still belong:
+
+- **Satisfied by another install** — e.g., `kubernetes-cli` declared in Brewfile but `kubectl` comes from Docker Desktop's bundled binary at `/usr/local/bin/kubectl`. The Brewfile entry is correct intent; the actual install path is wrong.
+- **Required transitively by another tool** — `kubectx` (a godev dep) needs `kubectl` in PATH. Removing the Brewfile entry would mask a real dependency.
+
+Before suggesting removal, run `which <bin>` and check if anything in the Brewfile's brew/cask list depends on the missing entry. If a non-brew path provides the binary, the right answer is usually `brew install <pkg>` so the Brewfile becomes accurate, not removal.
+
+### Resolve drift
+
+For each item, get the user's call. Three options per row:
+
+1. **Add to Brewfile** — for installed-not-tracked items. Edit `~/Brewfile` with the new line in alphabetical position within its section.
+2. **Install via brew** — for tracked-not-installed items where the Brewfile declaration is correct. Run `brew install <pkg>` (or `brew install --cask <pkg>`).
+3. **Skip / remove** — leave the drift, or remove the Brewfile line if it's truly stale.
+
+After all decisions, `~/Brewfile` is either unchanged or modified. If modified, it shows up in Phase 3's "modified tracked files" table and follows the normal review flow.
+
+## Phase 3: Scan for Changes
 
 ### Modified tracked files
 
@@ -44,7 +97,7 @@ Always surface skill workspaces (e.g., eval data, iteration results, benchmarks)
 
 Note these briefly so the user knows they were checked.
 
-## Phase 3: Present Full Report
+## Phase 4: Present Full Report
 
 Show a single summary with all findings:
 
@@ -63,7 +116,7 @@ Brief list or count.
 
 After a visual separator (`---`), show unpushed commits. Check using `dot fetch origin` then `dot log FETCH_HEAD..HEAD --oneline`. List each as a bullet point with the short hash and commit message. If none, say "All pushed."
 
-## Phase 4: Turn-by-Turn Review
+## Phase 5: Turn-by-Turn Review
 
 Do NOT stage or commit anything yet. Wait for the user to tell you which files they want to look at.
 
@@ -81,7 +134,7 @@ Wait for the user's verdict on each file before moving on. They may say:
 
 ### After each decision
 
-After each turn where files are added, skipped, or committed, reprint the full report from Phase 3 with updated statuses. This lets the user see the current state of everything at a glance - what's done, what's pending, and what's been skipped.
+After each turn where files are added, skipped, or committed, reprint the full report from Phase 4 with updated statuses. This lets the user see the current state of everything at a glance - what's done, what's pending, and what's been skipped.
 
 ### Handling sensitive files (scrub-and-restore)
 
@@ -91,14 +144,14 @@ The pattern:
 1. Identify the safe changes vs the secrets. Confirm with the user what the committed version should look like if it's ambiguous.
 2. Edit the working copy to the commit-safe version. Usually empty string for secret values, preserving the variable name and surrounding structure.
 3. Verify the diff is clean with `dot diff <file>` before staging.
-4. Stage and commit through Phases 5 and 6.
-5. Restore the real values to the working copy in Phase 7, after push succeeds.
+4. Stage and commit through Phases 6 and 7.
+5. Restore the real values to the working copy in Phase 8, after push succeeds.
 
 Track which files need restoring so it doesn't get skipped.
 
 Never decide unilaterally how to handle secrets. Work it out with the user, especially when deciding what belongs in the committed version.
 
-## Phase 5: Commit (user-initiated only)
+## Phase 6: Commit (user-initiated only)
 
 Staging is local and reversible. Committing locks content into history, so wait for the user to explicitly say "commit".
 
@@ -128,13 +181,13 @@ When they do:
 
 **Why scan at commit, not at push:** git history is part of the published artifact. Pushing a "fix" on top of a leaky commit does not remove the leak — anyone with the repo can read every commit. Catching leaks at commit time means they never enter history.
 
-## Phase 6: Push (user-initiated only)
+## Phase 7: Push (user-initiated only)
 
 Do NOT push automatically after committing. Wait for the user to explicitly say "push".
 
 When the user says push:
 
-1. **Tell the user** you're running a defense-in-depth scan over the full outgoing history. The Phase 5 per-commit scans should have caught everything; this is a backstop for cases where commits were made outside this session.
+1. **Tell the user** you're running a defense-in-depth scan over the full outgoing history. The Phase 6 per-commit scans should have caught everything; this is a backstop for cases where commits were made outside this session.
 
 2. Run the scan against the full outgoing range:
 
@@ -142,7 +195,7 @@ When the user says push:
    dot diff origin/main..HEAD
    ```
 
-   Same scan criteria as Phase 5.
+   Same scan criteria as Phase 6.
 
 3. **If anything is found, stop. Do NOT push.** A leak in unpushed commits is recoverable only if it never gets pushed. Fix by **rewriting the unpushed commits**, not by adding a follow-up commit:
 
@@ -158,9 +211,9 @@ When the user says push:
    dot push
    ```
 
-## Phase 7: Post-push restore (for scrubbed files)
+## Phase 8: Post-push restore (for scrubbed files)
 
-If Phase 4 scrubbed any files, restore their real values to the working copy after push succeeds.
+If Phase 5 scrubbed any files, restore their real values to the working copy after push succeeds.
 
 **Restore after push, not after commit.** Keeping the working tree scrubbed through push protects against accidental leaks if the push is rejected, amended, or reworked. It also keeps `dot diff` trustworthy until origin matches HEAD.
 
