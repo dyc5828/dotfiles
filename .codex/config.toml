@@ -1,9 +1,12 @@
 model = "gpt-5.5"
-model_reasoning_effort = "low"
-
+model_reasoning_effort = "high"
 web_search = "live"
 personality = "pragmatic"
 sandbox_mode = "danger-full-access"
+service_tier = "priority"
+
+
+notify = ["/Users/dan.chen@homebot.ai/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
 
 [projects."/Users/danielchen/projects/ytlm"]
 trust_level = "trusted"
@@ -44,6 +47,9 @@ trust_level = "trusted"
 [projects."/Users/dan.chen@homebot.ai/code/homebot"]
 trust_level = "trusted"
 
+[projects."/Users/dan.chen@homebot.ai/Documents/Codex/2026-06-03/the-computer-use-plugin-is-currently"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.1-codex-max" = "gpt-5.2-codex"
 
@@ -58,3 +64,22 @@ enabled = true
 
 [plugins."notion@openai-curated"]
 enabled = true
+
+[desktop]
+followUpQueueMode = "steer"
+preventSleepWhileRunning = true
+keepRemoteControlAwakeWhilePluggedIn = true
+hotkey-window-projectless-default-enabled = true
+notifications-turn-mode = "unfocused"
+conversationDetailMode = "STEPS_COMMANDS"
+
+[desktop.open-in-target-preferences]
+global = "warp"
+
+[desktop.open-in-target-preferences.perPath]
+"/Users/dan.chen@homebot.ai/Documents/Playground" = "warp"
+
+[marketplaces.openai-bundled]
+last_updated = "2026-06-03T22:57:06Z"
+source_type = "local"
+source = "/Applications/Codex.app/Contents/Resources/plugins/openai-bundled"

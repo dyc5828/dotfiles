@@ -57,7 +57,6 @@
     "typescript-lsp@claude-plugins-official": true,
     "zero@zero-code-protocol": true,
     "braintrust@braintrust-claude-plugin": true,
-    "datadog@claude-plugins-official": true,
     "warp@claude-code-warp": true
   },
   "extraKnownMarketplaces": {
@@ -93,14 +92,14 @@
       "source": {
         "source": "github",
         "repo": "warpdotdev/claude-code-warp"
-      },
-      "autoUpdate": true
+      }
     }
   },
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
   "autoUpdatesChannel": "stable",
   "skipDangerousModePermissionPrompt": true,
+  "autoCompactEnabled": true,
   "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,

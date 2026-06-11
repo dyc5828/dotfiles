@@ -129,6 +129,10 @@ alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 # tmux
 alias ta='tmux attach -t'
 alias to='tmux attach -t'
+alias tn='tmux new-session -s'
+alias tnd='tmux new-session -d -s'
+alias tls='tmux list-sessions'
+alias tk='tmux kill-session -t'
 
 # xcode
 alias sim='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
