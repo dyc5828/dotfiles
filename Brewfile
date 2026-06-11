@@ -1,11 +1,11 @@
-tap "dopplerhq/cli"
-tap "dyc5828/tap"
-tap "heroku/brew"
-tap "homebotapp/tap"
-tap "microsoft/git"
-tap "stripe/stripe-cli"
-tap "wix/brew"
-tap "xcodesorg/made"
+tap "dopplerhq/cli", trusted: true
+tap "dyc5828/tap", trusted: true
+tap "heroku/brew", trusted: true
+tap "homebotapp/tap", trusted: true
+tap "microsoft/git", trusted: true
+tap "stripe/stripe-cli", trusted: true
+tap "wix/brew", trusted: true
+tap "xcodesorg/made", trusted: true
 brew "zstd"
 brew "libtiff"
 brew "little-cms2"
