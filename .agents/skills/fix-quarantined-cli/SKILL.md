@@ -1,6 +1,6 @@
 ---
 name: fix-quarantined-cli
-description: Fix CLI tools that get killed by macOS Gatekeeper quarantine after a Homebrew install. Trigger this skill automatically whenever you see any of these symptoms — exit code 137, "zsh: killed", a command that runs fine then suddenly stops working after a brew install or upgrade, or a process that dies immediately with no error output. Also trigger when the user says things like "my CLI keeps getting killed", "it just died", "brew install worked but the command doesn't run", "macOS is blocking my tool", "quarantine issue", or "it was working before". Use this proactively as the first thing to check when diagnosing any mysterious Homebrew binary crash — check for com.apple.quarantine before assuming a deeper issue.
+description: 'Fix CLI tools that get killed by macOS Gatekeeper quarantine after a Homebrew install. Trigger automatically on exit code 137, "zsh: killed", or a command that stops working after a brew install/upgrade. Also trigger when the user says things like "my CLI keeps getting killed", "it just died", "brew install worked but the command doesn''t run", "macOS is blocking my tool", "quarantine issue", or "it was working before". Use proactively as the first check for any mysterious Homebrew binary crash — check for com.apple.quarantine before assuming a deeper issue.'
 ---
 
 # Fix macOS Gatekeeper Quarantine on CLI Tools
