@@ -139,8 +139,6 @@ alias sim='open /Applications/Xcode.app/Contents/Developer/Applications/Simulato
 
 ## SHELL
 eval "$(starship init zsh)"
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # eval $(thefuck --alias)
 
 export NVM_COMPLETION=true
@@ -160,10 +158,7 @@ fpath=(
 ## COMMAND
 
 function reload () {
-	source ~/.zprofile
-	source ~/.zshenv
-	source ~/.zshrc
-	echo "SHELL RELOADED!"
+	exec env ZSH_RELOAD_MESSAGE=1 zsh -l
 }
 
 function dot {
@@ -286,3 +281,17 @@ compinit
 
 # initialize z after compinit for auto complete suggestions
 eval "$(zoxide init zsh)"
+
+# Load interactive plugins last; syntax highlighting must be last.
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+if [[ "$ZSH_RELOAD_MESSAGE" == 1 ]]; then
+	unset ZSH_RELOAD_MESSAGE
+	echo "SHELL RELOADED!"
+fi
+
+# Reinitialize Warp integration after an exec-based shell reload.
+if [[ "$TERM_PROGRAM" == "WarpTerminal" ]]; then
+	printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh"}}\x9c'
+fi

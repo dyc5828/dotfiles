@@ -5,33 +5,14 @@
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$HOME/.local/bin:$HOME/.antigravity/antigravity/bin:$PATH"
 
-# Github - all tokens derived from gh CLI keyring auth
-export GITHUB_TOKEN="$(/opt/homebrew/bin/gh auth token)"
-export GITHUB_PERSONAL_ACCESS_TOKEN="$GITHUB_TOKEN"
-
 # Homebrew
 export HOMEBREW_CASK_OPTS="--no-quarantine"
 export CLOUDSDK_PYTHON=/opt/homebrew/bin/python3.13
-
-# Gemini API
-export GEMINI_API_KEY=""
 
 # openssl
 export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@1.1/lib/pkgconfig"
 
-# Homebot
-## Postgres
-export PGHOST='127.0.0.1'
-export PGPORT='5432'
-export PGUSER='postgres'
-
-## bundler credentials for sidekiq enterprise
-BUNDLE_ENTERPRISE__CONTRIBSYS__COM=
-
-## Braintrust
-export BRAINTRUST_API_KEY=''
-
-## Doppler
-export DOPPLER_TOKEN=""
+# Local/secret overrides
+[ -f ~/.zshenv.local ] && source ~/.zshenv.local

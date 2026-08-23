@@ -1,0 +1,21 @@
+# Local/secret overrides for ~/.zshenv.
+# Copy this file to ~/.zshenv.local, fill in local values, and run:
+# chmod 600 ~/.zshenv.local
+
+# Gemini API
+export GEMINI_API_KEY=""
+
+# Homebot
+## Postgres
+export PGHOST="127.0.0.1"
+export PGPORT="5432"
+export PGUSER="postgres"
+
+## Bundler credentials for Sidekiq Enterprise
+export BUNDLE_ENTERPRISE__CONTRIBSYS__COM=""
+
+# Braintrust
+export BRAINTRUST_API_KEY=""
+
+# Doppler
+export DOPPLER_TOKEN=""
