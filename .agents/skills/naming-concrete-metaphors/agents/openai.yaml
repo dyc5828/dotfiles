@@ -1,0 +1,4 @@
+interface:
+  display_name: "Concrete Metaphor Naming"
+  short_description: "Name tools after tangible real-world referents"
+  default_prompt: "Use $naming-concrete-metaphors to name this purpose-built tool after a concrete real-world referent."

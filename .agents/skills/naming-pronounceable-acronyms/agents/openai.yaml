@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pronounceable Acronym Naming"
+  short_description: "Create speakable acronyms, including coined names"
+  default_prompt: "Use $naming-pronounceable-acronyms to create a speakable acronym name that describes this thing's purpose."

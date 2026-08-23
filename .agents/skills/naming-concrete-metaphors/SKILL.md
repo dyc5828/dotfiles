@@ -1,11 +1,11 @@
 ---
-name: structural-metaphor-naming
-description: Generate names for products, tools, features, frameworks, and internal projects using structural metaphor naming. Use when the user needs to name something - a product, tool, feature, framework, internal project, service, or library. Also use when the user asks to evaluate or workshop an existing name candidate. Trigger on phrases like "name this", "what should I call", "naming ideas", "suggest a name", "is this a good name", or any context where a thing needs a short, concrete, metaphorical name.
+name: naming-concrete-metaphors
+description: Generate short names for tools, applications, utilities, services, features, libraries, frameworks, and purpose-built software by mapping what they do to a concrete real-world referent. Use when the user asks to name, rename, or evaluate a tool, app, utility, or other thing that performs a specific function and wants an evocative name such as Spool, Beacon, Prism, or Anvil. Every candidate must refer to a real object, organism, place, material, structure, or directly observable physical action or phenomenon. Do not use when the user wants an acronym or backronym expansion.
 ---
 
-# Structural Metaphor Naming
+# Concrete Metaphor Naming
 
-Generate names by finding the deeper mechanism or metaphor underneath what something does, then surfacing a short, concrete, real-world word that implies that mechanism.
+Generate names by finding the deeper mechanism underneath what a tool does, then surfacing a short word with a concrete real-world referent that implies that mechanism.
 
 ## Theoretical Foundation
 
@@ -17,7 +17,7 @@ This naming approach draws from established frameworks across cognitive linguist
 
 **In branding taxonomy**, this falls under what the Igor naming framework calls "evocative names" and what ICU Agency more precisely calls "analogy metaphor" - names based on structural or functional similarity between the name's referent and the product. In trademark law, these are "suggestive marks" - names that require an imaginative leap but illuminate the product once the connection lands.
 
-**What distinguishes this style** from generic metaphorical naming:
+**What distinguishes concrete metaphor naming** from generic metaphorical naming:
 - The source is always a concrete physical object or process, not an abstraction
 - The mapping is mechanistic - it maps how the thing works, not a mood or association
 - The metaphor must be immediate - if it needs a sentence of explanation, it's too abstract
@@ -32,6 +32,8 @@ Before generating any names, do a brief reasoning step. This keeps names grounde
 2. **Find the metaphor underneath.** Look for a physical object, natural process, trade, or system that operates the same way. Cast a wide net across domains: navigation, storage, measurement, construction, transformation, infrastructure, natural processes, trades, environments. Don't collapse onto one metaphor family unless the product clearly calls for it. Keep this section brief - identify the domains, don't name candidates yet.
 
 3. **Generate 5-8 candidate names.** Each should be a real English word - short, concrete, and implying the mechanism without describing the category literally. Do not repeat names that appeared in the reasoning step. The candidate list is the single, definitive list of names.
+
+   Apply the real-world referent test to every candidate: a person must be able to point to, picture, or directly experience the thing the word ordinarily denotes without first translating it into a software or abstract concept. Reject any candidate that fails this test.
 
 4. **Evaluate the strongest candidates.** Briefly explain why 2-3 of the best names fit. Consider: does the name imply the right action? Is it legible and brandable? Does it feel calm and durable rather than trendy or whimsical?
 
