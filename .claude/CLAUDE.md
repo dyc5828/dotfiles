@@ -70,6 +70,10 @@ When writing or editing formal documents - policies, specs, proposals:
 
 When presenting changes to a document, workshop one section at a time. Show current vs proposed, get feedback, then move on. Don't dump full rewrites.
 
+## Drafting Replies
+
+When drafting anything that goes back to a thread, pull the thread first when it is reachable. This covers Slack threads, PR comments, Linear issues, and email chains. Write for the people in that thread, picking up from their last message, not from the chat with me. What the chat worked out is new to them, so state it or leave it out. Tone rules for Slack, PR, and Linear replies live in the dan-voice skill.
+
 ## CLI Tools
 
 Use these modern CLI tools across all projects:
