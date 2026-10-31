@@ -115,6 +115,9 @@ These come from `~/.claude/CLAUDE.md` and are reinforced through Dan's edits:
 - **Bold only for structural labels and headings**, never mid-sentence emphasis.
 - **Short over long.** Phrases over full sentences when meaning is clear.
 - **Should read like a person wrote it**, not like it was generated.
+- **Don't overstate.** Claim what the evidence supports and stop there.
+- **No counterfactuals.** No "without this, X would have broken" or "this isn't just X, it's Y." "Solves X, doesn't solve Y" is still fine.
+- **Drop immaterial tensions.** Leave out tradeoffs and caveats that don't change the work or the decision.
 
 ## Voice signals to keep
 

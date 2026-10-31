@@ -70,6 +70,14 @@ When writing or editing formal documents - policies, specs, proposals:
 
 When presenting changes to a document, workshop one section at a time. Show current vs proposed, get feedback, then move on. Don't dump full rewrites.
 
+## Stating Things
+
+Applies to all output: chat replies, drafts in Dan's voice, docs.
+
+- **Don't overstate.** Claim what the evidence supports and stop there. No "critical," "significant," or "fundamentally" unless it literally is. A fix for one case is a fix for one case.
+- **No counterfactuals.** Don't make a point by describing what would have happened or what something isn't. Skip "without this, X would have broken" and "this isn't just X, it's Y." State what is and what it does. Scoping a real limit is fine, like "solves X, doesn't solve Y."
+- **Drop immaterial tensions.** Leave out tradeoffs, caveats, and competing concerns that don't change the work or the decision. If it wouldn't change what we do next, it doesn't belong.
+
 ## Drafting Replies
 
 When drafting anything that goes back to a thread, pull the thread first when it is reachable. This covers Slack threads, PR comments, Linear issues, and email chains. Write for the people in that thread, picking up from their last message, not from the chat with me. What the chat worked out is new to them, so state it or leave it out. Tone rules for Slack, PR, and Linear replies live in the dan-voice skill.
