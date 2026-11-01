@@ -1,10 +1,10 @@
-tap "dopplerhq/cli", trusted: true
+tap "dopplerhq/doppler", trusted: true
 tap "dyc5828/tap", trusted: true
 tap "heroku/brew", trusted: true
 tap "homebotapp/tap", trusted: true
 tap "microsoft/git", trusted: true
 tap "stripe/stripe-cli", trusted: true
-tap "wix/brew", trusted: true
+tap "wix-incubator/brew", trusted: true
 tap "xcodesorg/made", trusted: true
 brew "zstd"
 brew "libtiff"
@@ -17,6 +17,7 @@ brew "awscli"
 brew "libgit2"
 brew "bat"
 brew "boost"
+brew "btop"
 brew "glib"
 brew "pycparser"
 brew "cffi"
@@ -28,6 +29,7 @@ brew "ctop"
 brew "curl"
 brew "docker-compose"
 brew "docutils"
+brew "doppler"
 brew "duti"
 brew "folly"
 brew "fizz"
@@ -87,12 +89,11 @@ brew "witr"
 brew "xcodes"
 brew "yt-dlp"
 brew "zoxide"
-brew "dopplerhq/cli/doppler"
 brew "dyc5828/tap/bkup"
 brew "heroku/brew/heroku"
 brew "homebotapp/tap/godev"
 brew "stripe/stripe-cli/stripe"
-brew "wix/brew/applesimutils"
+brew "wix-incubator/brew/applesimutils"
 cask "1password-cli"
 cask "claude-code@latest"
 cask "codex"
@@ -102,6 +103,7 @@ cask "font-fira-code-nerd-font"
 cask "font-meslo-lg-nerd-font"
 cask "gcloud-cli"
 cask "git-credential-manager"
+cask "hiddenbar"
 cask "music-decoy"
 cask "pritunl"
 cask "react-native-debugger"
