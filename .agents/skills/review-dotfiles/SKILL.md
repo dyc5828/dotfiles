@@ -1,12 +1,30 @@
 ---
 name: review-dotfiles
-description: Review dotfiles for uncommitted changes and new files worth tracking. Use when the user says "check dotfiles", "dot review", "review my dotfiles", "sync dotfiles", or wants to audit what's changed and what could be added to their dotfiles repo.
+description: Review dotfiles for uncommitted changes and new files worth tracking. Use when the user says "check dotfiles", "dot review", "review my dotfiles", "sync dotfiles", or wants to audit what's changed and what could be added to their dotfiles repo. Has a scoped mode for committing and pushing only the changes from the current session, triggered by "just what we changed", "only these files", "push the changes we talked about", or a list of named files.
 allowed-tools: Bash(dot *), Bash(brew *), Bash(eza *), Bash(comm *), Bash(diff *), Bash(grep *), Bash(sort *), Bash(mkdir *), Bash(rm *), Read, Grep, Glob, Edit
 ---
 
 # Dot Files Review
 
 Holistic review of the user's dotfiles repo (bare repo at `~/.dotfiles/`, aliased to `dot`). Surfaces everything that's changed or could be tracked, then walks through each file with the user before committing anything.
+
+## Modes
+
+Pick the mode before Phase 1.
+
+- **Full** is the default. Run every phase below.
+- **Scoped** runs when the user limits the review to specific changes. Triggers include "just what we changed", "only these files", "push the changes we talked about", or a list of named files.
+
+### Scoped mode
+
+Scope is the files changed in this session or named by the user, plus anything else those changes need to reach origin/main. Everything outside scope stays untouched and gets one line in the report.
+
+- **Skip the sweep.** Run only `dot status` and `dot log --oneline` from Phase 1. Skip Phase 2's Brewfile sync, Phase 3's new-file discovery, and the "already tracked" list.
+- **Scope within each file, not just by file.** A file in scope can also hold older uncommitted edits unrelated to this work. Go through its changes portion by portion and stage only the ones in scope. Git's hunks are the natural starting unit, but one hunk can mix in-scope and out-of-scope lines, so judge by what each change does, not by where git drew the boundary. Write `dot diff -- <file>` to a scratch patch, delete the out-of-scope hunks or lines, then `dot apply --cached --recount <patch>` and confirm with `dot diff --cached`.
+- **Keep the committed repo consistent.** A portion that describes or depends on a change outside scope stays out with it, so the repo doesn't document a setup it doesn't contain. If an in-scope change only makes sense alongside an out-of-scope one, flag it rather than committing half. Name every left-out portion in the report so the user can decide. They stay in the working copy, so there's nothing to restore after the push.
+- **Report only the scoped files.** Same Phase 4 table limited to scope, then one line with how many other uncommitted files were left alone.
+- **Secret scans are mandatory.** Scoped mode never skips the Phase 6 pre-commit scan or the Phase 7 pre-push scan. Run both every time, no matter how small or safe the change looks. The remote is public, and a secret in a pushed commit stays in history. If either scan finds anything, stop and fix it the way Phase 7 describes before anything leaves the machine.
+- **Commit and push only with approval.** Show the diffs and group related changes into logical commits. If the request already asks to push, show the staged diff and scan result, then confirm once before committing and pushing.
 
 ## Phase 1: Gather State
 
