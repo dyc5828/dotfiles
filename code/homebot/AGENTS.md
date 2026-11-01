@@ -15,9 +15,9 @@ This is the top-level working directory for Homebot's multi-repo codebase. It is
 - **hb-web-component-catalog/** — Shared web component library.
 
 ### Admin / Internal Tools
-- **lockbox/** — Identity provider, authentication service, and **HPAdmin** (back-of-house admin control panel). Contains bulk client operations UI, TableFlow imports, and employee-facing admin views.
-- **kraken/** — Contains **Porthole** (React admin frontend at `apps/porthole/`). Modern admin UI with bulk delete functionality. Links to Lockbox/HPAdmin for legacy operations.
-- **crawlspace/** — Minimal admin app for plans, feature flags, and customer profile settings. Mostly stubs that redirect to HPAdmin for bulk operations.
+- **lockbox/** — Identity provider, authentication service, and **HBAdmin** (back-of-house admin control panel). Contains bulk client operations UI, TableFlow imports, and employee-facing admin views.
+- **kraken/** — Contains **Porthole** (React admin frontend at `apps/porthole/`). Modern admin UI with bulk delete functionality. Links to Lockbox/HBAdmin for legacy operations.
+- **crawlspace/** — Minimal admin app for plans, feature flags, and customer profile settings. Mostly stubs that redirect to HBAdmin for bulk operations.
 
 ### Infrastructure / Tooling
 - **hbdev/** — Development utilities and local environment setup.
@@ -61,7 +61,7 @@ The preferred agent/partner system is managed through `client_team_memberships` 
 ### Bulk Operations
 - **Rake tasks** in `mikasa/lib/tasks/` for operational scripts (enterprise imports, one-and-done fixes)
 - **BulkOperation model** in Mikasa for delete/transfer (used by Lockbox and Porthole admin UIs)
-- **TableFlow imports** via Lockbox HPAdmin for CSV-based bulk operations
+- **TableFlow imports** via Lockbox HBAdmin for CSV-based bulk operations
 - **Bifrost** integration for bulk client CSV uploads
 
 ## Worktrees & Parallel Work
@@ -99,6 +99,8 @@ When reviewing a PR:
 1. **Read thoroughly.** Fetch the full diff, read all existing comments/review threads, and understand the complete scope of changes before forming opinions.
 2. **Use the local codebase.** Don't review the diff in isolation. Cross-reference against the actual source files to verify business logic, check how things are used elsewhere, understand domain concepts, and fill knowledge gaps. The local repos are right here — use them.
 3. **Collaborate, don't submit.** Your job is to walk through the changes with me, present your findings, and get my input on what's right and what needs to be called out. We work through the review together — draft comments, iterate on wording and tone, and only submit when I say it's ready. Never post a review without my explicit go-ahead.
+4. **Non-blocking notes go in the review body, not inline threads.** Repos like surfaces require every review thread to be resolved before merge, so an inline nit on an approval blocks the merge until someone resolves it. Put nits and follow-ups in the top-level review body with a `path:line` reference. Use inline comments only for things that must change before merge.
+5. **Skip PRs someone else already approved.** When working a review queue, only approve a PR that has no standing approval on its current head. If another reviewer's approval still counts, leave it alone. A new push that dismisses every approval puts it back in scope.
 
 ## Environment Notes
 
