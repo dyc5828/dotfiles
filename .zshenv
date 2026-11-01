@@ -5,9 +5,13 @@
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$HOME/.local/bin:$HOME/.antigravity/antigravity/bin:$PATH"
 
+# GitHub - all tokens derived from gh CLI keyring auth. In .zshenv so non-login shells get them.
+export GITHUB_TOKEN="${GITHUB_TOKEN:-$(/opt/homebrew/bin/gh auth token 2>/dev/null)}"
+export GITHUB_PERSONAL_ACCESS_TOKEN="$GITHUB_TOKEN"
+export HOMEBREW_GITHUB_API_TOKEN="$GITHUB_TOKEN"
+
 # Homebrew
 export HOMEBREW_CASK_OPTS="--no-quarantine"
-export CLOUDSDK_PYTHON=/opt/homebrew/bin/python3.13
 
 # openssl
 export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"

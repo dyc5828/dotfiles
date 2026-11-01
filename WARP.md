@@ -47,6 +47,7 @@ dot push            # Push to remote
 
 - `~/.zshenv` - Environment variables and PATH (all shells, including non-interactive)
 - `~/.zshrc` - Aliases, prompt, interactive features (interactive shells only)
+- Homebrew `gcloud-cli` selects its supported Python interpreter automatically. Do not define `CLOUDSDK_PYTHON` globally.
 
 ### Node.js Global Packages
 

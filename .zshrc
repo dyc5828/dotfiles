@@ -282,6 +282,9 @@ compinit
 # initialize z after compinit for auto complete suggestions
 eval "$(zoxide init zsh)"
 
+# Added by Antigravity IDE
+export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
+
 # Load interactive plugins last; syntax highlighting must be last.
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

@@ -99,6 +99,7 @@ Note: User has aliases for personal use (e.g., `l`, `ll`, `lt` for eza variants)
 - Operating System: MacOS
 - Shell: zsh 5.9
 - Package Manager: pnpm (for Node.js global packages)
+- Google Cloud CLI: let the Homebrew `gcloud-cli` cask select its supported Python interpreter. Do not set `CLOUDSDK_PYTHON` globally.
 
 See `~/WARP.md` for detailed reference of user aliases and shell configuration.
 
