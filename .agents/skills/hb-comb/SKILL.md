@@ -1,6 +1,6 @@
 ---
-name: comb
-description: Comb every available source for context — use everything at your disposal. Slack, Gmail, Linear, Notion, GitHub, the local codebase, meeting notes in Wispr Flow, Granola, Zoom, and Notion, observability, analytics, anything else connected. Also the go-to for finding precedent: how we did something before, so it can be replicated. Defines where to look, not what to do with what's found. Triggers on "/comb", "pull context", "gather context", "dig up", "investigate", "how did we do X", "how do I do X", "find prior art", "how was this done before".
+name: hb-comb
+description: Comb every available source for context — use everything at your disposal. Slack, Gmail, Linear, Notion, GitHub, the local codebase, meeting notes in Wispr Flow, Granola, Zoom, and Notion, observability, analytics, anything else connected. Also the go-to for finding precedent: how we did something before, so it can be replicated. Defines where to look, not what to do with what's found. Triggers on "/hb-comb", "comb", "comb through", "pull context", "gather context", "dig up", "investigate", "how did we do X", "how do I do X", "find prior art", "how was this done before".
 ---
 
 # Comb
