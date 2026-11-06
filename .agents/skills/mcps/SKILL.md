@@ -12,8 +12,8 @@ allowed-tools: Bash(claude mcp list*)
 
 ## Arguments
 
-- **Empty** → hide disabled servers, show only a count
-- **`all`** → also list disabled servers at the bottom
+- **Empty** → table of servers that need fixing, connected servers as a comma list, disabled as a count only
+- **`all`** → table of every enabled server, disabled servers as a comma list
 
 ## Steps
 
@@ -21,22 +21,46 @@ allowed-tools: Bash(claude mcp list*)
 
 2. Put each server in one bucket:
    - **Disabled**: status starts with `⊘ Disabled`.
-   - **Needs attention**: any status other than `Connected` or `Disabled`, e.g. failed to connect or needs authentication.
+   - **Attention**: any status other than `Connected` or `Disabled`, e.g. failed to connect or needs authentication.
    - **Needs auth (session)**: the CLI says `Connected`, but in this session the server's only tools are `authenticate` and `complete_authentication`. The CLI health check misses this case. Look at the tools this session can see, including the deferred tool list. Tool prefixes come from the display name with non-alphanumerics turned into `_`, so `claude.ai Google Drive` becomes `mcp__claude_ai_Google_Drive__`.
    - **Connected**: everything else.
 
-3. Output one table. Needs attention and Needs auth rows go first, then Connected. Sort alphabetically within each group. Drop the `claude.ai ` prefix from names.
+3. Drop the `claude.ai ` prefix from names. Sort alphabetically within each group.
 
-   | Server | Status | Fix |
-   |---|---|---|
-   | Sentry | Needs auth | `/mcp` → Sentry → Authenticate |
-   | Amplitude | Connected | |
+4. Output, in this order:
+   - One summary line, e.g. `30 connected, 2 attention, 30 disabled.`
+   - The table, using the rules below for each mode.
+   - The connected or disabled list for that mode.
 
-   Fixes:
-   - Needs auth → `/mcp` → server → Authenticate
-   - Failed to connect → `/mcp` → server → Reconnect. For a local server like playwright, check the command in the CLI output.
+### Default
 
-4. End with one line: `N disabled servers hidden. Run /mcps all to list them.`
-   With `all`, list the disabled servers alphabetically on one line below the table and note they can be re-enabled via `/mcp`.
+Table holds only Attention and Needs auth rows. Omit the table when nothing needs fixing.
 
-Keep the summary above the table to one line, e.g. `30 connected, 2 need attention, 30 disabled (hidden).` Write nothing else.
+| Server | Status | Fix |
+|---|---|---|
+| Sentry | Needs auth | `/mcp` → Sentry → Authenticate |
+
+Then these two lines as plain text:
+
+**Connected (30):** Amplitude, Braintrust, CircleCI, ...
+30 disabled servers hidden. Run /mcps all to list them.
+
+### `all`
+
+Table holds every enabled server: Attention and Needs auth rows first, then Connected rows with an empty Fix.
+
+| Server | Status | Fix |
+|---|---|---|
+| Sentry | Needs auth | `/mcp` → Sentry → Authenticate |
+| Amplitude | Connected | |
+
+Then this line as plain text:
+
+**Disabled (30):** Asana, Ashby, Astronomer, ... Re-enable via `/mcp`.
+
+### Fixes
+
+- Needs auth → `/mcp` → server → Authenticate
+- Failed to connect → `/mcp` → server → Reconnect. For a local server like playwright, check the command in the CLI output.
+
+Write nothing else.
